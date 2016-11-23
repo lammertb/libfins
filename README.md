@@ -1,13 +1,13 @@
 # Libfins - Multi platform MIT licensed CRC library in C
 Libfins is a multi platform library with routines to communicate with Omron PLCs
-over the FINS protocol. FINS is a inter-PLC protocol which allows hardware layer independent exchange of
+over the FINS protocol. FINS is an inter-PLC protocol which allows hardware layer independent exchange of
 data between PLCs. Omron PLCs support the exchange of data over serial lines, TCP, UDP and bus systems.
 This library currently implements the FINS/TCP communication.
 
 FINS is a client server protocol where a client sends requests to a remote server and processes their
 answer. The libfins library contains almost all of the publically documented functionality. The only
 functionality currently missing is using a PLC as gateway to execute Compoway/F and Modbus commands
-over SCI serial unit. These features will be implemented and tested in the near future though.
+over SCU serial units. These features will be implemented and tested in the near future though.
 
 ## License
 
@@ -32,7 +32,7 @@ integrated in an application. Furthermore there is an [API reference](APIReferen
 ## Multi platform
 
 The Libfins library is developed to be used on multiple platforms. It currently supports Linux, Windows, OS-X
-and FreeBSD in 32 and 64 bit and on i86 and AMD architectures. New versions of the code are
+and FreeBSD in 32 and 64 bit and on x86 and AMD architectures. New versions of the code are
 regularly compiled and checked on the systems mentioned in the following lists.
 
 ### 32 bit development environments
