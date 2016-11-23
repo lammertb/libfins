@@ -181,6 +181,33 @@ is requested with a call to the `finslib_connection_data_read()` function.
 
 ## Functions
 
+### `finslib_errmsg( error_code, buffer, buffer_len );`
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+|**`error_code`**|`int`|The return value of a FINS function which must be translated to a human readable error message|
+|**`buffer`**|`char *`|The buffer where the return string must be stored|
+|**`buffer_len`**|`size_t`|The amount of characters including the zero termination character of the string which can be stored in the buffer|
+
+#### Returns
+
+| Type | Description |
+| :--- | :--- |
+|`const char *`|A pointer to the string message when successful, or NULL when an unrecoverable error occured|
+
+#### Description
+
+All functions in the library which have the option of failing return an integer return code. This code can either be an operating system error,
+an error returned from the remote peer over the FINS protocol, or an error which occured in the libfins library itself. The function
+`finslib_errmsg()` can be used to translate such an error number to a human readable string.
+
+If the function fails to provide an error message due to an internal problem like an unexisting string buffer, the function will return NULL.
+In all other cases the caller provided buffer will be filled with the appropriate error message and the function returns a pointer to the
+beginning of that buffer. In case the error code is unknown but the function doesn't fail due to an internal error, the text "Unknown error"
+is returned.
+
 ### `finslib_memory_area_read_word( sys, start, data, num_words );`
 
 #### Parameters
@@ -198,6 +225,7 @@ is requested with a call to the `finslib_connection_data_read()` function.
 | :--- | :--- |
 |`int`|A return value from the list `FINS_RETVAL_...` indicating the result of the query|
 
+#### Description
 
 The function `finslib_memory_area_read_word()` can be used to retrieve a block of 16 bit words from a memory
 are in a remote PLC. The connection with the PLC should already be present before this function is called.
@@ -217,3 +245,44 @@ be too large.
 The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
 should not be used.
+
+### `finslib_milli_second_sleep( int msec );`
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+|**`msec`**|`int`|The amount of milliseconds the current thread should be suspended.
+
+#### Returns
+
+| Type | Description |
+| :--- | :--- |
+|`void`|This function has no return value|
+
+#### Description
+
+The function finslib_milli_second_sleep()` suspends the current thread for the amount of milliseconds specified.
+The accuracy of the sleep time depends on the operating system specific implementation and the amount of other
+threads and processes which compete for time slots.
+
+### `finslib_monotonic_sec_timer( void );`
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+
+#### Returns
+
+| Type | Description |
+| :--- | :--- |
+|`time_t`|A monotonic counter of the number of seconds which have passed since an unspecified starting point in time|
+
+#### Description
+
+The function `finslib_monotonic_sec_timer()` provides a seconds timer which is guaranteerd to be monotonic. This timer
+is therefore not directly bound to the internal wall clock. Due to this it is immune for changes in the clock settings
+and for changes in the time which happen during the transistion to and from daylight saving time.
+
+The return value is the amount of seconds since an unspecified moment.
