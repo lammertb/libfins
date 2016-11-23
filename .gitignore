@@ -1,0 +1,7 @@
+make.exe
+*~
+.*.swp
+obj/*.obj
+obj/*.o
+lib/*.lib
+lib/*.a
