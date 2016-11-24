@@ -36,7 +36,7 @@ type of the requested element.
 The `address` of each element is provided as an ASCII string which represents the starting address in human
 readable format. Example formats are **`CIO20`** and **`W100.5`**.
 
-The `type` of each element is one of the [`FINS_MULTI_TYPE...`](FINS_MULTI_TYPE.md) constants.
+The `type` of each element is one of the [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) constants.
 
 The requested number of elements is not limited by the amount of data a PLC can send in one FINS packet because
 `finslib_multiple_memory_area_read()` will automatically use multiple requests at the FINS layer if the dataset will
