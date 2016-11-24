@@ -24,4 +24,4 @@
 |**`FINS_DATA_TYPE_BCD32`**|32 bit BCD value between 0 and 99999999|
 |**`FINS_DATA_TYPE_UINT16`**|Unsigned 16 bit integer|
 |**`FINS_DATA_TYPE_UINT32`**|Unsigned 32 bit integer|
-|**`FINS_DATA_TYPE_WORD`**|16 bit values with their forced status returned in four two 16 bit words|
+|**`FINS_DATA_TYPE_WORD_FORCED`**|16 bit values with their forced status returned in four two 16 bit words|
