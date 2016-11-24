@@ -22,7 +22,7 @@
 #### Description
 
 The function `finslib_memory_area_read_bit()` can be used to retrieve a block of bits from a memory
-are in a remote PLC. The connection with the PLC should already be present before this function is called.
+area in a remote PLC. The connection with the PLC should already be present before this function is called.
 
 Data is transferred unmodified from the FINS data stream to the caller supplied buffer. 
 Enough dataspace is the responsibility of the calling function, but `finslib_memory_area_read_word()`
