@@ -63,13 +63,13 @@ int finslib_clock_read( struct fins_sys_tp *sys, struct fins_datetime_tp* dateti
 
 	bodylen = 2;
 
-	datetime->year   = finslib_bcd_to_int( fins_cmnd.body[bodylen++] ) + 1900;
-	datetime->month  = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-	datetime->day    = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-	datetime->hour   = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-	datetime->min    = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-	datetime->sec    = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-	datetime->dow    = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
+	datetime->year   = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 ) + 1900;
+	datetime->month  = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+	datetime->day    = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+	datetime->hour   = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+	datetime->min    = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+	datetime->sec    = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+	datetime->dow    = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
 
 	if ( datetime->year < 1998 ) datetime->year += 100;
 

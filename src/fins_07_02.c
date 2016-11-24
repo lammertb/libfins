@@ -68,16 +68,16 @@ int finslib_clock_write( struct fins_sys_tp *sys, const struct fins_datetime_tp 
 
 	bodylen = 0;
 
-	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->year % 100 ) & 0xff;
-	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->month      ) & 0xff;
-	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->day        ) & 0xff;
-	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->hour       ) & 0xff;
-	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->min        ) & 0xff;
+	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->year % 100, FINS_DATA_TYPE_BCD16 ) & 0xff;
+	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->month,      FINS_DATA_TYPE_BCD16 ) & 0xff;
+	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->day,        FINS_DATA_TYPE_BCD16 ) & 0xff;
+	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->hour,       FINS_DATA_TYPE_BCD16 ) & 0xff;
+	fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->min,        FINS_DATA_TYPE_BCD16 ) & 0xff;
 
 	if ( do_sec ) {
 
-		fins_cmnd.body[bodylen++]                       = finslib_int_to_bcd( datetime->sec ) & 0xff;
-		if ( do_day_of_week ) fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->dow ) & 0xff;
+		fins_cmnd.body[bodylen++]                       = finslib_int_to_bcd( datetime->sec, FINS_DATA_TYPE_BCD16 ) & 0xff;
+		if ( do_day_of_week ) fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->dow, FINS_DATA_TYPE_BCD16 ) & 0xff;
 	}
 
 	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;

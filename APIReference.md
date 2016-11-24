@@ -23,6 +23,7 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 ## Functions
 
 * [`finslib_errmsg( error_code, buffer, buffer_len );`](doc/finslib_errmsg.md)
+* [`finslib_memory_area_fill( sys, start, fill_data, num_word );`](doc/finslib_memory_area_fill.md)
 * [`finslib_memory_area_read_bcd16( sys, start, data, num_bcd16 );`](doc/finslib_memory_area_read_bcd16.md)
 * [`finslib_memory_area_read_bcd32( sys, start, data, num_bcd32 );`](doc/finslib_memory_area_read_bcd32.md)
 * [`finslib_memory_area_read_bit( sys, start, data, num_bit );`](doc/finslib_memory_area_read_bit.md)
@@ -39,5 +40,6 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 * [`finslib_memory_area_write_uint16( sys, start, data, num_uint16 );`](doc/finslib_memory_area_write_uint16.md)
 * [`finslib_memory_area_write_uint32( sys, start, data, num_uint32 );`](doc/finslib_memory_area_write_uint32.md)
 * [`finslib_memory_area_write_word( sys, start, data, num_word );`](doc/finslib_memory_area_write_word.md)
+* [`finslib_multi_memory_area_read( sys, item, num_item );`](doc/finslib_multi_memory_area_read.md)
 * [`finslib_milli_second_sleep( int msec );`](doc/finslib_milli_second_sleep.md)
 * [`finslib_monotonic_sec_timer( void );`](doc/finslib_monotonic_sec_timer.md)

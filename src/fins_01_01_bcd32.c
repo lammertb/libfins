@@ -38,7 +38,7 @@
  *
  * The function finslib_memory_area_read_bcd32() reads a block of BCD encoded
  * values from a memory area in a remote PLC over the FINS protocol. Values
- * which cannot be converted will be represented as 0xFFFFFFFF.
+ * which cannot be converted will be represented as UINT32_MAX.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
@@ -109,10 +109,10 @@ int finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, 
 
 			bodylen  += 4;
 
-			bin_val   = finslib_bcd_to_int( bcd_val );
+			bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD32 );
 
-			if ( bin_val < 0 ) data[offset+a] = 0xFFFFFFFF;
-			else               data[offset+a] = bin_val;
+			if ( bin_val == INT32_MAX ) data[offset+a] = UINT32_MAX;
+			else                        data[offset+a] = bin_val;
 		}
 
 		todo        -= chunk_length / 2;

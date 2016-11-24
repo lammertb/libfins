@@ -40,7 +40,7 @@
  * values to a memory area in a remote PLC through the FINS protocol. The data
  * is delivered as an array with binary values which are converted to BCD
  * before being sent to the PLC. If a value cannot be converted to a valid BCD
- * value, 0xFFFFFFFF is used instead.
+ * value, UINT32_MAX is used instead.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
@@ -94,7 +94,7 @@ int finslib_memory_area_write_bcd32( struct fins_sys_tp *sys, const char *start,
 
 		for (a=0; a<chunk_length/2; a++) {
 
-			bcd_val = finslib_int_to_bcd( data[offset+a] );
+			bcd_val = finslib_int_to_bcd( data[offset+a], FINS_DATA_TYPE_BCD32 );
 
 			fins_cmnd.body[bodylen+2] = (bcd_val >> 24) & 0xff;
 			fins_cmnd.body[bodylen+3] = (bcd_val >> 16) & 0xff;

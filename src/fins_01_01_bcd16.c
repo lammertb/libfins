@@ -38,8 +38,8 @@
  *
  * The function fins_memory_area_read_bcd16() reads an amount of BCD encoded
  * 16 bits words and puts them as converted binary values in a data array.
- * If an input value contains undefined bytes, the value 0xFFFF is put in the
- * output array to indicate that the value was invalid.
+ * If an input value contains undefined bytes, the value UINT16_MAX is put in
+ * the output array to indicate that the value was invalid.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
@@ -102,10 +102,10 @@ int finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, 
 			bcd_val <<= 8;
 			bcd_val  += fins_cmnd.body[bodylen++];
 
-			bin_val   = finslib_bcd_to_int( bcd_val );
+			bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD16 );
 
-			if ( bin_val < 0 ) data[offset+a] = 0xFFFF;
-			else               data[offset+a] = (uint16_t) bin_val;
+			if ( bin_val == INT32_MAX ) data[offset+a] = UINT16_MAX;
+			else                        data[offset+a] = (uint16_t) bin_val;
 		}
 
 		todo        -= chunk_length;

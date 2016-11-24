@@ -34,7 +34,7 @@
 #include "fins.h"
 
 /*
- * int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_items );
+ * int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item );
  *
  * The function finslib_multiple_memory_area_read() can be used to read data
  * from different areas from a remote PLC with one call over the FINS protocol.
@@ -44,7 +44,7 @@
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
 
-int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_items ) {
+int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item ) {
 
 	int32_t bin_val;
 	uint32_t bcd_val;
@@ -68,13 +68,13 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 	} dfloat;
 	int retval;
 
-	if ( num_items   == 0              ) return FINS_RETVAL_SUCCESS;
+	if ( num_item    == 0              ) return FINS_RETVAL_SUCCESS;
 	if ( sys         == NULL           ) return FINS_RETVAL_NOT_INITIALIZED;
 	if ( item        == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
 	offset = 0;
-	todo   = num_items;
+	todo   = num_item;
 
 	do {
 		chunk_length = 24;
@@ -89,10 +89,13 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 			switch( item[offset+a].type ) {
 
-				case FINS_MULTI_TYPE_INT16  :
-				case FINS_MULTI_TYPE_UINT16 :
-				case FINS_MULTI_TYPE_SBCD16 :
-				case FINS_MULTI_TYPE_UBCD16 :
+				case FINS_DATA_TYPE_INT16    :
+				case FINS_DATA_TYPE_UINT16   :
+				case FINS_DATA_TYPE_BCD16    :
+				case FINS_DATA_TYPE_SBCD16_0 :
+				case FINS_DATA_TYPE_SBCD16_1 :
+				case FINS_DATA_TYPE_SBCD16_2 :
+				case FINS_DATA_TYPE_SBCD16_3 :
 
 					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
@@ -114,7 +117,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_BIT :
+				case FINS_DATA_TYPE_BIT :
 
 					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
@@ -136,7 +139,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_BIT_FORCED :
+				case FINS_DATA_TYPE_BIT_FORCED :
 
 					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
@@ -158,7 +161,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_WORD_FORCED :
+				case FINS_DATA_TYPE_WORD_FORCED :
 
 					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
@@ -180,11 +183,14 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_INT32  :
-				case FINS_MULTI_TYPE_UINT32 :
-				case FINS_MULTI_TYPE_SBCD32 :
-				case FINS_MULTI_TYPE_UBCD32 :
-				case FINS_MULTI_TYPE_FLOAT  :
+				case FINS_DATA_TYPE_INT32    :
+				case FINS_DATA_TYPE_UINT32   :
+				case FINS_DATA_TYPE_BCD32    :
+				case FINS_DATA_TYPE_SBCD32_0 :
+				case FINS_DATA_TYPE_SBCD32_1 :
+				case FINS_DATA_TYPE_SBCD32_2 :
+				case FINS_DATA_TYPE_SBCD32_3 :
+				case FINS_DATA_TYPE_FLOAT    :
 
 					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
@@ -213,7 +219,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_DOUBLE :
+				case FINS_DATA_TYPE_DOUBLE :
 
 					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
@@ -269,7 +275,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 			switch ( item[offset+a].type ) {
 
-				case FINS_MULTI_TYPE_INT16 :
+				case FINS_DATA_TYPE_INT16 :
 
 					item[offset+a].int16   = fins_cmnd.body[bodylen+0];
 					item[offset+a].int16 <<= 8;
@@ -281,7 +287,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_INT32 :
+				case FINS_DATA_TYPE_INT32 :
 
 					item[offset+a].int32   = fins_cmnd.body[bodylen+3];
 					item[offset+a].int32 <<= 8;
@@ -297,7 +303,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_UINT16 :
+				case FINS_DATA_TYPE_UINT16 :
 
 					item[offset+a].uint16   = fins_cmnd.body[bodylen+0];
 					item[offset+a].uint16 <<= 8;
@@ -309,7 +315,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_UINT32 :
+				case FINS_DATA_TYPE_UINT32 :
 
 					item[offset+a].uint32   = fins_cmnd.body[bodylen+3];
 					item[offset+a].uint32 <<= 8;
@@ -325,7 +331,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_FLOAT :
+				case FINS_DATA_TYPE_FLOAT :
 
 					sfloat.val_raw[0] = fins_cmnd.body[0];
 					sfloat.val_raw[1] = fins_cmnd.body[1];
@@ -340,7 +346,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_DOUBLE :
+				case FINS_DATA_TYPE_DOUBLE :
 
 					dfloat.val_raw[0] = fins_cmnd.body[0];
 					dfloat.val_raw[1] = fins_cmnd.body[1];
@@ -359,39 +365,42 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_UBCD16 :
+				case FINS_DATA_TYPE_BCD16 :
 
 					bcd_val   = fins_cmnd.body[bodylen+0];
 					bcd_val <<= 8;
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 2;
 
-					bin_val   = finslib_bcd_to_int( bcd_val );
+					bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD16 );
 
-					if ( bin_val < 0 ) item[offset+a].ubcd16 = 0xFFFF;
-					else               item[offset+a].ubcd16 = (uint16_t) bin_val;
+					if ( bin_val == INT32_MAX ) item[offset+a].uint16 = UINT16_MAX;
+					else                        item[offset+a].uint16 = (uint16_t) bin_val;
 
 					break;
 
 
 
-				case FINS_MULTI_TYPE_SBCD16 :
+				case FINS_DATA_TYPE_SBCD16_0 :
+				case FINS_DATA_TYPE_SBCD16_1 :
+				case FINS_DATA_TYPE_SBCD16_2 :
+				case FINS_DATA_TYPE_SBCD16_3 :
 
 					bcd_val   = fins_cmnd.body[bodylen+0];
 					bcd_val <<= 8;
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 2;
 
-					bin_val   = finslib_bcd_to_int( bcd_val );
+					bin_val   = finslib_bcd_to_int( bcd_val, item[offset+a].type );
 
-					if ( bin_val < 0 ) item[offset+a].sbcd16 = 0xFFFF;
-					else               item[offset+a].sbcd16 = (int16_t) bin_val;
+					if ( bin_val == INT32_MAX ) item[offset+a].int16 = INT16_MAX;
+					else                        item[offset+a].int16 = (int16_t) bin_val;
 
 					break;
 
 
 
-				case FINS_MULTI_TYPE_UBCD32 :
+				case FINS_DATA_TYPE_BCD32 :
 
 					bcd_val   = fins_cmnd.body[bodylen+3];
 					bcd_val <<= 8;
@@ -402,16 +411,19 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 5;
 
-					bin_val   = finslib_bcd_to_int( bcd_val );
+					bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD32 );
 
-					if ( bin_val < 0 ) item[offset+a].ubcd32 = 0xFFFFFFFF;
-					else               item[offset+a].ubcd32 = bin_val;
+					if ( bin_val == INT32_MAX ) item[offset+a].uint32 = UINT32_MAX;
+					else                        item[offset+a].uint32 = bin_val;
 
 					break;
 
 
 
-				case FINS_MULTI_TYPE_SBCD32 :
+				case FINS_DATA_TYPE_SBCD32_0 :
+				case FINS_DATA_TYPE_SBCD32_1 :
+				case FINS_DATA_TYPE_SBCD32_2 :
+				case FINS_DATA_TYPE_SBCD32_3 :
 
 					bcd_val   = fins_cmnd.body[bodylen+3];
 					bcd_val <<= 8;
@@ -422,16 +434,16 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 5;
 
-					bin_val   = finslib_bcd_to_int( bcd_val );
+					bin_val   = finslib_bcd_to_int( bcd_val, item[offset+a].type );
 
-					if ( bin_val < 0 ) item[offset+a].sbcd32 = 0xFFFFFFFF;
-					else               item[offset+a].sbcd32 = bin_val;
+					if ( bin_val == INT32_MAX ) item[offset+a].int32 = INT32_MAX;
+					else                        item[offset+a].int32 = bin_val;
 
 					break;
 
 
 
-				case FINS_MULTI_TYPE_BIT :
+				case FINS_DATA_TYPE_BIT :
 
 					item[offset+a].bit     = fins_cmnd.body[bodylen] & 0x01;
 					item[offset+a].b_force = false;
@@ -442,7 +454,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_BIT_FORCED :
+				case FINS_DATA_TYPE_BIT_FORCED :
 
 					item[offset+a].bit     = fins_cmnd.body[bodylen] & 0x01;
 					item[offset+a].b_force = fins_cmnd.body[bodylen] & 0x02;
@@ -453,7 +465,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 
 
-				case FINS_MULTI_TYPE_WORD_FORCED :
+				case FINS_DATA_TYPE_WORD_FORCED :
 
 					item[offset+a].w_force   = fins_cmnd.body[bodylen+0];
 					item[offset+a].w_force <<= 8;

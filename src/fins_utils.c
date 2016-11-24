@@ -98,18 +98,203 @@ static bool valid_dos_filename_char[] = {
 };
 
 /*
- * int32_t finslib_bcd_to_int( uint32_t value );
+ * int32_t finslib_bcd_to_int( uint32_t value, int type );
  *
  * The function finslib_bcd_to_int() converts a BCD encode value to a binary
- * integer. If undefined BCD characters are present in the input, the value -1
- * is returned instead of the converted value;
+ * integer. If undefined BCD characters are present in the input, the value
+ * INT32_MAX is returned instead of the converted value;
  */
 
-int32_t finslib_bcd_to_int( uint32_t value ) {
+int32_t finslib_bcd_to_int( uint32_t value, int type ) {
 
+	int32_t minval;
+	int32_t maxval;
 	int32_t retval;
 	int32_t mulval;
 	int32_t addval;
+	bool negative;
+
+	switch ( type ) {
+
+		case FINS_DATA_TYPE_BCD16 :
+
+			if ( value & 0xFFFF0000 ) return INT32_MAX;
+
+			minval   = 0;
+			maxval   = 9999;
+			negative = false;
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_BCD32 :
+
+			minval   = 0;
+			maxval   = 99999999;
+			negative = false;
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_0 :
+
+			if ( value & 0xFFFFE000 ) return INT32_MAX;
+
+			minval   = -999;
+			maxval   =  999;
+			negative = value & 0x00001000;
+			value    = value & 0x00000FFF;
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_0 :
+		
+			if ( value & 0xE0000000 ) return INT32_MAX;
+
+			minval   = -9999999;
+			maxval   =  9999999;
+			negative = value & 0x10000000;
+			value    = value & 0x0FFFFFFF;
+			
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_1 :
+
+			if ( value & 0xFFFF0000 ) return INT32_MAX;
+
+			minval   = -7999;
+			maxval   = 7999;
+			negative = value & 0x00008000;
+			value    = value & 0x00007FFF;
+			
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_1 :
+			
+			minval   = -79999999;
+			maxval   = 79999999;
+			negative = value & 0x80000000;
+			value    = value & 0x7FFFFFFF;
+			
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_2 :
+
+			if ( value & 0xFFFF0000 ) return INT32_MAX;
+
+			minval   = -999;
+			maxval   = 9999;
+
+			switch ( value & 0x0000F000 ) {
+
+				case 0x00000000 :
+				case 0x00001000 :
+				case 0x00002000 :
+				case 0x00003000 :
+				case 0x00004000 :
+				case 0x00005000 :
+				case 0x00006000 :
+				case 0x00007000 :
+				case 0x00008000 :
+				case 0x00009000 : negative = false; value = value & 0x0000FFFF; break;
+				case 0x0000F000 : negative = true;  value = value & 0x00000FFF; break;
+				default         : return INT32_MAX;
+			}
+			
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_2 :
+			
+			minval = -9999999;
+			maxval = 99999999;
+
+			switch ( value & 0xF0000000 ) {
+
+				case 0x00000000 :
+				case 0x10000000 :
+				case 0x20000000 :
+				case 0x30000000 :
+				case 0x40000000 :
+				case 0x50000000 :
+				case 0x60000000 :
+				case 0x70000000 :
+				case 0x80000000 :
+				case 0x90000000 : negative = false;                             break;
+				case 0xF0000000 : negative = true;  value = value & 0x0FFFFFFF; break;
+				default         : return INT32_MAX;
+			}
+			
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_3 :
+					      
+			minval = -1999;
+			maxval = 9999;
+
+			switch ( value & 0x0000F000 ) {
+
+				case 0x00000000 :
+				case 0x00001000 :
+				case 0x00002000 :
+				case 0x00003000 :
+				case 0x00004000 :
+				case 0x00005000 :
+				case 0x00006000 :
+				case 0x00007000 :
+				case 0x00008000 :
+				case 0x00009000 : negative = false; value =  value & 0x0000FFFF;               break;
+				case 0x0000A000 : negative = true;  value = (value & 0x00000FFF) | 0x00001000; break;
+				case 0x0000F000 : negative = true;  value =  value & 0x00000FFF;               break;
+				default         : return INT32_MAX;
+			}
+			
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_3 :
+			
+			minval = -19999999;
+			maxval = 99999999;
+
+			switch ( value & 0xF0000000 ) {
+
+				case 0x00000000 :
+				case 0x10000000 :
+				case 0x20000000 :
+				case 0x30000000 :
+				case 0x40000000 :
+				case 0x50000000 :
+				case 0x60000000 :
+				case 0x70000000 :
+				case 0x80000000 :
+				case 0x90000000 : negative = false;                                            break;
+				case 0xA0000000 : negative = true;  value = (value & 0x0FFFFFFF) | 0x10000000; break;
+				case 0xF0000000 : negative = true;  value =  value & 0x0FFFFFFF;               break;
+				default         : return INT32_MAX;
+			}
+			
+			break;
+
+
+
+		default :
+			return INT32_MAX;
+	}
 
 	retval = 0;
 	mulval = 1;
@@ -117,46 +302,152 @@ int32_t finslib_bcd_to_int( uint32_t value ) {
 	while ( value != 0 ) {
 
 		addval = bcdtoint_lut[ value & 0xff ];
-		if ( addval >= 100 ) return -1;
+		if ( addval >= 100 ) return INT32_MAX;
 
 		retval += mulval * addval;
 		mulval *= 100;
 		value >>= 8;
 	}
 
+	if ( negative ) retval *= -1;
+
+	if ( retval < minval  ||  retval > maxval ) return INT32_MAX;
+
 	return retval;
 
 }  /* finslib_bcd_to_int */
 
 /*
- * uint32_t finslib_int_to_bcd( int32_t value );
+ * uint32_t finslib_int_to_bcd( int32_t value, int type );
  *
  * The function finslib_int_to_bcd() converts an binary coded integer to a BCD
  * value. If the function succeeds, the converted value is returned. Otherwise
- * the returned value is 0xFFFFFFFF to indicate that the value can not be
+ * the returned value is UINT32_MAX to indicate that the value can not be
  * encoded in BCD.
  */
 
-uint32_t finslib_int_to_bcd( int32_t value ) {
+uint32_t finslib_int_to_bcd( int32_t value, int type ) {
 
 	int shiftval;
 	uint32_t retval;
 	uint32_t addval;
+	uint32_t neg_mask;
 
-	if ( value < 0 ) return 0xFFFFFFFF;
+	neg_mask = 0x00000000;
 
+	switch ( type ) {
+
+		case FINS_DATA_TYPE_BCD16 :
+
+			if ( value < 0  ||  value > 9999 ) return UINT32_MAX;
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_BCD32 :
+
+			if ( value < 0  ||  value > 99999999 ) return UINT32_MAX;
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_0 :
+
+			if ( value < -999  ||  value > 999 ) return UINT32_MAX;
+
+			if ( value < 0 ) { neg_mask = 0x00001000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_0 :
+
+			if ( value < -9999999  ||  value > 9999999 ) return UINT32_MAX;
+
+			if ( value < 0 ) { neg_mask = 0x10000000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_1 :
+
+			if ( value < -7999  ||  value > 7999 ) return UINT32_MAX;
+
+			if ( value < 0 ) { neg_mask = 0x00008000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_1 :
+
+			if ( value < -79999999  ||  value > 79999999 ) return UINT32_MAX;
+
+			if ( value < 0 ) { neg_mask = 0x80000000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_2 :
+
+			if ( value < -999   ||  value > 9999 ) return UINT32_MAX;
+
+			if ( value < 0 ) { neg_mask = 0x0000F000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_2 :
+
+			if ( value < -9999999  ||  value > 99999999 ) return UINT32_MAX;
+
+			if ( value < 0 ) { neg_mask = 0xF0000000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD16_3 :
+
+			if ( value < -1999  ||  value > 9999 ) return UINT32_MAX;
+
+			if      ( value < -999 ) { neg_mask = 0x0000A000; value = -value; }
+			else if ( value <    0 ) { neg_mask = 0x0000F000; value = -value; }
+
+			break;
+
+
+
+		case FINS_DATA_TYPE_SBCD32_3 :
+
+			if ( value < -19999999  ||  value > 99999999 ) return UINT32_MAX;
+
+			if      ( value < -9999999 ) { neg_mask = 0xA0000000; value = -value; }
+			else if ( value <        0 ) { neg_mask = 0xF0000000; value = -value; }
+
+			break;
+	}
+	
 	retval   = 0;
 	shiftval = 0;
 
 	while ( value != 0 ) {
 
-		if ( shiftval > 24 ) return 0xFFFFFFFF;
+		if ( shiftval > 24 ) return UINT32_MAX;
 
 		addval    = inttobcd_lut[ value % 100 ];
 		retval   += addval << shiftval;
 		shiftval += 8;
 		value    /= 100;
 	}
+
+	retval |= neg_mask;
 
 	return retval;
 

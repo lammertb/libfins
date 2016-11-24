@@ -9,7 +9,7 @@
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
-|**`start`**|`const char *`|An ASCII string describing the first memory element to retrieve|
+|**`start`**|`const char *`|An ASCII string describing the first memory element to write|
 |**`data`**|`const bool *`|Pointer to the buffer where the data to be written is located|
 |**`num_bit`**|`size_t`|The number of bits to write|
 
@@ -29,7 +29,7 @@ Existence and filling of the dataspace is the responsibility of the calling func
 will return an error if a NULL pointer is provided for data storage.
 
 The start of the memory area is provided as an ASCII string which represents the starting address in human
-readable format. Example formats are **`CIO20`** and **`W100`**.
+readable format. Example formats are **`CIO20.0`** and **`W100.5`**.
 
 The number of bits to be written in one function call is not limited by the amount of data a PLC can send in one FINS packet because
 `finslib_memory_area_write_bit()` will automatically use multiple request at the FINS layer if the dataset is 

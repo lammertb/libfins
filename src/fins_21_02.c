@@ -95,12 +95,12 @@ int finslib_error_log_read( struct fins_sys_tp *sys, struct fins_errordata_tp *e
 		errordata[a].error_code[1] <<= 8;
 		errordata[a].error_code[1]  += fins_cmnd.body[bodylen++];
 
-		errordata[a].min             = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-		errordata[a].sec             = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-		errordata[a].day             = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-		errordata[a].hour            = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
-		errordata[a].year            = finslib_bcd_to_int( fins_cmnd.body[bodylen++] ) + 1900;
-		errordata[a].month           = finslib_bcd_to_int( fins_cmnd.body[bodylen++] );
+		errordata[a].min             = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+		errordata[a].sec             = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+		errordata[a].day             = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+		errordata[a].hour            = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
+		errordata[a].year            = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 ) + 1900;
+		errordata[a].month           = finslib_bcd_to_int( fins_cmnd.body[bodylen++], FINS_DATA_TYPE_BCD16 );
 
 		if ( errordata[a].year < 1998 ) errordata[a].year += 100;
 	}

@@ -9,7 +9,7 @@
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
-|**`start`**|`const char *`|An ASCII string describing the first memory element to retrieve|
+|**`start`**|`const char *`|An ASCII string describing the first memory element to write|
 |**`data`**|`const int32_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_int32`**|`size_t`|The number of signed 32 bit integer values to write|
 

@@ -128,19 +128,29 @@ typedef int					SOCKET;
 									/*							*/
 									/********************************************************/
 
-#define FINS_MULTI_TYPE_INT16			1
-#define FINS_MULTI_TYPE_INT32			2
-#define FINS_MULTI_TYPE_UINT16			3
-#define FINS_MULTI_TYPE_UINT32			4
-#define FINS_MULTI_TYPE_SBCD16			5
-#define FINS_MULTI_TYPE_SBCD32			6
-#define FINS_MULTI_TYPE_UBCD16			7
-#define FINS_MULTI_TYPE_UBCD32			8
-#define FINS_MULTI_TYPE_FLOAT			9
-#define FINS_MULTI_TYPE_DOUBLE			10
-#define FINS_MULTI_TYPE_BIT			11
-#define FINS_MULTI_TYPE_BIT_FORCED		12
-#define FINS_MULTI_TYPE_WORD_FORCED		13
+									/********************************************************/
+									/*							*/
+#define FINS_DATA_TYPE_INT16			1			/* 16 bit signed integer				*/
+#define FINS_DATA_TYPE_INT32			2			/* 32 bit signed integer				*/
+#define FINS_DATA_TYPE_UINT16			3			/* 16 bit unsigned integer				*/
+#define FINS_DATA_TYPE_UINT32			4			/* 32 bit unsigned integer				*/
+#define FINS_DATA_TYPE_BCD16			5			/* Unsigned 16 bit BCD in the range 0..9999		*/
+#define FINS_DATA_TYPE_BCD32			6			/* Unsigned 32 bit BCD in the range 0..99999999		*/
+#define FINS_DATA_TYPE_SBCD16_0			7			/* Signed 16 bit BCD in the range -999..999		*/
+#define FINS_DATA_TYPE_SBCD16_1			8			/* Signed 16 bit BCD in the range -7999..7999		*/
+#define FINS_DATA_TYPE_SBCD16_2			9			/* Signed 16 bit BCD in the range -999..9999		*/
+#define FINS_DATA_TYPE_SBCD16_3			10			/* Signed 16 bit BCD in the range -1999..9999		*/
+#define FINS_DATA_TYPE_SBCD32_0			11			/* Signed 32 bit BCD in the range -9999999..9999999	*/
+#define FINS_DATA_TYPE_SBCD32_1			12			/* Signed 32 bit BCD in the range -79999999..79999999	*/
+#define FINS_DATA_TYPE_SBCD32_2			13			/* Signed 32 bit BCD in the range -9999999..99999999	*/
+#define FINS_DATA_TYPE_SBCD32_3			14			/* Signed 32 bit BCD in the range -19999999..99999999	*/
+#define FINS_DATA_TYPE_FLOAT			15			/* 32 bit floating point value				*/
+#define FINS_DATA_TYPE_DOUBLE			16			/* 64 bit floating point value				*/
+#define FINS_DATA_TYPE_BIT			17			/* Single bit						*/
+#define FINS_DATA_TYPE_BIT_FORCED		18			/* Single bit with forced status			*/
+#define FINS_DATA_TYPE_WORD_FORCED		19			/* 16 bit word with for each bit the forced status	*/
+									/*							*/
+									/********************************************************/
 
 #define FINS_MEMORY_CARD_NONE			0
 #define FINS_MEMORY_CARD_FLASH			4
@@ -578,10 +588,6 @@ struct fins_multidata_tp {
 	int32_t		int32;
 	uint16_t	uint16;
 	uint32_t	uint32;
-	int16_t		sbcd16;
-	int32_t		sbcd32;
-	uint16_t	ubcd16;
-	uint32_t	ubcd32;
 	float		sfloat;
 	double		dfloat;
 	struct {
@@ -610,7 +616,7 @@ int				finslib_access_right_release( struct fins_sys_tp *sys );
 int				finslib_area_file_compare( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
 int				finslib_area_to_file_transfer( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
 int				finslib_file_to_area_transfer( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
-int32_t				finslib_bcd_to_int( uint32_t value );
+int32_t				finslib_bcd_to_int( uint32_t value, int type );
 int				finslib_clock_read( struct fins_sys_tp* sys, struct fins_datetime_tp *datetime );
 int				finslib_clock_write( struct fins_sys_tp *sys, const struct fins_datetime_tp *datetime, bool do_sec, bool do_day_of_week );
 int				finslib_connection_data_read( struct fins_sys_tp *sys, struct fins_unitdata_tp *unitdata, uint8_t start_unit, size_t *num_units );
@@ -633,7 +639,7 @@ int				finslib_file_read( struct fins_sys_tp *sys, uint16_t disk, const char *pa
 int				finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, const unsigned char *data, size_t file_position, size_t num_bytes, uint16_t open_mode );
 int				finslib_forced_set_reset_cancel( struct fins_sys_tp *sys );
 int				finslib_get_plc_name( struct fins_sys_tp *sys, unsigned char *buffer, size_t buffer_len );
-int				finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16_t fill_data, size_t num_words );
+int				finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16_t fill_data, size_t num_word );
 int				finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16 );
 int				finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32 );
 int				finslib_memory_area_read_bit( struct fins_sys_tp *sys, const char *start, bool *data, size_t num_bits );
@@ -641,24 +647,24 @@ int				finslib_memory_area_read_int16( struct fins_sys_tp *sys, const char *star
 int				finslib_memory_area_read_int32( struct fins_sys_tp *sys, const char *start, int32_t *data, size_t num_int32 );
 int				finslib_memory_area_read_uint16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_uint16 );
 int				finslib_memory_area_read_uint32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_uint32 );
-int				finslib_memory_area_read_word( struct fins_sys_tp *sys, const char *start, unsigned char *data, size_t num_words );
+int				finslib_memory_area_read_word( struct fins_sys_tp *sys, const char *start, unsigned char *data, size_t num_word );
 int				finslib_memory_area_transfer( struct fins_sys_tp *sys, const char *source, const char *dest, size_t num_words );
 int				finslib_memory_area_write_bcd16( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_bcd16 );
 int				finslib_memory_area_write_bcd32( struct fins_sys_tp *sys, const char *start, const uint32_t *data, size_t num_bcd32 );
-int				finslib_memory_area_write_bit( struct fins_sys_tp *sys, const char *start, const bool *data, size_t num_bits );
+int				finslib_memory_area_write_bit( struct fins_sys_tp *sys, const char *start, const bool *data, size_t num_bit );
 int				finslib_memory_area_write_int16( struct fins_sys_tp *sys, const char *start, const int16_t *data, size_t num_int16 );
 int				finslib_memory_area_write_int32( struct fins_sys_tp *sys, const char *start, const int32_t *data, size_t num_int32 );
 int				finslib_memory_area_write_uint16( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_uint16 );
 int				finslib_memory_area_write_uint32( struct fins_sys_tp *sys, const char *start, const uint32_t *data, size_t num_uint32 );
-int				finslib_memory_area_write_word( struct fins_sys_tp *sys, const char *start, const unsigned char *data, size_t num_words );
+int				finslib_memory_area_write_word( struct fins_sys_tp *sys, const char *start, const unsigned char *data, size_t num_word );
 int				finslib_message_clear( struct fins_sys_tp *sys, uint8_t msg_mask );
 int				finslib_message_read( struct fins_sys_tp *sys, struct fins_msgdata_tp *msgdata, uint8_t msg_mask );
 int				finslib_message_fal_fals_read( struct fins_sys_tp *sys, char *faldata, uint16_t fal_number );
 void				finslib_milli_second_sleep( int msec );
 time_t				finslib_monotonic_sec_timer( void );
-int				finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_items );
+int				finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item );
 void				fins_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command, uint8_t mrc, uint8_t src );
-uint32_t			finslib_int_to_bcd( int32_t value );
+uint32_t			finslib_int_to_bcd( int32_t value, int type );
 int				finslib_parameter_area_clear( struct fins_sys_tp *sys, uint16_t area_code, size_t num_words );
 int				finslib_parameter_area_read( struct fins_sys_tp *sys, uint16_t area_code, uint16_t *data, uint16_t start_word, size_t num_words );
 int				finslib_parameter_area_write( struct fins_sys_tp *sys, uint16_t area_code, const uint16_t *data, uint16_t start_word, size_t num_words );

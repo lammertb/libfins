@@ -9,7 +9,7 @@
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
-|**`start`**|`const char *`|An ASCII string describing the first memory element to retrieve|
+|**`start`**|`const char *`|An ASCII string describing the first memory element to write|
 |**`data`**|`const uint16_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_bcd16`**|`size_t`|The number of unsigned 16 bit BCD values to write|
 
