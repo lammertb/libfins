@@ -56,3 +56,23 @@
 |**`FINS_RETVAL_LOCAL_TOO_MANY_SEND_FRAMES`**|Too many send frames are currently processed|
 |**`FINS_RETVAL_LOCAL_ADDRESS_RANGE_ERROR`**|The local node has an address setting error|
 |**`FINS_RETVAL_LOCAL_ADDRESS_DUPLICATION`**|The address of the local node is a duplicate of the address of another node|
+|**`FINS_RETVAL_DEST_NOT_IN_NETWORK`**|The remote node is not in the network|
+|**`FINS_RETVAL_DEST_UNIT_MISSING`**|The unit on the destination PLC is missing|
+|**`FINS_RETVAL_DEST_THIRD_NODE_MISSING`**|A third party node for the communication is missing|
+|**`FINS_RETVAL_DEST_NODE_BUSY`**|The remote node is busy|
+|**`FINS_RETVAL_DEST_TIMEOUT`**|The communication to the remote node timed out|
+|**`FINS_RETVAL_CONTR_COMM_ERROR`**|The communication controller reported an error|
+|**`FINS_RETVAL_CONTR_CPU_UNIT_ERROR`**|A CPU unit reported an error|
+|**`FINS_RETVAL_CONTR_BOARD_ERROR`**|An error was detected in the controller board|
+|**`FINS_RETVAL_CONTR_UNIT_NUMBER_ERROR`**|The unit number on the controller is invalid|
+|**`FINS_RETVAL_UNSUPPORTED_COMMAND`**|The command is not supported by the remote node|
+|**`FINS_RETVAL_UNSUPPORTED_VERSION`**|The command is not supported by the version of the remote node|
+|**`FINS_RETVAL_ROUTING_ADDRESS_ERROR`**|While routing a command an error in the address was found|
+|**`FINS_RETVAL_ROUTING_NO_TABLES`**|No routing tables are present|
+|**`FINS_RETVAL_ROUTING_TABLE_ERROR`**|The routing tables contain errors|
+|**`FINS_RETVAL_ROUTING_TOO_MANY_RELAYS`**|The destination peer is too many hops away from the client|
+|**`FINS_RETVAL_COMMAND_TOO_LONG`**|The FINS command is too long|
+|**`FINS_RETVAL_COMMAND_TOO_SHORT`**|The FINS command is too short|
+|**`FINS_RETVAL_COMMAND_ELEMENT_MISMATCH`**|A mismatch was discovered between the actual number of elements, and the assumed number|
+|**`FINS_RETVAL_COMMAND_FORMAT_ERROR`**|An error in the command structure was discovered|
+|**`FINS_RETVAL_COMMAND_HEADER_ERROR`**|The routing tables are inconsistent with the header of the command|
