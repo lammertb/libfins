@@ -46,7 +46,6 @@
 
 int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item ) {
 
-	int32_t bin_val;
 	uint32_t bcd_val;
 	size_t a;
 	size_t bodylen;
@@ -372,10 +371,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 2;
 
-					bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD16 );
-
-					if ( bin_val == INT32_MAX ) item[offset+a].uint16 = UINT16_MAX;
-					else                        item[offset+a].uint16 = (uint16_t) bin_val;
+					item[offset+a].uint16 = (uint16_t) finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD16 );
 
 					break;
 
@@ -391,10 +387,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 2;
 
-					bin_val   = finslib_bcd_to_int( bcd_val, item[offset+a].type );
-
-					if ( bin_val == INT32_MAX ) item[offset+a].int16 = INT16_MAX;
-					else                        item[offset+a].int16 = (int16_t) bin_val;
+					item[offset+a].int16 = (int16_t) finslib_bcd_to_int( bcd_val, item[offset+a].type );
 
 					break;
 
@@ -411,10 +404,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 5;
 
-					bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD32 );
-
-					if ( bin_val == INT32_MAX ) item[offset+a].uint32 = UINT32_MAX;
-					else                        item[offset+a].uint32 = bin_val;
+					item[offset+a].uint32 = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD32 );
 
 					break;
 
@@ -434,10 +424,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 					bcd_val  += fins_cmnd.body[bodylen+1];
 					bodylen  += 5;
 
-					bin_val   = finslib_bcd_to_int( bcd_val, item[offset+a].type );
-
-					if ( bin_val == INT32_MAX ) item[offset+a].int32 = INT32_MAX;
-					else                        item[offset+a].int32 = bin_val;
+					item[offset+a].int32 = finslib_bcd_to_int( bcd_val, item[offset+a].type );
 
 					break;
 

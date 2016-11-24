@@ -33,12 +33,14 @@
 
 #include "fins.h"
 
+static int process_data( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16, int type );
+
 /*
  * int finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16 );
  *
  * The function fins_memory_area_read_bcd16() reads an amount of BCD encoded
  * 16 bits words and puts them as converted binary values in a data array.
- * If an input value contains undefined bytes, the value UINT16_MAX is put in
+ * If an input value contains undefined bytes, the value INT16_MAX is put in
  * the output array to indicate that the value was invalid.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
@@ -46,7 +48,37 @@
 
 int finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16 ) {
 
-	int32_t bin_val;
+	return process_data( sys, start, data, num_bcd16, FINS_DATA_TYPE_BCD16 );
+
+}  /* finslib_memory_area_read_bcd16 */
+
+/*
+ * int finslib_memory_area_read_sbcd16( struct fins_sys_tp *sys, const char *start, int16_t *data, size_t num_sbcd16, int type );
+ *
+ * The function finslib_memory_area_read_sbcd16() reads an amount of signed BCD
+ * encoded 16 bits words and puts them as converted binary values in a data
+ * array. As there are multiple ways to encode signed BCD values, a parameter
+ * is used to indicate how the values in the remote PLC must be converted. If
+ * an input value contains undefined bytes, the value INT16_MAX is put in the
+ * output array to indicate that the value was invalid.
+ */
+
+int finslib_memory_area_read_sbcd16( struct fins_sys_tp *sys, const char *start, int16_t *data, size_t num_sbcd16, int type ) {
+
+	return process_data( sys, start, (uint16_t *)data, num_sbcd16, type );
+
+}  /* finslib_memory_area_read_sbcd16 */
+
+/*
+ * static int process_data( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16, int type );
+ *
+ * The function process_data() is the worker function to read 16 bit BCD values
+ * from a memory area in a remote PLC. With the proper casts, the function can
+ * be used for both signed and unsigned BCD values.
+ */
+
+static int process_data( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16, int type ) {
+
 	uint16_t bcd_val;
 	size_t chunk_start;
 	size_t chunk_length;
@@ -102,10 +134,7 @@ int finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, 
 			bcd_val <<= 8;
 			bcd_val  += fins_cmnd.body[bodylen++];
 
-			bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD16 );
-
-			if ( bin_val == INT32_MAX ) data[offset+a] = UINT16_MAX;
-			else                        data[offset+a] = (uint16_t) bin_val;
+			data[offset+a] = (uint16_t) finslib_bcd_to_int( bcd_val, type );
 		}
 
 		todo        -= chunk_length;

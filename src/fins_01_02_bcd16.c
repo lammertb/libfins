@@ -33,6 +33,25 @@
 
 #include "fins.h"
 
+static int process_data( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_bcd16, int type );
+
+/*
+ * int finslib_memory_area_write_sbcd16( struct fins_sys_tp *sys, const char *start, const int16_t *data, size_t num_sbcd16, int type );
+ *
+ * The function finslib_memory_area_write_sbcd16() writes a block of signed BCD
+ * values in a memory area of a remote PLC with the FINS protocol. The data is
+ * provided as a binary coded signed 16 bits integer array which is converted
+ * to signed BCD before the data is sent to the PLC. If data cannot be
+ * converted to a valid signed BCD value, the value INT16_MAX is assigned
+ * instead.
+ */
+
+int finslib_memory_area_write_sbcd16( struct fins_sys_tp *sys, const char *start, const int16_t *data, size_t num_sbcd16, int type ) {
+
+	return process_data( sys, start, (uint16_t *)data, num_sbcd16, type );
+
+}  /* finslib_memory_area_write_sbcd16 */
+
 /*
  * int finslib_memory_area_write_bcd16( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_bcd16 );
  *
@@ -40,14 +59,28 @@
  * in a memory area of a remote PLC with the FINS protocol. The data is
  * provided as a binary coded 16 bits integer array which is converted to BCD
  * before the data is sent to the PLC. If data cannot be converted to a valid
- * BCD value, the value UINT16_MAX is assigned instead.
+ * BCD value, the value INT16_MAX is assigned instead.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
 
 int finslib_memory_area_write_bcd16( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_bcd16 ) {
 
-	uint32_t ret_val;
+	return process_data( sys, start, data, num_bcd16, FINS_DATA_TYPE_BCD16 );
+
+}  /* finslib_memory_area_write_bcd16 */
+
+/*
+ * static int process_data( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_bcd16, int type );
+ *
+ * The function process_data() is the workhorse routine which does the actual
+ * writing of BCD data to a remote PLC over the FINS protocol. With proper type
+ * casting of the parameters it is possible to use this function for signed as
+ * well as unsigned BCD values.
+ */
+
+static int process_data( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_bcd16, int type ) {
+
 	uint16_t bcd_val;
 	size_t chunk_start;
 	size_t chunk_length;
@@ -93,10 +126,7 @@ int finslib_memory_area_write_bcd16( struct fins_sys_tp *sys, const char *start,
 
 		for (a=0; a<chunk_length; a++) {
 
-			ret_val = finslib_int_to_bcd( data[offset+a], FINS_DATA_TYPE_BCD16 );
-			
-			if ( ret_val == UINT32_MAX ) bcd_val = UINT16_MAX;
-			else                         bcd_val = (uint16_t) ret_val;
+			bcd_val = (uint16_t) finslib_int_to_bcd( data[offset+a], type );
 
 			fins_cmnd.body[bodylen++] = (bcd_val >> 8) & 0xff;
 			fins_cmnd.body[bodylen++] = (bcd_val     ) & 0xff;

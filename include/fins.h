@@ -606,9 +606,6 @@ struct fins_multidata_tp {
 int				_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen );
 bool				_finslib_decode_address( const char *str, struct fins_address_tp *address );
 
-int				finslib_22_21( struct fins_sys_tp *sys, unsigned char *buffer, size_t *buffer_len );
-int				finslib_03_3b( struct fins_sys_tp *sys, uint16_t program_area, unsigned char *buffer, size_t *buffer_len );
-int				finslib_03_42( struct fins_sys_tp *sys, uint16_t sub_command,  unsigned char *buffer, size_t *buffer_len );
 int				finslib_access_log_read( struct fins_sys_tp *sys, struct fins_accessdata_tp *accessdata, uint16_t start_record, size_t *num_records, size_t *stored_records );
 int				finslib_access_right_acquire( struct fins_sys_tp *sys, struct fins_nodedata_tp *nodedata );
 int				finslib_access_right_forced_acquire( struct fins_sys_tp* sys );
@@ -645,6 +642,8 @@ int				finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *star
 int				finslib_memory_area_read_bit( struct fins_sys_tp *sys, const char *start, bool *data, size_t num_bits );
 int				finslib_memory_area_read_int16( struct fins_sys_tp *sys, const char *start, int16_t *data, size_t num_int16 );
 int				finslib_memory_area_read_int32( struct fins_sys_tp *sys, const char *start, int32_t *data, size_t num_int32 );
+int				finslib_memory_area_read_sbcd16( struct fins_sys_tp *sys, const char *start, int16_t *data, size_t num_sbcd16, int type );
+int				finslib_memory_area_read_sbcd32( struct fins_sys_tp *sys, const char *start, int32_t *data, size_t num_sbcd32, int type );
 int				finslib_memory_area_read_uint16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_uint16 );
 int				finslib_memory_area_read_uint32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_uint32 );
 int				finslib_memory_area_read_word( struct fins_sys_tp *sys, const char *start, unsigned char *data, size_t num_word );
@@ -654,6 +653,8 @@ int				finslib_memory_area_write_bcd32( struct fins_sys_tp *sys, const char *sta
 int				finslib_memory_area_write_bit( struct fins_sys_tp *sys, const char *start, const bool *data, size_t num_bit );
 int				finslib_memory_area_write_int16( struct fins_sys_tp *sys, const char *start, const int16_t *data, size_t num_int16 );
 int				finslib_memory_area_write_int32( struct fins_sys_tp *sys, const char *start, const int32_t *data, size_t num_int32 );
+int				finslib_memory_area_write_sbcd16( struct fins_sys_tp *sys, const char *start, const int16_t *data, size_t num_sbcd16, int type );
+int				finslib_memory_area_write_sbcd32( struct fins_sys_tp *sys, const char *start, const int32_t *data, size_t num_sbcd32, int type );
 int				finslib_memory_area_write_uint16( struct fins_sys_tp *sys, const char *start, const uint16_t *data, size_t num_uint16 );
 int				finslib_memory_area_write_uint32( struct fins_sys_tp *sys, const char *start, const uint32_t *data, size_t num_uint32 );
 int				finslib_memory_area_write_word( struct fins_sys_tp *sys, const char *start, const unsigned char *data, size_t num_word );

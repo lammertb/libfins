@@ -33,19 +33,51 @@
 
 #include "fins.h"
 
+static int process_data( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32, int type );
+
+/*
+ * int finslib_memory_area_read_sbcd32( struct fins_sys_tp *sys, const char *start, int32_t *data, size_t num_sbcd32, int type );
+ *
+ * The function finslib_memory_area_read_sbcd32() reads a block of signed BCDe
+ * encoded values from a memory area in a remote PLC over the FINS protocol. As
+ * there are several ways to encode signed BCD, a parameter is used to indicate
+ * which conversion should be performed. Values which cannot be converted will
+ * be represented as INT32_MAX.
+ */
+
+int finslib_memory_area_read_sbcd32( struct fins_sys_tp *sys, const char *start, int32_t *data, size_t num_sbcd32, int type ) {
+
+	return process_data( sys, start, (uint32_t *)data, num_sbcd32, type );
+
+}  /* finslib_memory_area_read_sbcd32 */
+
 /*
  * int finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32 );
  *
  * The function finslib_memory_area_read_bcd32() reads a block of BCD encoded
  * values from a memory area in a remote PLC over the FINS protocol. Values
- * which cannot be converted will be represented as UINT32_MAX.
+ * which cannot be converted will be represented as INT32_MAX.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
 
 int finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32 ) {
 
-	int32_t bin_val;
+	return process_data( sys, start, data, num_bcd32, FINS_DATA_TYPE_BCD32 );
+
+}  /* finslib_memory_area_read_bcd32 */
+
+/*
+ * static int process_data( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32, int type );
+ *
+ * The function process_data() is the worker routine which reads a block of
+ * data from a remote PLC, interprets it as signed or unsigned BCD32 value s
+ * and stores them in a buffer. With the proper casting of parameters, both
+ * signed and unsigned BCD values can be read.
+ */
+
+static int process_data( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32, int type ) {
+
 	uint32_t bcd_val;
 	size_t chunk_start;
 	size_t chunk_length;
@@ -109,10 +141,7 @@ int finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, 
 
 			bodylen  += 4;
 
-			bin_val   = finslib_bcd_to_int( bcd_val, FINS_DATA_TYPE_BCD32 );
-
-			if ( bin_val == INT32_MAX ) data[offset+a] = UINT32_MAX;
-			else                        data[offset+a] = bin_val;
+			data[offset+a] = finslib_bcd_to_int( bcd_val, type );
 		}
 
 		todo        -= chunk_length / 2;
