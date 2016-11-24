@@ -7,11 +7,7 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 
 ## Constants
 
-| Name | Description |
-| :--- | :--- |
-|**`FINS_CPU_MODE_MONITOR`**|Status code indicating that the PLC CPU is in monitor mode|
-|**`FINS_CPU_MODE_PROGRAM`**|Status code indicating that the PLC CPU is in program mode|
-|**`FINS_CPU_MODE_RUN`**|Status code indicating that the PLC CPU is in run mode|
+* [PLC CPU modes](doc/FINS_CPU_MODE.md)
 
 |Name|Description|
 |:---|:---|
@@ -108,181 +104,13 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 
 ## Structures
 
-### `struct fins_cpustatus_tp;`
-
-#### Fields
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-|**`message_exists`**|`bool[8]`|An array of bits indicating if a user generated message is available|
-|**`running`**|`bool`|**`true`** if the CPU is currently running|
-|**`flash_writing`**|`bool`|**`true`** if the PLC is currently busy writing to flash memory|
-|**`battery_present`**|`bool`|**`true`** if a memory backup battery is present in the PLC|
-|**`standby`**|`bool`|**`true`** if the CPU is currently in standby mode|
-|**`fatal_memory_error`**|`bool`|**`true`** if a fatal memory error in the PLC occured|
-|**`fata_io_bus_error`**|`bool`|**`true`** if a fatal I/O bus error occured|
-|**`fata_duplication_error`**|`bool`|**`true`** if a fatal duplication error occured|
-|**`fatal_inner_board_error`**|`bool`|**`true`** if a fatal inner board error occured|
-|**`fatal_io_point_overflow`**|`bool`|**`true`** if a fatal I/O point overflow occured|
-|**`fatal_io_setting_error`**|`bool`|**`true`** if a fatal I/O setting error occured|
-|**`fatal_program_error`**|`bool`|**`true`** if a fatal program error occured|
-|**`fatal_cycle_time_error`**|`bool`|**`true`** if the PLC stopped due to a cycle time overflow|
-|**`fatal_fals_error`**|`bool`|**`true`** if the PLC stopped due to a user program generated FALS error|
-|**`fal_error`**|`bool`|**`true`** if the user program generated a non-fatal FAL error|
-|**`duplex_error`**|`bool`|**`true`** if a non-fatal duplex error occured|
-|**`interrupt_task_error`**|`bool`|**`true`** if a non-fatal interrupt task error occured|
-|**`basic_io_unit_error`**|`bool`|**`true`** if a non-fatal basic I/O unit error occured|
-|**`plc_setup_error`**|`bool`|**`true`** if a non-fatal PLC setup error occured|
-|**`io_verification_error`**|`bool`|**`true`** if a non-fatal I/O verification error occured|
-|**`inner_board_error`**|`bool`|**`true`** if a non-fatal inner board error occured|
-|**`cpu_bus_unit_error`**|`bool`|**`true`** if a non-fatal CPU bus unit error occured|
-|**`special_io_unit_error`**|`bool`|**`true`** if a non-fatal special I/O unit error occured|
-|**`sysmac_bus_error`**|`bool`|**`true`** if a non-fatal sysmac bus error occured|
-|**`battery_error`**|`bool`|**`true`** if a non-fatal battery error occured|
-|**`cs1_cpu_bus_unit_setting_error`**|`bool`|**`true`** if a non-fatal error occured in the settings of a CS1 CPU bus unit|
-|**`special_io_unit_setting_error`**|`bool`|**`true`** if q non-fatal error occured in the settings of a special I/O unit|
-|**`run_mode`**|`uint8_t`|The current operating mode of the CPU|
-|**`error_code`**|`uint16_t`|The active error code with the highest priority|
-|**`error_message`**|`char[17]`|The current active error message in ASCII text|
-
-#### Description
-
-The structure `fins_cpustatus_tp` is used to store the actual status of the CPU of a PLC when the function
-`finslib_cpu_unit_status_read()` is called.
-
-### `struct fins_cycletime_tp;`
-
-#### Fields
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-|**`min`**|`uint32_t`|The minimum cycle time of the PLC since the last cycle time reset. The time is expressed in units of 0.1 msec.|
-|**`avg`**|`uint32_t`|The average cycle time over the last eight cycles of the PLC. The time is expressed in units of 0.1 msec.|
-|**`max`**|`uint32_t`|The maximum cycle time of the PLC since the last cycle time reset. The time is expressed in uints of 0.1 msec.|
-
-#### Description
-
-The structure `fins_cycletime_tp` is used by the function `finslib_cycle_time_read()` to store the minimum, average and maximum
-cycle times of the PLC.
-
-### `struct fins_unitdata_tp;`
-
-#### Fields
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-|**`model`**|`char[21]`|The model name of the unit|
-|**`unit`**|`uint8_t`|The unit number of the unit|
-
-#### Description
-
-The structure `fins_unitdata_tp` is used to store the information of one special I/O unit in a PLC system when unit data
-is requested with a call to the `finslib_connection_data_read()` function.
+* [`struct fins_cpustatus_tp`](doc/fins_cpustatus_tp.md)
+* [`struct fins_cycletime_tp`](doc/fins_cycletime_tp.md)
+* [`struct fins_unitdata_tp`](doc/fins_unitdata_tp.md)
 
 ## Functions
 
-### `finslib_errmsg( error_code, buffer, buffer_len );`
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-|**`error_code`**|`int`|The return value of a FINS function which must be translated to a human readable error message|
-|**`buffer`**|`char *`|The buffer where the return string must be stored|
-|**`buffer_len`**|`size_t`|The amount of characters including the zero termination character of the string which can be stored in the buffer|
-
-#### Returns
-
-| Type | Description |
-| :--- | :--- |
-|`const char *`|A pointer to the string message when successful, or NULL when an unrecoverable error occured|
-
-#### Description
-
-All functions in the library which have the option of failing return an integer return code. This code can either be an operating system error,
-an error returned from the remote peer over the FINS protocol, or an error which occured in the libfins library itself. The function
-`finslib_errmsg()` can be used to translate such an error number to a human readable string.
-
-If the function fails to provide an error message due to an internal problem like an unexisting string buffer, the function will return NULL.
-In all other cases the caller provided buffer will be filled with the appropriate error message and the function returns a pointer to the
-beginning of that buffer. In case the error code is unknown but the function doesn't fail due to an internal error, the text "Unknown error"
-is returned.
-
-### `finslib_memory_area_read_word( sys, start, data, num_words );`
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
-|**`start`**|`const char *`|An ASCII string describing the first memory element to retrieve|
-|**`data`**|`unsigned char *`|Pointer to the buffer where the result must be stored|
-|**`num_words`**|`size_t`|The number of words to return|
-
-#### Returns
-
-| Type | Description |
-| :--- | :--- |
-|`int`|A return value from the list `FINS_RETVAL_...` indicating the result of the query|
-
-#### Description
-
-The function `finslib_memory_area_read_word()` can be used to retrieve a block of 16 bit words from a memory
-are in a remote PLC. The connection with the PLC should already be present before this function is called.
-
-Data is transferred unmodified from the FINS data stream to the caller supplied buffer. As this function
-returns a number of words, the size of the data buffer in bytes should be at least twice the number of words
-requested. Enough dataspace is the responsibility of the calling function, but `finslib_memory_area_read_word()`
-will return an error if a NULL pointer is provided for data storage.
-
-The start of the memory area is provided as an ASCII string which represents the starting address in human
-readable format. Example formats are **`CIO20`** and **`W100`**.
-
-The requested number of words is not limited by the amount of data a PLC can send in one FINS packet because
-`finslib_memory_area_read_word()` will automatically use multiple request at the FINS layer if the dataset will
-be too large.
-
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
-**`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
-should not be used.
-
-### `finslib_milli_second_sleep( int msec );`
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-|**`msec`**|`int`|The amount of milliseconds the current thread should be suspended.
-
-#### Returns
-
-| Type | Description |
-| :--- | :--- |
-|`void`|This function has no return value|
-
-#### Description
-
-The function finslib_milli_second_sleep()` suspends the current thread for the amount of milliseconds specified.
-The accuracy of the sleep time depends on the operating system specific implementation and the amount of other
-threads and processes which compete for time slots.
-
-### `finslib_monotonic_sec_timer( void );`
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-
-#### Returns
-
-| Type | Description |
-| :--- | :--- |
-|`time_t`|A monotonic counter of the number of seconds which have passed since an unspecified starting point in time|
-
-#### Description
-
-The function `finslib_monotonic_sec_timer()` provides a seconds timer which is guaranteerd to be monotonic. This timer
-is therefore not directly bound to the internal wall clock. Due to this it is immune for changes in the clock settings
-and for changes in the time which happen during the transistion to and from daylight saving time.
-
-The return value is the amount of seconds since an unspecified moment.
+* [`finslib_errmsg( error_code, buffer, buffer_len )`](doc/finslib_errmsg.md)
+* [`finslib_memory_area_read_word( sys, start, data, num_words )`](doc/finslib_memory_area_read_word.md)
+* [`finslib_milli_second_sleep( int msec )`](doc/finslib_milli_second_sleep.md)
+* [`finslib_monotonic_sec_timer( void )`](doc/finslib_monotonic_sec_timer.md)
