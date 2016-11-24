@@ -25,6 +25,7 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 * [`finslib_errmsg( error_code, buffer, buffer_len );`](doc/finslib_errmsg.md)
 * [`finslib_memory_area_read_bcd16( sys, start, data, num_bcd16 );`](doc/finslib_memory_area_read_bcd16.md)
 * [`finslib_memory_area_read_bcd32( sys, start, data, num_bcd32 );`](doc/finslib_memory_area_read_bcd32.md)
+* [`finslib_memory_area_read_bit( sys, start, data, num_bit );`](doc/finslib_memory_area_read_bit.md)
 * [`finslib_memory_area_read_word( sys, start, data, num_words );`](doc/finslib_memory_area_read_word.md)
 * [`finslib_milli_second_sleep( int msec );`](doc/finslib_milli_second_sleep.md)
 * [`finslib_monotonic_sec_timer( void );`](doc/finslib_monotonic_sec_timer.md)

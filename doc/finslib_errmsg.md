@@ -8,7 +8,7 @@
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-|**`error_code`**|`int`|The return value of a FINS function which must be translated to a human readable error message|
+|**`error_code`**|`int`|The return value of a FINS function which must be translated to a human readable error message. Valid error codes are one of the [`FINS_RETVAL_...`](FINS_RETVAL.md) values.|
 |**`buffer`**|`char *`|The buffer where the return string must be stored|
 |**`buffer_len`**|`size_t`|The amount of characters including the zero termination character of the string which can be stored in the buffer|
 
