@@ -35,14 +35,14 @@
 #include "fins.h"
 
 /*
- * void fins_init_command( fins_command_tp *command, uint8_t snn, uint8_t cnn );
+ * void XX_finslib_init_command( fins_command_tp *command, uint8_t snn, uint8_t cnn );
  *
- * The function fins_init_command() initializes a FINS command structure which
- * will be used to contain a command which is to be sent to a remote FINS
+ * The function XX_finslib_init_command() initializes a FINS command structure
+ * which will be used to contain a command which is to be sent to a remote FINS
  * server like an Omron PLC.
  */
 
-void fins_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command, uint8_t mrc, uint8_t src ) {
+void XX_finslib_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command, uint8_t mrc, uint8_t src ) {
 
 	command->header[FINS_ICF] = 0x80;
 	command->header[FINS_RSV] = 0x00;
@@ -57,4 +57,4 @@ void fins_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command
 	command->header[FINS_MRC] = mrc;
 	command->header[FINS_SRC] = src;
 
-} /* fins_init_command */
+} /* XX_finslib_init_command */

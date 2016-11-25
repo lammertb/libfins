@@ -79,7 +79,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 		chunk_length = 24;
 		if ( chunk_length > todo ) chunk_length = todo;
 
-		fins_init_command( sys, & fins_cmnd, 0x01, 0x04 );
+		XX_finslib_init_command( sys, & fins_cmnd, 0x01, 0x04 );
 
 		bodylen = 0;
 		recvlen = 2;
@@ -96,9 +96,9 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 				case FINS_DATA_TYPE_SBCD16_2 :
 				case FINS_DATA_TYPE_SBCD16_3 :
 
-					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+					if ( XX_finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-					area_ptr = fins_search_area( sys, & address, 16, FI_MRD, false );
+					area_ptr = XX_finslib_search_area( sys, & address, 16, FI_MRD, false );
 					if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 					chunk_start  = address.main_address;
@@ -118,9 +118,9 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 				case FINS_DATA_TYPE_BIT :
 
-					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+					if ( XX_finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-					area_ptr = fins_search_area( sys, & address, 1, FI_MRD, false );
+					area_ptr = XX_finslib_search_area( sys, & address, 1, FI_MRD, false );
 					if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 					chunk_start  = address.main_address;
@@ -140,9 +140,9 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 				case FINS_DATA_TYPE_BIT_FORCED :
 
-					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+					if ( XX_finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-					area_ptr = fins_search_area( sys, & address, 1, FI_MRD, true );
+					area_ptr = XX_finslib_search_area( sys, & address, 1, FI_MRD, true );
 					if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 					chunk_start  = address.main_address;
@@ -162,9 +162,9 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 				case FINS_DATA_TYPE_WORD_FORCED :
 
-					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+					if ( XX_finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-					area_ptr = fins_search_area( sys, & address, 16, FI_MRD, true );
+					area_ptr = XX_finslib_search_area( sys, & address, 16, FI_MRD, true );
 					if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 					chunk_start  = address.main_address;
@@ -191,9 +191,9 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 				case FINS_DATA_TYPE_SBCD32_3 :
 				case FINS_DATA_TYPE_FLOAT    :
 
-					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+					if ( XX_finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-					area_ptr = fins_search_area( sys, & address, 16, FI_MRD, false );
+					area_ptr = XX_finslib_search_area( sys, & address, 16, FI_MRD, false );
 					if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 					chunk_start  = address.main_address;
@@ -220,9 +220,9 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 				case FINS_DATA_TYPE_DOUBLE :
 
-					if ( _finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+					if ( XX_finslib_decode_address( item[offset+a].address, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-					area_ptr = fins_search_area( sys, & address, 16, FI_MRD, false );
+					area_ptr = XX_finslib_search_area( sys, & address, 16, FI_MRD, false );
 					if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 					chunk_start  = address.main_address;
@@ -262,7 +262,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 		}
 
 
-		if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+		if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 		if ( bodylen != recvlen ) return FINS_RETVAL_BODY_TOO_SHORT;
 

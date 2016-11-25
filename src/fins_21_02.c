@@ -60,7 +60,7 @@ int finslib_error_log_read( struct fins_sys_tp *sys, struct fins_errordata_tp *e
 	if ( errordata    == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd  == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x21, 0x02 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x21, 0x02 );
 
 	bodylen = 0;
 
@@ -69,7 +69,7 @@ int finslib_error_log_read( struct fins_sys_tp *sys, struct fins_errordata_tp *e
 	fins_cmnd.body[bodylen++] = (*num_records >> 8) & 0xff;
 	fins_cmnd.body[bodylen++] = (*num_records     ) & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	bodylen = 4;
 

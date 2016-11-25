@@ -60,7 +60,7 @@ int finslib_parameter_area_read( struct fins_sys_tp *sys, uint16_t area_code, ui
 	     area_code != FINS_PARAM_AREA_ROUTING_TABLE          &&
 	     area_code != FINS_PARAM_AREA_CPU_BUS_UNIT_SETUP          ) return FINS_RETVAL_INVALID_PARAMETER_AREA;
 
-	fins_init_command( sys, & fins_cmnd, 0x02, 0x01 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x02, 0x01 );
 
 	bodylen = 0;
 
@@ -71,7 +71,7 @@ int finslib_parameter_area_read( struct fins_sys_tp *sys, uint16_t area_code, ui
 	fins_cmnd.body[bodylen++] = (num_words  >> 8) & 0xff;
 	fins_cmnd.body[bodylen++] = (num_words      ) & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 8+2*num_words ) return FINS_RETVAL_BODY_TOO_SHORT;
 

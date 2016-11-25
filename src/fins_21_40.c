@@ -47,7 +47,7 @@ int finslib_access_log_read( struct fins_sys_tp *sys, struct fins_accessdata_tp 
 	if ( accessdata   == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd  == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x21, 0x40 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x21, 0x40 );
 
 	bodylen = 0;
 
@@ -56,7 +56,7 @@ int finslib_access_log_read( struct fins_sys_tp *sys, struct fins_accessdata_tp 
 	fins_cmnd.body[bodylen++] = (*num_records >> 8) & 0xff;
 	fins_cmnd.body[bodylen++] = (*num_records     ) & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	bodylen = 4;
 

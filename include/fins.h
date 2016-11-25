@@ -603,8 +603,6 @@ struct fins_multidata_tp {
 
 
 
-int				_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen );
-bool				_finslib_decode_address( const char *str, struct fins_address_tp *address );
 
 int				finslib_access_log_read( struct fins_sys_tp *sys, struct fins_accessdata_tp *accessdata, uint16_t start_record, size_t *num_records, size_t *stored_records );
 int				finslib_access_right_acquire( struct fins_sys_tp *sys, struct fins_nodedata_tp *nodedata );
@@ -664,7 +662,6 @@ int				finslib_message_fal_fals_read( struct fins_sys_tp *sys, char *faldata, ui
 void				finslib_milli_second_sleep( int msec );
 time_t				finslib_monotonic_sec_timer( void );
 int				finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item );
-void				fins_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command, uint8_t mrc, uint8_t src );
 uint32_t			finslib_int_to_bcd( int32_t value, int type );
 int				finslib_parameter_area_clear( struct fins_sys_tp *sys, uint16_t area_code, size_t num_words );
 int				finslib_parameter_area_read( struct fins_sys_tp *sys, uint16_t area_code, uint16_t *data, uint16_t start_word, size_t num_words );
@@ -673,16 +670,19 @@ int				finslib_program_area_clear( struct fins_sys_tp *sys, bool do_interrupt_ta
 int				finslib_program_area_read( struct fins_sys_tp *sys, unsigned char *data, uint32_t start_word, size_t *num_bytes );
 int				finslib_program_area_write( struct fins_sys_tp *sys, const unsigned char *data, uint32_t start_word, size_t num_bytes );
 int				finslib_raw( struct fins_sys_tp *sys, uint16_t command, unsigned char *buffer, size_t send_len, size_t *recv_len );
-const struct fins_area_tp *	fins_search_area( struct fins_sys_tp *sys, const struct fins_address_tp *address, int bits, uint32_t access, bool force );
 int				finslib_set_cpu_run( struct fins_sys_tp *sys, bool do_monitor );
 int				finslib_set_cpu_stop( struct fins_sys_tp *sys );
 int				finslib_set_plc_name( struct fins_sys_tp *sys, const char *name );
-struct fins_sys_tp *		fins_tcp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max );
-void				fins_disconnect( struct fins_sys_tp* sys );
+struct fins_sys_tp *		finslib_tcp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max );
+void				finslib_disconnect( struct fins_sys_tp* sys );
 struct fins_sys_tp *		fins_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max );
 bool				finslib_valid_directory( const char *path );
 bool				finslib_valid_filename( const char *filename );
 int				finslib_write_access_log_clear( struct fins_sys_tp *sys );
-int				wsa_errorcode_to_fins_retval( int errorcode );
+int				XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen );
+bool				XX_finslib_decode_address( const char *str, struct fins_address_tp *address );
+void				XX_finslib_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command, uint8_t mrc, uint8_t src );
+const struct fins_area_tp *	XX_finslib_search_area( struct fins_sys_tp *sys, const struct fins_address_tp *address, int bits, uint32_t access, bool force );
+int				XX_finslib_wsa_errorcode_to_fins_retval( int errorcode );
 
 #endif

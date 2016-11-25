@@ -54,14 +54,14 @@ int finslib_file_memory_format( struct fins_sys_tp *sys, uint16_t disk ) {
 
 	if ( disk != FINS_DISK_MEMORY_CARD  &&  disk != FINS_DISK_EM_FILE_MEMORY ) return FINS_RETVAL_INVALID_DISK;
 
-	fins_init_command( sys, & fins_cmnd, 0x22, 0x04 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x22, 0x04 );
 
 	bodylen = 0;
 	
 	fins_cmnd.body[bodylen++] = (disk >> 8) & 0xff;
 	fins_cmnd.body[bodylen++] = (disk     ) & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

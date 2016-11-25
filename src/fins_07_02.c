@@ -64,7 +64,7 @@ int finslib_clock_write( struct fins_sys_tp *sys, const struct fins_datetime_tp 
 		if ( do_day_of_week  &&  (datetime->dow < 0  ||  datetime->dow >  6) ) return FINS_RETVAL_INVALID_DATE;
 	}
 
-	fins_init_command( sys, & fins_cmnd, 0x07, 0x02 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x07, 0x02 );
 
 	bodylen = 0;
 
@@ -80,7 +80,7 @@ int finslib_clock_write( struct fins_sys_tp *sys, const struct fins_datetime_tp 
 		if ( do_day_of_week ) fins_cmnd.body[bodylen++] = finslib_int_to_bcd( datetime->dow, FINS_DATA_TYPE_BCD16 ) & 0xff;
 	}
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

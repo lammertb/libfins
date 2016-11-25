@@ -59,14 +59,14 @@ int finslib_connection_data_read( struct fins_sys_tp *sys, struct fins_unitdata_
 	if ( unitdata    == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x05, 0x02 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x05, 0x02 );
 
 	bodylen = 0;
 
 	fins_cmnd.body[bodylen++] = start_unit;
 	fins_cmnd.body[bodylen++] = *num_units & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	bodylen    = 2;
 	last_data  = fins_cmnd.body[bodylen]   & 0x80;

@@ -71,14 +71,14 @@ int finslib_memory_area_write_uint32( struct fins_sys_tp *sys, const char *start
 	struct fins_address_tp address;
 	int retval;
 
-	if ( num_uint32  == 0                            ) return FINS_RETVAL_SUCCESS;
-	if ( sys         == NULL                         ) return FINS_RETVAL_NOT_INITIALIZED;
-	if ( start       == NULL                         ) return FINS_RETVAL_NO_WRITE_ADDRESS;
-	if ( data        == NULL                         ) return FINS_RETVAL_NO_DATA_BLOCK;
-	if ( sys->sockfd == INVALID_SOCKET               ) return FINS_RETVAL_NOT_CONNECTED;
-	if ( _finslib_decode_address( start, & address ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
+	if ( num_uint32  == 0                              ) return FINS_RETVAL_SUCCESS;
+	if ( sys         == NULL                           ) return FINS_RETVAL_NOT_INITIALIZED;
+	if ( start       == NULL                           ) return FINS_RETVAL_NO_WRITE_ADDRESS;
+	if ( data        == NULL                           ) return FINS_RETVAL_NO_DATA_BLOCK;
+	if ( sys->sockfd == INVALID_SOCKET                 ) return FINS_RETVAL_NOT_CONNECTED;
+	if ( XX_finslib_decode_address( start, & address ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
 
-	area_ptr = fins_search_area( sys, & address, 16, FI_WR, false );
+	area_ptr = XX_finslib_search_area( sys, & address, 16, FI_WR, false );
 	if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_WRITE_AREA;
 
 	offset       = 0;
@@ -93,7 +93,7 @@ int finslib_memory_area_write_uint32( struct fins_sys_tp *sys, const char *start
 
 		chunk_length &= 0xFFFFFFFE;
 
-		fins_init_command( sys, & fins_cmnd, 0x01, 0x02 );
+		XX_finslib_init_command( sys, & fins_cmnd, 0x01, 0x02 );
 
 		bodylen = 0;
 
@@ -114,7 +114,7 @@ int finslib_memory_area_write_uint32( struct fins_sys_tp *sys, const char *start
 			bodylen += 4;
 		}
 
-		if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+		if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 		if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

@@ -69,7 +69,7 @@ int finslib_file_copy( struct fins_sys_tp *sys, uint16_t sdisk, const char *spat
 	if ( dpath == NULL ) ddirlen = 0;
 	else                 ddirlen = strlen( dpath );
 
-	fins_init_command( sys, & fins_cmnd, 0x22, 0x07 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x22, 0x07 );
 
 	bodylen = 0;
 
@@ -95,7 +95,7 @@ int finslib_file_copy( struct fins_sys_tp *sys, uint16_t sdisk, const char *spat
 
 	for (a=0; a<ddirlen; a++) fins_cmnd.body[bodylen++] = dpath[a];
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

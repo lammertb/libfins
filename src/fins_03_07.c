@@ -55,7 +55,7 @@ int finslib_program_area_write( struct fins_sys_tp *sys, const unsigned char *da
 	if ( data        == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x03, 0x07 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x03, 0x07 );
 
 	bodylen = 0;
 
@@ -70,7 +70,7 @@ int finslib_program_area_write( struct fins_sys_tp *sys, const unsigned char *da
 
 	for (a=0; a<num_bytes; a++) fins_cmnd.body[bodylen++] = data[a];
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 10 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

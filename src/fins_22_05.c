@@ -57,7 +57,7 @@ int finslib_file_delete( struct fins_sys_tp *sys, uint16_t disk, const char *pat
 	if ( path == NULL ) dirlen = 0;
 	else                dirlen = strlen( path );
 
-	fins_init_command( sys, & fins_cmnd, 0x22, 0x05 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x22, 0x05 );
 
 	bodylen = 0;
 
@@ -77,7 +77,7 @@ int finslib_file_delete( struct fins_sys_tp *sys, uint16_t disk, const char *pat
 
 	for (b=0; b<dirlen; b++) fins_cmnd.body[bodylen++] = path[b];
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 4 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

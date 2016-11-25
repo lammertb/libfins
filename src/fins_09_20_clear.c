@@ -53,14 +53,14 @@ int finslib_message_clear( struct fins_sys_tp *sys, uint8_t msg_mask ) {
 	if ( sys         == NULL           ) return FINS_RETVAL_NOT_INITIALIZED;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x09, 0x20 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x09, 0x20 );
 
 	bodylen = 0;
 
 	fins_cmnd.body[bodylen++] = 0x40;
 	fins_cmnd.body[bodylen++] = msg_mask;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

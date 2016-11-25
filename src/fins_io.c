@@ -119,11 +119,12 @@ static void init_system( struct fins_sys_tp *sys, int error_max ) {
 }  /* init_system */
 
 /*
- * int fins_tcp_connect( const char *address, int port );
+ * int finsliv_tcp_connect( const char *address, int port );
  *
- * The function fins_tcp_connect() tries to connect over FINS with the remote
- * FINS TCP server. If the connection succeeds, a pointer to a system structure
- * containing the data of the connection. Otherwise the return value is NULL.
+ * The function finslib_tcp_connect() tries to connect over FINS with the
+ * remote FINS TCP server. If the connection succeeds, a pointer to a system
+ * structure containing the data of the connection. Otherwise the return value
+ * is NULL.
  *
  * The function gets a system structure pointer as parameter. If this parameter
  * is not NULL, the contents of that structure will be reused, instead of
@@ -131,7 +132,7 @@ static void init_system( struct fins_sys_tp *sys, int error_max ) {
  * variable who's address is passed as a pointer.
  */
 
-struct fins_sys_tp *fins_tcp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
+struct fins_sys_tp *finslib_tcp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
 
 	int sendlen;
 	int recvlen;
@@ -330,18 +331,18 @@ struct fins_sys_tp *fins_tcp_connect( struct fins_sys_tp *sys, const char *addre
 
 	return sys;
 
-}  /* fins_tcp_connect */
+}  /* finslib_tcp_connect */
 
 /*
- * struct fins_sys_tp *fins_udp_connect( struct fins_sys_tp *sys, const char *address, int port, int *error_val );
+ * struct fins_sys_tp *finslib_udp_connect( struct fins_sys_tp *sys, const char *address, int port, int *error_val );
  *
- * The function fins_sys_tp *fins_udp_connect performs the initialization for
- * a FINS UDP connection with a remote PLC over FINS. It doesn't really make
- * a connection in the TCP sense, but it does initialize memory structures for
- * future use. When successful, a pointer to such a structure is returned.
+ * The function fins_sys_tp *finslib_udp_connect performs the initialization
+ * for a FINS UDP connection with a remote PLC over FINS. It doesn't really
+ * make a connection in the TCP sense, but it does initialize memory structures
+ * for future use. When successful, a pointer to such a structure is returned.
  */
 
-struct fins_sys_tp *fins_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
+struct fins_sys_tp *finslib_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
 
 	struct sockaddr_in ws_addr;
 
@@ -393,24 +394,24 @@ struct fins_sys_tp *fins_udp_connect( struct fins_sys_tp *sys, const char *addre
 
 	return sys;
 
-}  /* fins_udp_connect */
+}  /* finslib_udp_connect */
 
 /*
- * void fins_disconnect( fins_sys_tp *sys );
+ * void finslib_disconnect( fins_sys_tp *sys );
  *
- * The function fins_disconnect() disconnects a FINS client connection
+ * The function finslib_disconnect() disconnects a FINS client connection
  * and frees the memory associated with it. The function will only return if
  * the action succeeded. Otherwise it may hang indefinitely.
  */
 
-void fins_disconnect( struct fins_sys_tp *sys ) {
+void finslib_disconnect( struct fins_sys_tp *sys ) {
 
 	if ( sys == NULL ) return;
 
 	fins_close_socket( sys );
 	free( sys );
 
-}  /* fins_disconnect */
+}  /* finslib_disconnect */
 
 /*
  * static fins_sys_tp *fins_close_socket_with_error( fins_sys_tp *sys, int *error_val );
@@ -424,7 +425,7 @@ static struct fins_sys_tp *fins_close_socket_with_error( struct fins_sys_tp *sys
 	int error_code;
 
 #if defined(_WIN32)
-	error_code = wsa_errorcode_to_fins_retval( WSAGetLastError() );
+	error_code = XX_finslib_wsa_errorcode_to_fins_retval( WSAGetLastError() );
 #else
 	error_code = FINS_RETVAL_ERRNO_BASE + errno;
 #endif
@@ -824,17 +825,17 @@ static int fins_recv_tcp_command( struct fins_sys_tp *sys, int total_len, struct
 }  /* fins_recv_tcp_command */
 
 /*
- * int _finslib_communicate( fins_sys_tp *sys, fins_command_tp *command, size_t *bodylen );
+ * int XX_finslib_communicate( fins_sys_tp *sys, fins_command_tp *command, size_t *bodylen );
  *
- * The function _finslib_communicate() is the function used by outside routines
- * to perform the actual communication with a FINS server. The function both
- * sends the command and receives the response and hides all the details of the
- * low level communication for the calling routine.
+ * The function XX_finslib_communicate() is the function used by outside
+ * routines to perform the actual communication with a FINS server. The
+ * function both sends the command and receives the response and hides all the
+ * details of the low level communication for the calling routine.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
 
-int _finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen ) {
+int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen ) {
 
 	int a;
 	int recvlen;
@@ -903,16 +904,16 @@ int _finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *comma
 
 	return check_error_count( sys, FINS_RETVAL_NOT_INITIALIZED );
 
-}  /* _finslib_communicate */
+}  /* XX_finslib_communicate */
 
 /*
- * int wsa_errorcode_to_fins_retval( int errorcode );
+ * int XX_finslib_wsa_errorcode_to_fins_retval( int errorcode );
  *
- * The function wsa_errorcode_to_fins_retval() converts a Windowss WSA error
- * code to a FINS_RETVAL_ value.
+ * The function XX_finslib_wsa_errorcode_to_fins_retval() converts a Windowss
+ * WSA error code to a FINS_RETVAL_ value.
  */
 
-int wsa_errorcode_to_fins_retval( int errorcode ) {
+int XX_finslib_wsa_errorcode_to_fins_retval( int errorcode ) {
 
 	switch ( errorcode ) {
 
@@ -954,4 +955,4 @@ int wsa_errorcode_to_fins_retval( int errorcode ) {
 		default                     : return FINS_RETVAL_WSA_UNRECOGNIZED_ERROR;
 	}
 
-}  /* wsa_errorcode_to_fins_retval */
+}  /* XX_finslib_wsa_errorcode_to_fins_retval */

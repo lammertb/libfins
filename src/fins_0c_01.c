@@ -54,14 +54,14 @@ int finslib_access_right_acquire( struct fins_sys_tp *sys, struct fins_nodedata_
 	if ( nodedata    == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x0c, 0x01 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x0c, 0x01 );
 
 	bodylen = 0;
 
 	fins_cmnd.body[bodylen++] = 0xff;
 	fins_cmnd.body[bodylen++] = 0xff;
 
-	retval = _finslib_communicate( sys, & fins_cmnd, & bodylen );
+	retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen );
 
 	if ( retval == FINS_RETVAL_ACCESS_NO_RIGHTS ) {
 

@@ -51,20 +51,20 @@ int finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16
 	size_t bodylen;
 	int retval;
 
-	if ( num_words   == 0                            ) return FINS_RETVAL_SUCCESS;
-	if ( sys         == NULL                         ) return FINS_RETVAL_NOT_INITIALIZED;
-	if ( start       == NULL                         ) return FINS_RETVAL_NO_WRITE_ADDRESS;
-	if ( sys->sockfd == INVALID_SOCKET               ) return FINS_RETVAL_NOT_CONNECTED;
-	if ( _finslib_decode_address( start, & address ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
+	if ( num_words   == 0                              ) return FINS_RETVAL_SUCCESS;
+	if ( sys         == NULL                           ) return FINS_RETVAL_NOT_INITIALIZED;
+	if ( start       == NULL                           ) return FINS_RETVAL_NO_WRITE_ADDRESS;
+	if ( sys->sockfd == INVALID_SOCKET                 ) return FINS_RETVAL_NOT_CONNECTED;
+	if ( XX_finslib_decode_address( start, & address ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
 
-	area_ptr = fins_search_area( sys, & address, 16, FI_FILL, false );
+	area_ptr = XX_finslib_search_area( sys, & address, 16, FI_FILL, false );
 	if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_FILL_AREA;
 
 	block_start  = address.main_address;
 	block_start += area_ptr->low_addr >> 8;
 	block_start -= area_ptr->low_id;
 
-	fins_init_command( sys, & fins_cmnd, 0x01, 0x03 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x01, 0x03 );
 
 	bodylen = 0;
 
@@ -77,7 +77,7 @@ int finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16
 	fins_cmnd.body[bodylen++] = (fill_data   >> 8) & 0xff;
 	fins_cmnd.body[bodylen++] = (fill_data       ) & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

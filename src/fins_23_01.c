@@ -48,7 +48,7 @@ int finslib_force_bit( struct fins_sys_tp *sys, const struct fins_forcebit_tp *d
 	if ( data        == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x23, 0x01 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x23, 0x01 );
 
 	bodylen = 0;
 
@@ -66,9 +66,9 @@ int finslib_force_bit( struct fins_sys_tp *sys, const struct fins_forcebit_tp *d
 		fins_cmnd.body[bodylen++] = (data[a].force_command >> 8) & 0xff;
 		fins_cmnd.body[bodylen++] = (data[a].force_command     ) & 0xff;
 
-		if ( _finslib_decode_address( data[a].address, & address ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
+		if ( XX_finslib_decode_address( data[a].address, & address ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
 
-		area_ptr = fins_search_area( sys, & address, 16, FI_FRC, false );
+		area_ptr = XX_finslib_search_area( sys, & address, 16, FI_FRC, false );
 		if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_WRITE_AREA;
 
 		area_start  = address.main_address;
@@ -81,7 +81,7 @@ int finslib_force_bit( struct fins_sys_tp *sys, const struct fins_forcebit_tp *d
 		fins_cmnd.body[bodylen++] = address.sub_address & 0xff;
 	}
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

@@ -56,14 +56,14 @@ int finslib_memory_area_read_word( struct fins_sys_tp *sys, const char *start, u
 	struct fins_address_tp address;
 	int retval;
 
-	if ( num_words   == 0                            ) return FINS_RETVAL_SUCCESS;
-	if ( sys         == NULL                         ) return FINS_RETVAL_NOT_INITIALIZED;
-	if ( start       == NULL                         ) return FINS_RETVAL_NO_READ_ADDRESS;
-	if ( data        == NULL                         ) return FINS_RETVAL_NO_DATA_BLOCK;
-	if ( sys->sockfd == INVALID_SOCKET               ) return FINS_RETVAL_NOT_CONNECTED;
-	if ( _finslib_decode_address( start, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+	if ( num_words   == 0                              ) return FINS_RETVAL_SUCCESS;
+	if ( sys         == NULL                           ) return FINS_RETVAL_NOT_INITIALIZED;
+	if ( start       == NULL                           ) return FINS_RETVAL_NO_READ_ADDRESS;
+	if ( data        == NULL                           ) return FINS_RETVAL_NO_DATA_BLOCK;
+	if ( sys->sockfd == INVALID_SOCKET                 ) return FINS_RETVAL_NOT_CONNECTED;
+	if ( XX_finslib_decode_address( start, & address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
 
-	area_ptr = fins_search_area( sys, & address, 16, FI_RD, false );
+	area_ptr = XX_finslib_search_area( sys, & address, 16, FI_RD, false );
 	if ( area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
 	offset       = 0;
@@ -76,7 +76,7 @@ int finslib_memory_area_read_word( struct fins_sys_tp *sys, const char *start, u
 		chunk_length = FINS_MAX_READ_WORDS_SYSWAY;
 		if ( chunk_length > todo ) chunk_length = todo;
 
-		fins_init_command( sys, & fins_cmnd, 0x01, 0x01 );
+		XX_finslib_init_command( sys, & fins_cmnd, 0x01, 0x01 );
 
 		bodylen = 0;
 
@@ -87,7 +87,7 @@ int finslib_memory_area_read_word( struct fins_sys_tp *sys, const char *start, u
 		fins_cmnd.body[bodylen++] = (chunk_length >> 8) & 0xff;
 		fins_cmnd.body[bodylen++] = (chunk_length     ) & 0xff;
 
-		if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+		if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 		if ( bodylen != 2+2*chunk_length ) return FINS_RETVAL_BODY_TOO_SHORT;
 

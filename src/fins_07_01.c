@@ -53,11 +53,11 @@ int finslib_clock_read( struct fins_sys_tp *sys, struct fins_datetime_tp* dateti
 	if ( datetime    == NULL           ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, 0x07, 0x01 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x07, 0x01 );
 
 	bodylen = 0;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 9 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

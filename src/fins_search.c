@@ -145,13 +145,13 @@ static const struct fins_area_tp fins_area[] = {
 };
 
 /*
- * const struct fins_area_tp *fins_search_area( struct fins_sys_tp *sys, const char *start, int bits, uint32_t accs, bool force );
+ * const struct fins_area_tp *XX_finslib_search_area( struct fins_sys_tp *sys, const char *start, int bits, uint32_t accs, bool force );
  *
- * The function fins_search_area() returns a pointer to an area which matches
- * the parameters, or NULL if no such area could be found.
+ * The function XX_finslib_search_area() returns a pointer to an area which
+ * matches the parameters, or NULL if no such area could be found.
  */
 
-const struct fins_area_tp *fins_search_area( struct fins_sys_tp *sys, const struct fins_address_tp *address, int bits, uint32_t accs, bool force ) {
+const struct fins_area_tp *XX_finslib_search_area( struct fins_sys_tp *sys, const struct fins_address_tp *address, int bits, uint32_t accs, bool force ) {
 
 	int a;
 
@@ -174,4 +174,4 @@ const struct fins_area_tp *fins_search_area( struct fins_sys_tp *sys, const stru
 
 	return & fins_area[a];
 
-}  /* fins_search_area */
+}  /* XX_finslib_search_area */

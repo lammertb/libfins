@@ -66,7 +66,7 @@ int finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path
 	if ( path == NULL ) dirlen = 0;
 	else                dirlen = strlen( path );
 
-	fins_init_command( sys, & fins_cmnd, 0x22, 0x03 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x22, 0x03 );
 
 	bodylen = 0;
 
@@ -91,7 +91,7 @@ int finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path
 
 	for (a=0; a<dirlen; a++) fins_cmnd.body[bodylen++] = path[a];
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

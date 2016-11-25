@@ -36,19 +36,20 @@
 #include "fins.h"
 
 /*
- * bool _fins_decode_address( const char *str, fins_address_tp *address );
+ * bool XX_finslib_decode_address( const char *str, fins_address_tp *address );
  *
- * The function _fins_decode_address() takes a character string as argument and
- * decodes it to an areaname address pair. The function skips spaces and other
- * obvious nonfunctional characters. On success the value false is returned and
- * true is returned when problems arise at the conversion.
+ * The function XX_finslib_decode_address() takes a character string as
+ * argument and decodes it to an areaname address pair. The function skips
+ * spaces and other obvious nonfunctional characters. On success the value
+ * false is returned and true is returned when problems arise at the
+ * conversion.
  *
  * Bit references must use the DOT notation, for example H82.1 to generate
  * the proper address. Some applications use a notation without a dot like
  * H8201, but this is not supported by this function.
  */
 
-bool _finslib_decode_address( const char *str, struct fins_address_tp *address ) {
+bool XX_finslib_decode_address( const char *str, struct fins_address_tp *address ) {
 
 	size_t num_char;
 	uint32_t main_address;
@@ -112,4 +113,4 @@ bool _finslib_decode_address( const char *str, struct fins_address_tp *address )
 
 	return false;
 
-}  /* _finslib_decode_address */
+}  /* XX_finslib_decode_address */

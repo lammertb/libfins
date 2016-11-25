@@ -53,13 +53,13 @@ int finslib_raw( struct fins_sys_tp *sys, uint16_t command, unsigned char *buffe
 	if ( *recv_len   <  1              ) return FINS_RETVAL_NO_DATA_BLOCK;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	fins_init_command( sys, & fins_cmnd, (command >> 8) & 0xff, command & 0xff );
+	XX_finslib_init_command( sys, & fins_cmnd, (command >> 8) & 0xff, command & 0xff );
 
 	bodylen = 0;
 
 	for (a=0; a<send_len; a++) fins_cmnd.body[bodylen++] = buffer[a];
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen > *recv_len ) return FINS_RETVAL_BODY_TOO_LONG;
 

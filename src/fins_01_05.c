@@ -54,18 +54,18 @@ int finslib_memory_area_transfer( struct fins_sys_tp *sys, const char *source, c
 	size_t bodylen;
 	int retval;
 
-	if ( num_words   == 0                                    ) return FINS_RETVAL_SUCCESS;
-	if ( sys         == NULL                                 ) return FINS_RETVAL_NOT_INITIALIZED;
-	if ( source      == NULL                                 ) return FINS_RETVAL_NO_READ_ADDRESS;
-	if ( dest        == NULL                                 ) return FINS_RETVAL_NO_WRITE_ADDRESS;
-	if ( sys->sockfd == INVALID_SOCKET                       ) return FINS_RETVAL_NOT_CONNECTED;
-	if ( _finslib_decode_address( source, & source_address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
-	if ( _finslib_decode_address( dest,   & dest_address   ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
+	if ( num_words   == 0                                      ) return FINS_RETVAL_SUCCESS;
+	if ( sys         == NULL                                   ) return FINS_RETVAL_NOT_INITIALIZED;
+	if ( source      == NULL                                   ) return FINS_RETVAL_NO_READ_ADDRESS;
+	if ( dest        == NULL                                   ) return FINS_RETVAL_NO_WRITE_ADDRESS;
+	if ( sys->sockfd == INVALID_SOCKET                         ) return FINS_RETVAL_NOT_CONNECTED;
+	if ( XX_finslib_decode_address( source, & source_address ) ) return FINS_RETVAL_INVALID_READ_ADDRESS;
+	if ( XX_finslib_decode_address( dest,   & dest_address   ) ) return FINS_RETVAL_INVALID_WRITE_ADDRESS;
 
-	source_area_ptr = fins_search_area( sys, & source_address, 16, FI_TRS, false );
+	source_area_ptr = XX_finslib_search_area( sys, & source_address, 16, FI_TRS, false );
 	if ( source_area_ptr == NULL ) return FINS_RETVAL_INVALID_READ_AREA;
 
-	dest_area_ptr = fins_search_area( sys, & dest_address, 16, FI_TRD, false );
+	dest_area_ptr = XX_finslib_search_area( sys, & dest_address, 16, FI_TRD, false );
 	if ( dest_area_ptr == NULL ) return FINS_RETVAL_INVALID_WRITE_AREA;
 
 	source_start  = source_address.main_address;
@@ -76,7 +76,7 @@ int finslib_memory_area_transfer( struct fins_sys_tp *sys, const char *source, c
 	dest_start   += dest_area_ptr->low_addr >> 8;
 	dest_start   -= dest_area_ptr->low_id;
 
-	fins_init_command( sys, & fins_cmnd, 0x01, 0x05 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x01, 0x05 );
 
 	bodylen = 0;
 
@@ -91,7 +91,7 @@ int finslib_memory_area_transfer( struct fins_sys_tp *sys, const char *source, c
 	fins_cmnd.body[bodylen++] = (num_words    >> 8) & 0xff;
 	fins_cmnd.body[bodylen++] = (num_words        ) & 0xff;
 
-	if ( ( retval = _finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 
