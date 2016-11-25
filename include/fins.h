@@ -633,7 +633,6 @@ int				finslib_file_name_read( struct fins_sys_tp *sys, struct fins_diskinfo_tp 
 int				finslib_file_read( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, unsigned char *data, size_t file_position, size_t *num_bytes );
 int				finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, const unsigned char *data, size_t file_position, size_t num_bytes, uint16_t open_mode );
 int				finslib_forced_set_reset_cancel( struct fins_sys_tp *sys );
-int				finslib_get_plc_name( struct fins_sys_tp *sys, unsigned char *buffer, size_t buffer_len );
 int				finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16_t fill_data, size_t num_word );
 int				finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16 );
 int				finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32 );
