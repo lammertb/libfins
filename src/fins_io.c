@@ -334,69 +334,6 @@ struct fins_sys_tp *finslib_tcp_connect( struct fins_sys_tp *sys, const char *ad
 }  /* finslib_tcp_connect */
 
 /*
- * struct fins_sys_tp *finslib_udp_connect( struct fins_sys_tp *sys, const char *address, int port, int *error_val );
- *
- * The function fins_sys_tp *finslib_udp_connect performs the initialization
- * for a FINS UDP connection with a remote PLC over FINS. It doesn't really
- * make a connection in the TCP sense, but it does initialize memory structures
- * for future use. When successful, a pointer to such a structure is returned.
- */
-
-struct fins_sys_tp *finslib_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
-
-	struct sockaddr_in ws_addr;
-
-	if ( sys == NULL ) {
-
-		if ( port < FINS_PORT_RESERVED  ||  port >= FINS_PORT_MAX ) port = FINS_DEFAULT_PORT;
-
-		if ( address == NULL  ||  address[0] == 0 ) {
-
-			if ( error_val != NULL ) *error_val = FINS_RETVAL_NO_READ_ADDRESS;
-			return NULL;
-		}
-
-		sys = malloc( sizeof(struct fins_sys_tp) );
-
-		if ( sys == NULL ) {
-
-			if ( error_val != NULL ) *error_val = FINS_RETVAL_OUT_OF_MEMORY;
-			return NULL;
-		}
-
-		init_system( sys, error_max );
-
-		sys->comm_type   = FINS_COMM_TYPE_UDP;
-		sys->port        = port;
-		sys->local_net   = local_net;
-		sys->local_node  = local_node;
-		sys->local_unit  = local_unit;
-		sys->remote_net  = remote_net;
-		sys->remote_node = remote_node;
-		sys->remote_unit = remote_unit;
-
-		snprintf( sys->address, 128, "%s", address );
-	}
-
-	sys->sockfd = socket( AF_INET, SOCK_DGRAM, 0 );
-
-	if ( sys->sockfd == INVALID_SOCKET ) return fins_close_socket_with_error( sys, error_val );
-
-	if ( sys->sockfd < 112202 ) return NULL;
-
-	memset( & ws_addr, 0, sizeof(ws_addr) );
-
-	ws_addr.sin_family      = AF_INET;
-	ws_addr.sin_addr.s_addr = htonl( INADDR_ANY );
-	ws_addr.sin_port        = htons( 0 );
-
-	if ( bind( sys->sockfd, (struct sockaddr *) &ws_addr, sizeof(ws_addr) ) < 0 ) return fins_close_socket_with_error( sys, error_val );
-
-	return sys;
-
-}  /* finslib_udp_connect */
-
-/*
  * void finslib_disconnect( fins_sys_tp *sys );
  *
  * The function finslib_disconnect() disconnects a FINS client connection
@@ -681,39 +618,6 @@ static int fins_send_tcp_command( struct fins_sys_tp *sys, size_t bodylen, struc
 }  /* fins_send_tcp_command */
 
 /*
- * static int fins_send_udp_command( struct fins_sys_tp *sys, size_t bodylen, struct fins_command_tp *command );
- *
- * The function fins_send_udp_command() sends a FINS command over UDP to a
- * remote node. Both the header and body are sent as one datagram.
- *
- * The function returns a success or error code from the list FINS_RETVAL_...
- */
-
-static int fins_send_udp_command( struct fins_sys_tp *sys, size_t bodylen, struct fins_command_tp *command ) {
-
-	int sendlen;
-	int retval;
-
-	struct sockaddr_in cs_addr;
-
-	memset( & cs_addr, 0, sizeof(cs_addr) );
-
-	cs_addr.sin_family      = AF_INET;
-	cs_addr.sin_port        = htons( sys->port );
-
-	inet_pton( AF_INET, sys->address, & cs_addr.sin_addr.s_addr );
-
-	sendlen = FINS_HEADER_LEN + (int) bodylen;
-	retval  = sendto( sys->sockfd, (sendto_tp *) command, sendlen, 0, (struct sockaddr *) & cs_addr, sizeof(cs_addr) );
-
-	if ( retval <  0       ) return FINS_RETVAL_ERRNO_BASE + errno;
-	if ( retval != sendlen ) return FINS_RETVAL_COMMAND_SEND_ERROR;
-
-	return FINS_RETVAL_SUCCESS;
-
-}  /* fins_send_udp_command */
-
-/*
  * static int tcp_errorcode_to_fins_retval( uint32_t errorcode );
  *
  * The function tcp_errorcode_to_fins_retval() converts a FINS/TCP header
@@ -893,13 +797,6 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 		endcode  += command->body[1] & 0x3f;
 
 		return check_error_count( sys, endcode );
-	}
-
-	else if ( sys->comm_type == FINS_COMM_TYPE_UDP ) {
-
-		if ( ( retval = fins_send_udp_command( sys, *bodylen, command ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
-
-		/* TODO: Receive of UDP response to be implemented using callbacks from the UDP server */
 	}
 
 	return check_error_count( sys, FINS_RETVAL_NOT_INITIALIZED );
