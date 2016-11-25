@@ -1,16 +1,19 @@
 # Libfins API Reference
 
-### `finslib_filename_to_83();`
+### `finslib_filename_to_83( infile, outfile );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`infile`**|`const char *`|The filename in human readable format|
+|**`outfile`**|`char *`|Location to store the to 8.3 format converted filename|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

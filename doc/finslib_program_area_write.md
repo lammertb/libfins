@@ -1,16 +1,21 @@
 # Libfins API Reference
 
-### `finslib_program_area_write();`
+### `finslib_program_area_write( sys, data, start_word, num_bytes );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`data`**|`const unsigned char *`|Pointer to the buffer with data which must be written to the program area|
+|**`start_word`**|`uint32_t`|Offset in the program area where writing data must begin|
+|**`num_bytes`**|`size_t`|Number of bytes to write|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

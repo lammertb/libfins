@@ -610,7 +610,6 @@ int				finslib_access_right_forced_acquire( struct fins_sys_tp* sys );
 int				finslib_access_right_release( struct fins_sys_tp *sys );
 int				finslib_area_file_compare( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
 int				finslib_area_to_file_transfer( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
-int				finslib_file_to_area_transfer( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
 int32_t				finslib_bcd_to_int( uint32_t value, int type );
 int				finslib_clock_read( struct fins_sys_tp* sys, struct fins_datetime_tp *datetime );
 int				finslib_clock_write( struct fins_sys_tp *sys, const struct fins_datetime_tp *datetime, bool do_sec, bool do_day_of_week );
@@ -631,8 +630,10 @@ int				finslib_filename_to_83( const char *infile, char *outfile );
 int				finslib_file_memory_format( struct fins_sys_tp *sys, uint16_t disk );
 int				finslib_file_name_read( struct fins_sys_tp *sys, struct fins_diskinfo_tp *diskinfo, struct fins_fileinfo_tp *fileinfo, uint16_t disk, const char *path, uint16_t start_file, size_t *num_files );
 int				finslib_file_read( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, unsigned char *data, size_t file_position, size_t *num_bytes );
+int				finslib_file_to_area_transfer( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
 int				finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, const unsigned char *data, size_t file_position, size_t num_bytes, uint16_t open_mode );
 int				finslib_forced_set_reset_cancel( struct fins_sys_tp *sys );
+uint32_t			finslib_int_to_bcd( int32_t value, int type );
 int				finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16_t fill_data, size_t num_word );
 int				finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16 );
 int				finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32 );
@@ -661,7 +662,6 @@ int				finslib_message_fal_fals_read( struct fins_sys_tp *sys, char *faldata, ui
 void				finslib_milli_second_sleep( int msec );
 time_t				finslib_monotonic_sec_timer( void );
 int				finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item );
-uint32_t			finslib_int_to_bcd( int32_t value, int type );
 int				finslib_parameter_area_clear( struct fins_sys_tp *sys, uint16_t area_code, size_t num_words );
 int				finslib_parameter_area_read( struct fins_sys_tp *sys, uint16_t area_code, uint16_t *data, uint16_t start_word, size_t num_words );
 int				finslib_parameter_area_write( struct fins_sys_tp *sys, uint16_t area_code, const uint16_t *data, uint16_t start_word, size_t num_words );
@@ -684,3 +684,27 @@ const struct fins_area_tp *	XX_finslib_search_area( struct fins_sys_tp *sys, con
 int				XX_finslib_wsa_errorcode_to_fins_retval( int errorcode );
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

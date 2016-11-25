@@ -1,16 +1,24 @@
 # Libfins API Reference
 
-### `finslib_file_read();`
+### `finslib_file_read( sys, disk, path, filename, data, file_position, num_bytes );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`disk`**|`uint16_t`|The disk on which the file is located|
+|**`path`**|`const char *`|The subdirectory in which the file is located|
+|**`filename`**|`const char *`|The name of the file|
+|**`data`**|`unsigned char *`|The buffer where the file contents must be stored|
+|**`file_position`**|`size_t`|The position in the file where reading should start|
+|**`num_bytes`**|`size_t *`|The amount of bytes requested and at function return the actual amount of bytes read|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

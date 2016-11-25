@@ -1,16 +1,23 @@
 # Libfins API Reference
 
-### `finslib_file_name_read();`
+### `finslib_file_name_read( sys, diskinfo, fileinfo, disk, path, start_file, num_files );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`diskinfo`**|`struct fins_diskinfo_tp *`|Pointer to the location where the disk information should be stored|
+|**`fileinfo`**|`struct fins_fileinfo_tp *`|Pointer to the location where the information of the files must be stored|
+|**`disk`**|`uint16_t`|The disk from which the information must be read|
+|**`path`**|`const char *path`|The subdirectory in which the files are located|
+|**`start_file`**|`size *`|The maximum number of files to read|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

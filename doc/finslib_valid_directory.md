@@ -1,16 +1,18 @@
 # Libfins API Reference
 
-### `finslib_valid_directory();`
+### `finslib_valid_directory( path );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`path`**|`const char *`|The path to check|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`bool`|**`true`** when the provided directory name is a valid name|
 
 ### Description
 

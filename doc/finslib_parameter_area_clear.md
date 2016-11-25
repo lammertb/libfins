@@ -1,16 +1,20 @@
 # Libfins API Reference
 
-### `finslib_parameter_area_clear();`
+### `finslib_parameter_area_clear( sys, area_code, num_words );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`area_code`**|`uint16_t`|The area code in which data must be cleared|
+|**`num_words`**|`size_t`|The number of words that must be cleared in the parameter area|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

@@ -1,16 +1,18 @@
 # Libfins API Reference
 
-### `finslib_valid_filename();`
+### `finslib_valid_filename( filename );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`filename`**|`const char *`|The filename to check|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`bool`|**`true`** when the provided file name is a valid filename|
 
 ### Description
 

@@ -1,16 +1,19 @@
 # Libfins API Reference
 
-### `finslib_error_clear();`
+### `finslib_error_clear( sys, error_code );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`error_code`**|`uint16_t`|The code of the error to be cleared|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

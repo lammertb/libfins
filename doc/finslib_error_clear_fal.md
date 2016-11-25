@@ -1,16 +1,19 @@
 # Libfins API Reference
 
-### `finslib_error_clear_fal();`
+### `finslib_error_clear_fal( sys, fal_number );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`fal_number`**|`uint16_t`|The number of the FAL error to be cleared|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

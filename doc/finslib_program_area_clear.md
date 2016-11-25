@@ -1,16 +1,19 @@
 # Libfins API Reference
 
-### `finslib_program_area_clear();`
+### `finslib_program_area_clear( sys, do_interrupt_tasks );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`do_interrupt_tasks`**|`bool`|**`true`** if the interrupt tasks must be also cleared|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

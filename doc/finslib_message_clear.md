@@ -1,16 +1,19 @@
 # Libfins API Reference
 
-### `finslib_message_clear();`
+### `finslib_message_clear( sys, msg_mask );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`msg_mask`**|`uint8_t`|Bit mask representing the messages to clear|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

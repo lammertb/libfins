@@ -1,16 +1,19 @@
 # Libfins API Reference
 
-### `finslib_access_right_acquire();`
+### `finslib_access_right_acquire( sys, nodedata );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`nodedata`**|`struct fins_nodedata_tp *`|Pointer to a memory location where the node information should be stored of another node when access is currently locked by that node|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

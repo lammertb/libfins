@@ -1,16 +1,23 @@
 # Libfins API Reference
 
-### `finslib_area_file_compare();`
+### `finslib_area_file_compare( sys, start, disk, path, file, num_records );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`start`**|`const char *`|ASCII representation of the first memory word to compare|
+|**`disk`**|`uint16_t`|Disk where the file is located|
+|**`path`**|`const char *`|Subdirectory path of the file|
+|**`file`**|`const char *`|Name of the file|
+|**`num_records`**|`size_t *`|The number of records to compare|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 

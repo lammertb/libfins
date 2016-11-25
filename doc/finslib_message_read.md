@@ -1,16 +1,20 @@
 # Libfins API Reference
 
-### `finslib_message_read();`
+### `finslib_message_read( sys, msgdata, msg_mask );`
 
 ### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+|**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
+|**`msgdata`**|`struct fins_msgdata_tp *`|Pointer to the buffer where the message information should be stored|
+|**`msg_mask`**|`uint8_t`|Bit mask identifying the messages to be retrieved|
 
 ### Returns
 
 | Type | Description |
 | :--- | :--- |
+|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
 ### Description
 
