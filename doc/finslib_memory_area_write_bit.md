@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_memory_area_write_bit( sys, start, data, num_bit );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -13,13 +11,13 @@
 |**`data`**|`const bool *`|Pointer to the buffer where the data to be written is located|
 |**`num_bit`**|`size_t`|The number of bits to write|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the command|
 
-#### Description
+### Description
 
 The function `finslib_memory_area_write_bit()` can be used to write a block of bits to a memory
 area in a remote PLC. The connection with the PLC should already be present before this function is called.
@@ -39,3 +37,5 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has
 been written to the PLC and additional processing and communication with the PLC may be necessary to know or set
 the correct state of the memory contents of the PLC.
+
+### See Also

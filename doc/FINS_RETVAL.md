@@ -1,7 +1,5 @@
 # Finslib API Reference
 
-## Constants
-
 ### Function return values
 
 |Name|Description|
@@ -76,3 +74,8 @@
 |**`FINS_RETVAL_COMMAND_ELEMENT_MISMATCH`**|A mismatch was discovered between the actual number of elements, and the assumed number|
 |**`FINS_RETVAL_COMMAND_FORMAT_ERROR`**|An error in the command structure was discovered|
 |**`FINS_RETVAL_COMMAND_HEADER_ERROR`**|The routing tables are inconsistent with the header of the command|
+
+
+### Description
+
+### See Also

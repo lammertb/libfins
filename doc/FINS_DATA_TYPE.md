@@ -1,7 +1,5 @@
 # Finslib API Reference
 
-## Constants
-
 ### FINS data types
 
 |Name|Description|
@@ -25,3 +23,7 @@
 |**`FINS_DATA_TYPE_UINT16`**|Unsigned 16 bit integer|
 |**`FINS_DATA_TYPE_UINT32`**|Unsigned 32 bit integer|
 |**`FINS_DATA_TYPE_WORD_FORCED`**|16 bit values with their forced status returned in four two 16 bit words|
+
+### Description
+
+### See Also

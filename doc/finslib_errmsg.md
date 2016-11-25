@@ -29,4 +29,4 @@ is returned.
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_REVAL.md) &ndash; Libfins function return codes
+* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list

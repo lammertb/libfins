@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_memory_area_write_bcd32( sys, start, data, num_bcd32 );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -13,13 +11,13 @@
 |**`data`**|`const uint32_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_bcd32`**|`size_t`|The number of unsigned 32 bit BCD values to write|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the command|
 
-#### Description
+### Description
 
 The function `finslib_memory_area_write_bcd32()` can be used to write a block of 32 bit unsigned BCD values to a memory
 area in a remote PLC. The connection with the PLC should already be present before this function is called.
@@ -39,3 +37,16 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has
 been written to the PLC and additional processing and communication with the PLC may be necessary to know or set
 the correct state of the memory contents of the PLC.
+
+### See Also
+
+* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &mdash; Libfins data type constants
+* [`finslib_bcd_to_int();`](finslib_bcd_to_int.md)
+* [`finslib_memory_area_read_bcd16();`](finslib_memory_area_read_bcd16.md)
+* [`finslib_memory_area_read_sbcd16();`](finslib_memory_area_read_sbcd16.md)
+* [`finslib_memory_area_read_bcd32();`](finslib_memory_area_read_bcd32.md)
+* [`finslib_memory_area_read_sbcd32();`](finslib_memory_area_read_sbcd32.md)
+* [`finslib_memory_area_write_bcd16();`](finslib_memory_area_write_bcd16.md)
+* [`finslib_memory_area_write_sbcd16();`](finslib_memory_area_write_sbcd16.md)
+* [`finslib_memory_area_write_sbcd32();`](finslib_memory_area_write_sbcd32.md)

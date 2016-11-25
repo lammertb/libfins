@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_multiple_memory_area_read( sys, item, num_item );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -12,13 +10,13 @@
 |**`item`**|`struct fins_multidata_tp *`|Pointer to an array of structures where each element contains the information and storage place for one item to be retrieved|
 |**`num_item`**|`size_t`|The number of items to return|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
-#### Description
+### Description
 
 The function `finslib_multiple_memory_area_read()` is the most versatile of all memory read functions. It takes
 an array of elements as a parameter where each element contains information about one memory item to be read.
@@ -45,3 +43,19 @@ be too large.
 The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
 should not be used.
+
+### See Also
+
+* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`finslib_memory_area_read_bcd16();`](finslib_memory_area_read_bcd16.md)
+* [`finslib_memory_area_read_bcd32();`](finslib_memory_area_read_bcd32.md)
+* [`finslib_memory_area_read_bit();`](finslib_memory_area_read_bit.md)
+* [`finslib_memory_area_read_double();`](finslib_memory_area_read_double.md)
+* [`finslib_memory_area_read_float();`](finslib_memory_area_read_float.md)
+* [`finslib_memory_area_read_int16();`](finslib_memory_area_read_int16.md)
+* [`finslib_memory_area_read_int32();`](finslib_memory_area_read_int32.md)
+* [`finslib_memory_area_read_sbcd16();`](finslib_memory_area_read_sbcd16.md)
+* [`finslib_memory_area_read_sbcd32();`](finslib_memory_area_read_sbcd32.md)
+* [`finslib_memory_area_read_uint16();`](finslib_memory_area_read_uint16.md)
+* [`finslib_memory_area_read_uint32();`](finslib_memory_area_read_uint32.md)
+* [`finslib_memory_area_read_word();`](finslib_memory_area_read_word.md)

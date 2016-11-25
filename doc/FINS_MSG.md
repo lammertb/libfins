@@ -1,7 +1,5 @@
 # Finslib API Reference
 
-## Constants
-
 ### FINS user message masks
 
 |Name|Description|
@@ -15,3 +13,7 @@
 |**`FINS_MSG_6`**|Bit mask indicating user program generated message MSG 6|
 |**`FINS_MSG_7`**|Bit mask indicating user program generated message MSG 7|
 |**`FINS_MSG_ALL`**|Bit mask indicating all user program generated messages|
+
+### Description
+
+### See Also

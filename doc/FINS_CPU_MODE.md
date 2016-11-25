@@ -1,7 +1,5 @@
 # Libfins API Reference
 
-## Constants
-
 ### PLC CPU modes
 
 | Name | Description |
@@ -10,3 +8,7 @@
 |**`FINS_CPU_MODE_PROGRAM`**|Status code indicating that the PLC CPU is in program mode|
 |**`FINS_CPU_MODE_RUN`**|Status code indicating that the PLC CPU is in run mode|
 
+### Description
+
+
+### See Also

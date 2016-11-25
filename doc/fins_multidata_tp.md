@@ -1,8 +1,8 @@
-## Structures
+# Finslib API Reference
 
 ### `struct fins_multidata_tp;`
 
-#### Fields
+### Fields
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
@@ -19,8 +19,10 @@
 |**`word`**|`uint16_t`|The returned element value if an unmodified word was requested|
 |**`w_force`**|`uint16_t`|The forced status of the bits of an unmodified word if the force status was requested|
 
-#### Description
+### Description
 
 The structure `fins_multidata_tp` is used by the function [`finslib_mutliple_memory_area_read()`](finslib_multiple_memory_area_read.md)
 to retrieve one or more elements from one or more memory areas in a remote PLC. More information of the usage of
 this structure can be found in the documentation of that function.
+
+### See Also

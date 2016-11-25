@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_memory_area_write_int32( sys, start, data, num_int32 );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -13,13 +11,13 @@
 |**`data`**|`const int32_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_int32`**|`size_t`|The number of signed 32 bit integer values to write|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the command|
 
-#### Description
+### Description
 
 The function `finslib_memory_area_write_int32()` can be used to write a block of signed 32 bit integer values to a memory
 area in a remote PLC. The connection with the PLC should already be present before this function is called.

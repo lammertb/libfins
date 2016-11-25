@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_memory_area_read_bit( sys, start, data, num_bit );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -13,13 +11,13 @@
 |**`data`**|`bool *`|Pointer to the buffer where the result must be stored|
 |**`num_bit`**|`size_t`|The number of bits to return|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
-#### Description
+### Description
 
 The function `finslib_memory_area_read_bit()` can be used to retrieve a block of bits from a memory
 area in a remote PLC. The connection with the PLC should already be present before this function is called.
@@ -38,3 +36,5 @@ be too large.
 The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
 should not be used.
+
+### See Also

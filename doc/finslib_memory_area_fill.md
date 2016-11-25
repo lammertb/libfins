@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_memory_area_fill( sys, start, fill_data, num_word );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -13,13 +11,13 @@
 |**`fill_data`**|`uint16_t`|A 16 bit word containing the data to be written to all the affected words in the remote PLC memory area|
 |**`num_word`**|`size_t`|The number of words to write|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the command|
 
-#### Description
+### Description
 
 The function `finslib_memory_area_fill()` can be used to fill a block of 16 bit words in a memory
 area in a remote PLC with a fill word. The connection with the PLC should already be present before this function is called.
@@ -31,3 +29,11 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has
 been written to the PLC and additional processing and communication with the PLC may be necessary to know or set
 the correct state of the memory contents of the PLC.
+
+### See Also
+
+* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`finslib_memory_area_transfer();`](finslib_memory_area_transfer.md)
+* [`finslib_memory_area_write_word();`](finslib_memory_area_write_word.md)
+* [`finslib_parameter_area_clear();`](finslib_parameter_area_clear.md)
+* [`finslib_program_area_clear();`](finslib_program_area_clear.md)

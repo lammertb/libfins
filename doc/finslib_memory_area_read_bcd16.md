@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_memory_area_read_bcd16( sys, start, data, num_bcd16 );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -13,13 +11,13 @@
 |**`data`**|`uint16_t *`|Pointer to the buffer where the result must be stored|
 |**`num_bcd16`**|`size_t`|The number of 16 bit BCD values to return|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
 
-#### Description
+### Description
 
 The function `finslib_memory_area_read_bcd16()` can be used to retrieve a block of 16 bit unsigned BCD values from a memory
 area in a remote PLC. The connection with the PLC should already be present before this function is called.
@@ -38,3 +36,17 @@ be too large.
 The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
 **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
 should not be used.
+
+### See Also
+
+* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &mdash; Libfins data type constants
+* [`finslib_bcd_to_int();`](finslib_bcd_to_int.md)
+* [`finslib_int_to_bcd();`](finslib_int_to_bcd.md)
+* [`finslib_memory_area_read_sbcd16();`](finslib_memory_area_read_sbcd16.md)
+* [`finslib_memory_area_read_bcd32();`](finslib_memory_area_read_bcd32.md)
+* [`finslib_memory_area_read_sbcd32();`](finslib_memory_area_read_sbcd32.md)
+* [`finslib_memory_area_write_bcd16();`](finslib_memory_area_write_bcd16.md)
+* [`finslib_memory_area_write_sbcd16();`](finslib_memory_area_write_sbcd16.md)
+* [`finslib_memory_area_write_bcd32();`](finslib_memory_area_write_bcd32.md)
+* [`finslib_memory_area_write_sbcd32();`](finslib_memory_area_write_sbcd32.md)

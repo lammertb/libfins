@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Structures
-
 ### `struct fins_cpustatus_tp;`
 
-#### Fields
+### Fields
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
@@ -39,7 +37,9 @@
 |**`error_code`**|`uint16_t`|The active error code with the highest priority|
 |**`error_message`**|`char[17]`|The current active error message in ASCII text|
 
-#### Description
+### Description
 
 The structure `fins_cpustatus_tp` is used to store the actual status of the CPU of a PLC when the function
 `finslib_cpu_unit_status_read()` is called.
+
+### See Also
