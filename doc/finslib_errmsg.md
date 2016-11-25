@@ -1,10 +1,8 @@
 # Finslib API Reference
 
-## Functions
-
 ### `finslib_errmsg( error_code, buffer, buffer_len );`
 
-#### Parameters
+### Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
@@ -12,13 +10,13 @@
 |**`buffer`**|`char *`|The buffer where the return string must be stored|
 |**`buffer_len`**|`size_t`|The amount of characters including the zero termination character of the string which can be stored in the buffer|
 
-#### Returns
+### Returns
 
 | Type | Description |
 | :--- | :--- |
 |`const char *`|A pointer to the string message when successful, or NULL when an unrecoverable error occured|
 
-#### Description
+### Description
 
 All functions in the library which have the option of failing return an integer return code. This code can either be an operating system error,
 an error returned from the remote peer over the FINS protocol, or an error which occured in the libfins library itself. The function
@@ -28,3 +26,7 @@ If the function fails to provide an error message due to an internal problem lik
 In all other cases the caller provided buffer will be filled with the appropriate error message and the function returns a pointer to the
 beginning of that buffer. In case the error code is unknown but the function doesn't fail due to an internal error, the text "Unknown error"
 is returned.
+
+### See Also
+
+* [`FINS_RETVAL...`](FINS_REVAL.md) &ndash; Libfins function return codes
