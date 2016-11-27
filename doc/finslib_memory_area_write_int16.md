@@ -11,7 +11,7 @@
 |**`data`**|`const int16_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_int16`**|`size_t`|The number of signed 16 bit integer values to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

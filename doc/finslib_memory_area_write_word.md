@@ -11,7 +11,7 @@
 |**`data`**|`const unsigned char *`|Pointer to the buffer where the data to be written is located|
 |**`num_word`**|`size_t`|The number of words to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

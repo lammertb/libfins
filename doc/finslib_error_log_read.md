@@ -12,7 +12,7 @@
 |**`num_records`**|`size_t *`|The number of records to retrieve|
 |**`stored_records`**|`size_t *`|The total number of stored records in the error log|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

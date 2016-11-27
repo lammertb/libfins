@@ -8,7 +8,7 @@
 | :--- | :--- | :--- |
 |**`msec`**|`int`|The amount of milliseconds the current thread should be suspended.
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |
@@ -21,5 +21,6 @@ The accuracy of the sleep time depends on the operating system specific implemen
 threads and processes which compete for time slots.
 
 ### See Also
+
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
 * [`finslib_monotonic_sec_timer();`](finslib_monotonic_sec_timer.md)

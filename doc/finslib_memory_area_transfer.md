@@ -11,7 +11,7 @@
 |**`dest`**|`const char *dest`|ASCII representation of the destination starting memory area address|
 |**`num_words`**|`size_t`|The number of words to transfer
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

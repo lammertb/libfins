@@ -9,7 +9,7 @@
 |**`value`**|`uint32_t`|The BCD value which must be converted to binary|
 |**`type`**|`int`|The type of conversion to perform|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

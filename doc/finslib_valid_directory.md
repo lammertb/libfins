@@ -8,7 +8,7 @@
 | :--- | :--- | :--- |
 |**`path`**|`const char *`|The path to check|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

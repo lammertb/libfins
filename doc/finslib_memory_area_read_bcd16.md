@@ -11,7 +11,7 @@
 |**`data`**|`uint16_t *`|Pointer to the buffer where the result must be stored|
 |**`num_bcd16`**|`size_t`|The number of 16 bit BCD values to return|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

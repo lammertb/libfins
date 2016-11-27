@@ -11,7 +11,7 @@
 |**`fill_data`**|`uint16_t`|A 16 bit word containing the data to be written to all the affected words in the remote PLC memory area|
 |**`num_word`**|`size_t`|The number of words to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

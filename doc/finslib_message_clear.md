@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`msg_mask`**|`uint8_t`|Bit mask representing the messages to clear|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

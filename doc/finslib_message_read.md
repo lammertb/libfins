@@ -10,7 +10,7 @@
 |**`msgdata`**|`struct fins_msgdata_tp *`|Pointer to the buffer where the message information should be stored|
 |**`msg_mask`**|`uint8_t`|Bit mask identifying the messages to be retrieved|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

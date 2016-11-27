@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`datetime`**|`struct fins_datetime_tp *`|Pointer to the memory location where the read date and time must be stored|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

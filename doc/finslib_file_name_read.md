@@ -13,7 +13,7 @@
 |**`path`**|`const char *path`|The subdirectory in which the files are located|
 |**`start_file`**|`size *`|The maximum number of files to read|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

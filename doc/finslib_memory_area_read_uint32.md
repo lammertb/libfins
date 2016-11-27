@@ -11,7 +11,7 @@
 |**`data`**|`uint32_t *`|Pointer to the buffer where the result must be stored|
 |**`num_uint32`**|`size_t`|The number of 32 bit unsigned integer values to return|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

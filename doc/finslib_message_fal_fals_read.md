@@ -10,7 +10,7 @@
 |**`faldata`**|`char *`|Location where the FAL error information must be stored|
 |**`fal_number`**|`uint16_t`|The number of the FAL number for which the message must be read|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`fals_number`**|`uint16_t`|The number of the FALS error to be cleared|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

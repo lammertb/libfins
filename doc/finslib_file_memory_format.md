@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`disk`**|`uint16_t`|The disk in the remote PLC to format|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

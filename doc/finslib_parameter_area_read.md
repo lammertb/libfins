@@ -12,7 +12,7 @@
 |**`start_word`**|`uint16_t`|Offset of the first wordt in the parameter area which must be read|
 |**`num_words`**|`size_t`|The number of words to be read from the parameter area|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

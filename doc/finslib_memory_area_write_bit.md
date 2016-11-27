@@ -11,7 +11,7 @@
 |**`data`**|`const bool *`|Pointer to the buffer where the data to be written is located|
 |**`num_bit`**|`size_t`|The number of bits to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

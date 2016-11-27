@@ -13,7 +13,7 @@
 |**`file`**|`const char *`|Name of the file|
 |**`num_records`**|`size_t *`|The number of records to compare|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

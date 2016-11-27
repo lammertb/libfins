@@ -14,7 +14,7 @@
 |**`file_position`**|`size_t`|The position in the file where reading should start|
 |**`num_bytes`**|`size_t *`|The amount of bytes requested and at function return the actual amount of bytes read|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

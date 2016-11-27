@@ -12,7 +12,7 @@
 |**`num_sbcd16`**|`size_t`|The number of signed 16 bit BCD values to write|
 |**`type`**|`int`|The type of signed BCD to be written|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

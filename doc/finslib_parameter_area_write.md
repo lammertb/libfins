@@ -12,7 +12,7 @@
 |**`start_word`**|`uint16_t`|Offset from the beginning of the parameter area where writing of this data must start|
 |**`num_words`**|`size_t`|Number of words to be written to the parameter area|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

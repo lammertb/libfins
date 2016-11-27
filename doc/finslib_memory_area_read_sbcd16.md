@@ -12,7 +12,7 @@
 |**`num_sbcd16`**|`size_t`|The number of signed 16 bit BCD values to return|
 |**`type`**|`int`|The type of BCD conversion needed|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

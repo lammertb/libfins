@@ -12,7 +12,7 @@
 |**`num_records`**|`size_t`|The number of records to retrieve and at successful function return the actual number of records read|
 |**`stored_records`**|`size_t`|The total number of stored records|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

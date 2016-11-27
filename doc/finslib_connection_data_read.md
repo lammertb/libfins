@@ -11,7 +11,7 @@
 |**`start_unit`**|`uint8_t`|The first unit from which the unit information should be read|
 |**`num_units`**|`size_t *`|The maximum number unit information blocks to return. At function return this contains the actual number of unit information blocks read|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

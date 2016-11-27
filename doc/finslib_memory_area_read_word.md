@@ -11,7 +11,7 @@
 |**`data`**|`unsigned char *`|Pointer to the buffer where the result must be stored|
 |**`num_word`**|`size_t`|The number of words to return|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

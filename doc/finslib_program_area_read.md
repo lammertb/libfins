@@ -11,7 +11,7 @@
 |**`start_word`**|`uint32_t`|Offset in the program area where reading data must begin|
 |**`num_bytes`**|`size_t *`|The amount of bytes to read and if the function returns successfully the actual amount of bytes read|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

@@ -10,7 +10,7 @@
 |**`buffer`**|`char *`|The buffer where the return string must be stored|
 |**`buffer_len`**|`size_t`|The amount of characters including the zero termination character of the string which can be stored in the buffer|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

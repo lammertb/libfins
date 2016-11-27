@@ -11,7 +11,7 @@
 |**`data`**|`const int32_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_int32`**|`size_t`|The number of signed 32 bit integer values to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

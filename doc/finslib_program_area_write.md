@@ -11,7 +11,7 @@
 |**`start_word`**|`uint32_t`|Offset in the program area where writing data must begin|
 |**`num_bytes`**|`size_t`|Number of bytes to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

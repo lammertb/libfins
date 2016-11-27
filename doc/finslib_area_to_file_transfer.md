@@ -13,7 +13,7 @@
 |**`file`**|`const char *`|Name of the file where the data must be written to|
 |**`num_records`**|`size_t *`|Number of records written to the file|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

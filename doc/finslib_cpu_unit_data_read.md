@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`cpudata`**|`struct fins_cpudata_tp *`|A pointer to a structure where the CPU information must be stored|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

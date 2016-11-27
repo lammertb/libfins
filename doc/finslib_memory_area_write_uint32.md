@@ -11,7 +11,7 @@
 |**`data`**|`const uint32_t *`|Pointer to the buffer where the data to be written is located|
 |**`num_uint32`**|`size_t`|The number of unsigned 32 bit integer values to write|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

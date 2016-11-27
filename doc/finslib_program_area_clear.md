@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`do_interrupt_tasks`**|`bool`|**`true`** if the interrupt tasks must be also cleared|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

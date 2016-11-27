@@ -13,7 +13,7 @@
 |**`file`**|`const char *`|The name of the source file|
 |**`num_records`**|`size_t *`|The number of records to transfer|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

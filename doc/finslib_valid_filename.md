@@ -8,7 +8,7 @@
 | :--- | :--- | :--- |
 |**`filename`**|`const char *`|The filename to check|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

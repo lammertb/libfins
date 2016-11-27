@@ -11,7 +11,7 @@
 |**`data`**|`int32_t *`|Pointer to the buffer where the result must be stored|
 |**`num_int32`**|`size_t`|The number of 32 bit signed integer values to return|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

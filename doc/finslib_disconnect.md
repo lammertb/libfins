@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`ctime`**|`struct fins_cycletime_tp *`|A pointer to a structure where the cycle times must be stored|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

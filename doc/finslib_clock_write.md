@@ -11,7 +11,7 @@
 |**`do_sec`**|`bool`|**`true`** when the seconds on the remote PLC must also be set.
 |**`do_dow`**|`bool`|**`true`** when the day of the wak on the remote PLC must also be set. This parameter is only functional when `do_sec` is also set to **`true`**|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

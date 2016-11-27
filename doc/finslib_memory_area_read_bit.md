@@ -11,7 +11,7 @@
 |**`data`**|`bool *`|Pointer to the buffer where the result must be stored|
 |**`num_bit`**|`size_t`|The number of bits to return|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

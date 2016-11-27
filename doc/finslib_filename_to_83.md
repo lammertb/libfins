@@ -9,7 +9,7 @@
 |**`infile`**|`const char *`|The filename in human readable format|
 |**`outfile`**|`char *`|Location to store the to 8.3 format converted filename|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

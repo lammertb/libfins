@@ -8,7 +8,7 @@
 | :--- | :--- | :--- |
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

@@ -10,7 +10,7 @@
 |**`area_code`**|`uint16_t`|The area code in which data must be cleared|
 |**`num_words`**|`size_t`|The number of words that must be cleared in the parameter area|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

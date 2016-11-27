@@ -10,7 +10,7 @@
 |**`item`**|`struct fins_multidata_tp *`|Pointer to an array of structures where each element contains the information and storage place for one item to be retrieved|
 |**`num_item`**|`size_t`|The number of items to return|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

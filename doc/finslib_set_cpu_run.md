@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`do_monitor`**|`bool`|**`true`** if the CPU should run in monitor mode|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

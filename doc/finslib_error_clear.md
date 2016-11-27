@@ -9,7 +9,7 @@
 |**`sys`**|`struct fins_sys_tp *`|A pointer to a structure with the FINS context|
 |**`error_code`**|`uint16_t`|The code of the error to be cleared|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

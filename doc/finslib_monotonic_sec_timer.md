@@ -7,7 +7,7 @@
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

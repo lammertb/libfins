@@ -12,7 +12,7 @@
 |**`send_len`**|`size_t`|The number of relevant bytes in the buffer when the function is invoked|
 |**`recv_len`**|`size_t *`|The size of the buffer when the function is invoked, and the size of the return body when the function is finished|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

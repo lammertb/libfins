@@ -18,7 +18,7 @@
 |**`error_val`**|`int *`|The error code if an error occured|
 |**`error_max`**|`int`|The maximum error code|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

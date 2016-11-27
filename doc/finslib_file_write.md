@@ -15,7 +15,7 @@
 |**`num_bytes`**|`size_t`|The number of bytes which must be written|
 |**`open_mode`**|`uint16_t`|The mode in which the file should be opened|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |

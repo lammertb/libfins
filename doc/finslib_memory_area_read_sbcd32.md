@@ -12,7 +12,7 @@
 |**`num_sbcd32`**|`size_t`|The number of signed 32 bit BCD values to return|
 |**`type`**|`int`|The type of BCD conversion needed|
 
-### Returns
+### Return Value
 
 | Type | Description |
 | :--- | :--- |
