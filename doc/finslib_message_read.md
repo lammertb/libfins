@@ -21,5 +21,12 @@
 ### See Also
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`finslib_error_clear();`](finslib_error_clear.md)
+* [`finslib_error_clear_all();`](finslib_error_clear_all.md)
+* [`finslib_error_clear_current();`](finslib_error_clear_current.md)
+* [`finslib_error_clear_fal();`](finslib_error_clear_fal.md)
+* [`finslib_error_clear_fals();`](finslib_error_clear_fals.md)
+* [`finslib_error_log_clear();`](finslib_error_log_clear.md)
+* [`finslib_error_log_read();`](finslib_error_log_read.md)
 * [`finslib_message_clear();`](finslib_message_read.md)
 * [`finslib_message_fal_fals_read();`](finslib_message_fal_fals_read.md)

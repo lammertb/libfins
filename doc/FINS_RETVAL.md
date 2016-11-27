@@ -79,3 +79,5 @@
 ### Description
 
 ### See Also
+
+* [`finslib_errmsg();`](finslib_errmsg.md)

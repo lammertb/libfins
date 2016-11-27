@@ -22,3 +22,6 @@ and for changes in the time which happen during the transistion to and from dayl
 The return value is the amount of seconds since an unspecified moment.
 
 ### See Also
+
+* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`finslib_milli_second_sleep();`](finslib_milli_second_sleep.md)

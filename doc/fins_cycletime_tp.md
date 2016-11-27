@@ -6,9 +6,9 @@
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-|**`min`**|`uint32_t`|The minimum cycle time of the PLC since the last cycle time reset. The time is expressed in units of 0.1 msec.|
 |**`avg`**|`uint32_t`|The average cycle time over the last eight cycles of the PLC. The time is expressed in units of 0.1 msec.|
 |**`max`**|`uint32_t`|The maximum cycle time of the PLC since the last cycle time reset. The time is expressed in uints of 0.1 msec.|
+|**`min`**|`uint32_t`|The minimum cycle time of the PLC since the last cycle time reset. The time is expressed in units of 0.1 msec.|
 
 ### Description
 
@@ -16,3 +16,9 @@ The structure `fins_cycletime_tp` is used by the function `finslib_cycle_time_re
 cycle times of the PLC.
 
 ### See Also
+
+* [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)
+* [`finslib_cycle_time_init();`](finslib_cycle_time_init.md)
+* [`finslib_cycle_time_read();`](finslib_ctcle_time_read.md)
+* [`finslib_set_cpu_run();`](finslib_set_cpu_run.md)
+* [`finslib_set_cpu_stop();`](finslib_set_cpu_stop.md)

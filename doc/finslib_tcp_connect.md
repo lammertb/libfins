@@ -30,3 +30,4 @@
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
 * [`finslib_disconnect();`](finslib_disconnect.md)
+* [`finslib_raw();`](finslib_raw.md)

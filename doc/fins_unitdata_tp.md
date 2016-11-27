@@ -12,6 +12,9 @@
 ### Description
 
 The structure `fins_unitdata_tp` is used to store the information of one special I/O unit in a PLC system when unit data
-is requested with a call to the `finslib_connection_data_read()` function.
+is requested with a call to the [`finslib_connection_data_read()`](finslib_connection_data_read.md) function.
 
 ### See Also
+
+* [`finslib_connection_data_read();`](finslib_connection_data_read.md)
+* [`finslib_cpu_unit_data_read();`](finslib_cpu_unit_data_read.md)

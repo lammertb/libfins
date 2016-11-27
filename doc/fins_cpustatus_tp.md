@@ -43,3 +43,5 @@ The structure `fins_cpustatus_tp` is used to store the actual status of the CPU 
 `finslib_cpu_unit_status_read()` is called.
 
 ### See Also
+
+* [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)

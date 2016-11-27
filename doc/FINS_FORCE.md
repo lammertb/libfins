@@ -13,3 +13,6 @@
 ### Description
 
 ### See Also
+
+* [`finslib_forced_set_reset_cancel();`](finslib_forced_set_reset_cancel.md)
+* [`finslib_multiple_memory_area_read();`](finslib_multiple_memory_area_read.md)
