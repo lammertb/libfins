@@ -20,9 +20,20 @@
 
 ### Description
 
+The function `finslib_parameter_area_read()` can be used to read data from a parameter area.
+The area to read must be selected with a [`FINS_PARAM_AREA...`](FINS_PARAM_AREA.md) parameter
+Also the start offset and number of words must be passed to the function as parameters.
+It is the responsibility of the calling function to ensure that the buffer which must contain
+the returned block of words is large enough.
+
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
+**`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
+should not be used.
+
 ### See Also
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_PARAM_AREA...`](FINS_PARAM_AREA.md) &ndash; CPU parameter area list
 * [`finslib_memory_area_read_word();`](finslib_memory_area_read_word.md)
 * [`finslib_parameter_area_clear();`](finslib_parameter_area_clear.md)
 * [`finslib_parameter_area_write();`](finslib_parameter_area_write.md)

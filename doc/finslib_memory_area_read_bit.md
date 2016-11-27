@@ -40,6 +40,7 @@ should not be used.
 ### See Also
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &ndash; Libfins data types
 * [`finslib_forced_set_reset_cancel();`](finslib_forced_set_reset_cancel.md)
 * [`finslib_memory_area_read_word();`](finslib_memory_area_read_word.md)
 * [`finslib_memory_area_write_bit();`](finslib_memory_area_write_bit.md)

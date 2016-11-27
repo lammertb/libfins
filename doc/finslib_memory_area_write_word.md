@@ -41,6 +41,7 @@ the correct state of the memory contents of the PLC.
 ### See Also
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &ndash; Libfins data types
 * [`finslib_memory_area_read_bit();`](finslib_memory_area_read_bit.md)
 * [`finslib_memory_area_read_word();`](finslib_memory_area_read_word.md)
 * [`finslib_memory_area_write_bit();`](finslib_memory_area_write_bit.md)

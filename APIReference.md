@@ -9,7 +9,7 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 * [Default communication settings](doc/FINS_DEFAULT.md)
 * [Bit force modes](doc/FINS_FORCE.md)
 * [FINS user message masks](doc/FINS_MSG.md)
-* [Multiple read parameter types](doc/FINS_MULTI_TYPE.md)
+* [Data types](doc/FINS_DATA_TYPE.md)
 * [Function return values](doc/FINS_RETVAL.md)
 
 ## Structures
