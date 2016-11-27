@@ -61,3 +61,4 @@ the correct state of the memory contents of the PLC.
 * [`finslib_memory_area_write_bcd16();`](finslib_memory_area_write_bcd16.md)
 * [`finslib_memory_area_write_bcd32();`](finslib_memory_area_write_bcd32.md)
 * [`finslib_memory_area_write_sbcd16();`](finslib_memory_area_write_sbcd16.md)
+* [`finslib_multiple_memory_area_read();`](finslib_multiple_memory_area_read.md)

@@ -23,3 +23,4 @@
 ### See Also
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`finslib_write_access_log_clear();`](finslib_write_access_log_clear.md)

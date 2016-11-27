@@ -23,3 +23,4 @@
 * [`finslib_memory_area_read_word();`](finslib_memory_area_read_word.md)
 * [`finslib_memory_area_write_bit();`](finslib_memory_area_write_bit.md)
 * [`finslib_memory_area_write_word();`](finslib_memory_area_write_word.md)
+* [`finslib_multiple_memory_area_read();`](finslib_multiple_memory_area_read.md)

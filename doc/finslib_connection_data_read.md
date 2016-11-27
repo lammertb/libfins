@@ -23,3 +23,4 @@
 
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
 * [`finslib_cpu_unit_data_read();`](finslib_cpu_unit_data_read.md)
+* [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)

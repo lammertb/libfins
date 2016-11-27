@@ -26,3 +26,5 @@
 * [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
 * [`finslib_area_file_compare();`](finslib_area_file_compare.md)
 * [`finslib_file_to_area_transfer();`](finslib_file_to_area_transfer.md)
+* [`finslib_valid_directory();`](finslib_valid_directory.md)
+* [`finslib_valid_filename();`](finslib_valid_filename.md)

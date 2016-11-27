@@ -23,3 +23,5 @@
 * [`finslib_file_name_read();`](finslib_file_name_read.md)
 * [`finslib_file_read();`](finslib_file_read.md)
 * [`finslib_file_write();`](finslib_file_write.md)
+* [`finslib_valid_directory();`](finslib_valid_directory.md)
+* [`finslib_valid_filename();`](finslib_valid_filename.md)
