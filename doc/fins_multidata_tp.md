@@ -21,9 +21,7 @@
 
 ### Description
 
-The structure `fins_multidata_tp` is used by the function [`finslib_mutliple_memory_area_read()`](finslib_multiple_memory_area_read.md)
-to retrieve one or more elements from one or more memory areas in a remote PLC. More information of the usage of
-this structure can be found in the documentation of that function.
+The structure `fins_multidata_tp` is used by the function [`finslib_mutliple_memory_area_read()`](finslib_multiple_memory_area_read.md) to retrieve one or more elements from one or more memory areas in a remote PLC. More information of the usage of this structure can be found in the documentation of that function.
 
 ### See Also
 

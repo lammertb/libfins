@@ -17,14 +17,9 @@
 
 ### Description
 
-The function `finslib_bcd_to_int()` can be used to convert a BCD value to its binary equivalent.
-The function can be used to convert 16 and 32 bit input values which may be either signed or unsigned.
-Signed BCD values can be encoded in four different ways. To guide the function in selecting the proper
-conversion protocol, a second parameter is provided which tells according to which conversion algorithm
-the conversion to a binary value should take place.
+The function `finslib_bcd_to_int()` can be used to convert a BCD value to its binary equivalent.  The function can be used to convert 16 and 32 bit input values which may be either signed or unsigned.  Signed BCD values can be encoded in four different ways. To guide the function in selecting the proper conversion protocol, a second parameter is provided which tells according to which conversion algorithm the conversion to a binary value should take place.
 
-If a parameter is provided which does not represent a valid BCD value, the function returns `INT16_MAX`
-when a 16 bit conversion was requested and `INT32_MAX` otherwise. The following conversion types are supported by the function.
+If a parameter is provided which does not represent a valid BCD value, the function returns `INT16_MAX` when a 16 bit conversion was requested and `INT32_MAX` otherwise. The following conversion types are supported by the function.
 
 |Type|Low|High|On error|
 |:---|---:|---:|
@@ -40,8 +35,7 @@ when a 16 bit conversion was requested and `INT32_MAX` otherwise. The following 
 |`FINS_DATA_TYPE_SBCD32_3`|-19999999|99999999|`INT32_MAX`|
 |*all other*|0|-1|`INT32_MAX`|
 
-The types **0**, **1**, **2** and **3** are the encoding types as used in Omron PLCs by the functions **`BINS`** and **`BISL`**.
-More information can be found in the Omron instruction set manuals.
+The types **0**, **1**, **2** and **3** are the encoding types as used in Omron PLCs by the functions **`BINS`** and **`BISL`**.  More information can be found in the Omron instruction set manuals.
 
 ### See Also
 

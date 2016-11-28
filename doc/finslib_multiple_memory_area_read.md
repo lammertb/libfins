@@ -18,31 +18,19 @@
 
 ### Description
 
-The function `finslib_multiple_memory_area_read()` is the most versatile of all memory read functions. It takes
-an array of elements as a parameter where each element contains information about one memory item to be read.
-In one function call information from multiple memory areas can be read and also value types like BCD and signed integer
-and value size like bit, 16 or 32 bit words may be mixed. The connection with the PLC should already be present before this function is called.
+The function `finslib_multiple_memory_area_read()` is the most versatile of all memory read functions. It takes an array of elements as a parameter where each element contains information about one memory item to be read.  In one function call information from multiple memory areas can be read and also value types like BCD and signed integer and value size like bit, 16 or 32 bit words may be mixed. The connection with the PLC should already be present before this function is called.
 
-Ensuring that the array length matches the number of elements parameter in the function call is the
-responsibility of the calling function but `finslib_multiple_memory_area_read()`
-will return an error if a NULL pointer is provided for data storage.
+Ensuring that the array length matches the number of elements parameter in the function call is the responsibility of the calling function but `finslib_multiple_memory_area_read()` will return an error if a NULL pointer is provided for data storage.
 
-For each element in the `item` array, the fields `address` and `type` must be filled by the calling function.
-The function `finslib_muliple_memory_area_read()` will then fill one or two of the other fields depending on the
-type of the requested element.
+For each element in the `item` array, the fields `address` and `type` must be filled by the calling function.  The function `finslib_muliple_memory_area_read()` will then fill one or two of the other fields depending on the type of the requested element.
 
-The `address` of each element is provided as an ASCII string which represents the starting address in human
-readable format. Example formats are **`CIO20`** and **`W100.5`**.
+The `address` of each element is provided as an ASCII string which represents the starting address in human readable format. Example formats are **`CIO20`** and **`W100.5`**.
 
 The `type` of each element is one of the [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) constants.
 
-The requested number of elements is not limited by the amount of data a PLC can send in one FINS packet because
-`finslib_multiple_memory_area_read()` will automatically use multiple requests at the FINS layer if the dataset will
-be too large.
+The requested number of elements is not limited by the amount of data a PLC can send in one FINS packet because `finslib_multiple_memory_area_read()` will automatically use multiple requests at the FINS layer if the dataset will be too large.
 
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other
-**`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and
-should not be used.
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and should not be used.
 
 ### See Also
 

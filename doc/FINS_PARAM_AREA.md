@@ -12,15 +12,9 @@
 
 ### Description
 
-An Omron PLC contains a number of parameter areas which store settings used for the
-functioning of the system and its environment, rather than for the functioning of the
-user programs themselves. These parameters store for example information about the units attached to
-the CPU and routing tables for networking.
+An Omron PLC contains a number of parameter areas which store settings used for the functioning of the system and its environment, rather than for the functioning of the user programs themselves. These parameters store for example information about the units attached to the CPU and routing tables for networking.
 
-The parameter areas can be read and written over the FINS protocol. For each function call
-to a function which affects a parameter area, it is necessary to specify on which parameter
-area the activity should be performed. The constants `FINS_PARAM_AREA...` can be used
-to specify these areas.
+The parameter areas can be read and written over the FINS protocol. For each function call to a function which affects a parameter area, it is necessary to specify on which parameter area the activity should be performed. The constants `FINS_PARAM_AREA...` can be used to specify these areas.
 
 ### See Also
 

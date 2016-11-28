@@ -12,8 +12,7 @@
 
 ### Description
 
-The structure `fins_cycletime_tp` is used by the function `finslib_cycle_time_read()` to store the minimum, average and maximum
-cycle times of the PLC.
+The structure `fins_cycletime_tp` is used by the function `finslib_cycle_time_read()` to store the minimum, average and maximum cycle times of the PLC.
 
 ### See Also
 
