@@ -5,12 +5,13 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 
 ## Constants
 
-* [PLC CPU modes](doc/FINS_CPU_MODE.md)
-* [Default communication settings](doc/FINS_DEFAULT.md)
-* [Bit force modes](doc/FINS_FORCE.md)
-* [FINS user message masks](doc/FINS_MSG.md)
-* [Data types](doc/FINS_DATA_TYPE.md)
-* [Function return values](doc/FINS_RETVAL.md)
+* [PLC CPU modes](doc/fins_cpu_mode.md)
+* [Default communication settings](doc/fins_default.md)
+* [Bit force modes](doc/fins_force.md)
+* [FINS user message masks](doc/fins_msg.md)
+* [Data types](doc/fins_data_type.md)
+* [Parameter areas](doc/fins_param_area.md)
+* [Function return values](doc/fins_retval.md)
 
 ## Structures
 

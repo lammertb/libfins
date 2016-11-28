@@ -39,8 +39,8 @@ The types **0**, **1**, **2** and **3** are the encoding types as used in Omron 
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
-* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &ndash; Libfins data types
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](fins_data_type.md) &ndash; Libfins data types
 * [`finslib_int_to_bcd();`](finslib_int_to_bcd.md)
 * [`finslib_memory_area_read_bcd16();`](finslib_memory_area_read_bcd16.md)
 * [`finslib_memory_area_read_bcd32();`](finslib_memory_area_read_bcd32.md)

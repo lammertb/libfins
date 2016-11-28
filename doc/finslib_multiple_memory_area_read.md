@@ -14,7 +14,7 @@
 
 | Type | Description |
 | :--- | :--- |
-|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
+|`int`|A return value from the list [`FINS_RETVAL_...`](fins_retval.md) indicating the result of the query|
 
 ### Description
 
@@ -26,7 +26,7 @@ For each element in the `item` array, the fields `address` and `type` must be fi
 
 The `address` of each element is provided as an ASCII string which represents the starting address in human readable format. Example formats are **`CIO20`** and **`W100.5`**.
 
-The `type` of each element is one of the [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) constants.
+The `type` of each element is one of the [`FINS_DATA_TYPE...`](fins_data_type.md) constants.
 
 The requested number of elements is not limited by the amount of data a PLC can send in one FINS packet because `finslib_multiple_memory_area_read()` will automatically use multiple requests at the FINS layer if the dataset will be too large.
 
@@ -34,8 +34,9 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
-* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &ndash; Libfins data types
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](fins_data_type.md) &ndash; Libfins data types
+* [`FINS_FORCE...`](fins_force.md) &ndash; Bit force mode list
 * [`finslib_memory_area_read_bcd16();`](finslib_memory_area_read_bcd16.md)
 * [`finslib_memory_area_read_bcd32();`](finslib_memory_area_read_bcd32.md)
 * [`finslib_memory_area_read_bit();`](finslib_memory_area_read_bit.md)

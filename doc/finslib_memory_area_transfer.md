@@ -15,7 +15,7 @@
 
 | Type | Description |
 | :--- | :--- |
-|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
+|`int`|A return value from the list [`FINS_RETVAL_...`](fins_retval.md) indicating the result of the query|
 
 ### Description
 
@@ -25,8 +25,8 @@ Writing to the or counter areas causes the completion flags of the affected time
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
-* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &ndash; Libfins data types
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](fins_data_type.md) &ndash; Libfins data types
 * [`finslib_area_to_file_transfer();`](finslib_area_to_file_transfer.md)
 * [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)
 * [`finslib_file_to_area_transfer();`](finslib_file_to_area_transfer.md)

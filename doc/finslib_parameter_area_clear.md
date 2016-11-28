@@ -14,13 +14,14 @@
 
 | Type | Description |
 | :--- | :--- |
-|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
+|`int`|A return value from the list [`FINS_RETVAL_...`](fins_retval.md) indicating the result of the query|
 
 ### Description
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
+* [`FINS_PARAM_AREA...`](fins_param_area.md) &ndash; CPU parameter area list
 * [`finslib_memory_area_fill();`](finslib_memory_area_fill.md)
 * [`finslib_parameter_area_read();`](finslib_parameter_area_read.md)
 * [`finslib_parameter_area_write();`](finslib_parameter_area_write.md)

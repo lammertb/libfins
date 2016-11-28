@@ -18,7 +18,7 @@
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
 * [`finslib_filename_to_83();`](finslib_filename_to_83.md)
 * [`finslib_file_memory_format();`](finslib_file_memory_format.md)
 * [`finslib_valid_directory();`](finslib_valid_directory.md)

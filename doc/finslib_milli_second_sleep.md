@@ -10,9 +10,7 @@
 
 ### Return Value
 
-| Type | Description |
-| :--- | :--- |
-|`void`|This function has no return value|
+*none*
 
 ### Description
 
@@ -20,5 +18,4 @@ The function `finslib_milli_second_sleep()` suspends the current thread for the 
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
 * [`finslib_monotonic_sec_timer();`](finslib_monotonic_sec_timer.md)

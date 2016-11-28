@@ -15,7 +15,7 @@
 
 | Type | Description |
 | :--- | :--- |
-|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the command|
+|`int`|A return value from the list [`FINS_RETVAL_...`](fins_retval.md) indicating the result of the command|
 
 ### Description
 
@@ -31,8 +31,8 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
-* [`FINS_DATA_TYPE...`](FINS_DATA_TYPE.md) &ndash; Libfins data types
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
+* [`FINS_DATA_TYPE...`](fins_data_type.md) &ndash; Libfins data types
 * [`finslib_memory_area_read_int16();`](finslib_memory_area_read_int16.md)
 * [`finslib_memory_area_read_int32();`](finslib_memory_area_read_int32.md)
 * [`finslib_memory_area_read_uint16();`](finslib_memory_area_read_uint16.md)

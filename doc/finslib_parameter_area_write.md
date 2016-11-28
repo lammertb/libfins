@@ -16,7 +16,7 @@
 
 | Type | Description |
 | :--- | :--- |
-|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
+|`int`|A return value from the list [`FINS_RETVAL_...`](fins_retval.md) indicating the result of the query|
 
 ### Description
 
@@ -30,8 +30,8 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
-* [`FINS_PARAM_AREA...`](FINS_PARAM_AREA.md) &ndash; CPU parameter area list
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
+* [`FINS_PARAM_AREA...`](fins_param_area.md) &ndash; CPU parameter area list
 * [`finslib_memory_area_write_word();`](finslib_memory_area_write_word.md)
 * [`finslib_parameter_area_clear();`](finslib_parameter_area_clear.md)
 * [`finslib_parameter_area_read();`](finslib_parameter_area_read.md)

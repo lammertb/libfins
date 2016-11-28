@@ -16,12 +16,12 @@
 
 | Type | Description |
 | :--- | :--- |
-|`int`|A return value from the list [`FINS_RETVAL_...`](FINS_RETVAL.md) indicating the result of the query|
+|`int`|A return value from the list [`FINS_RETVAL_...`](fins_retval.md) indicating the result of the query|
 
 ### Description
 
 ### See Also
 
-* [`FINS_RETVAL...`](FINS_RETVAL.md) &ndash; Libfins function return code list
+* [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
 * [`finslib_disconnect();`](finslib_disconnect.md)
 * [`finslib_tcp_connect();`](finslib_tcp_connect.md)
