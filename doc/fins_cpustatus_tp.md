@@ -32,7 +32,7 @@
 |**`sysmac_bus_error`**|`bool`|**`true`** if a non-fatal sysmac bus error occured|
 |**`battery_error`**|`bool`|**`true`** if a non-fatal battery error occured|
 |**`cs1_cpu_bus_unit_setting_error`**|`bool`|**`true`** if a non-fatal error occured in the settings of a CS1 CPU bus unit|
-|**`special_io_unit_setting_error`**|`bool`|**`true`** if q non-fatal error occured in the settings of a special I/O unit|
+|**`special_io_unit_setting_error`**|`bool`|**`true`** if a non-fatal error occured in the settings of a special I/O unit|
 |**`run_mode`**|`uint8_t`|The current operating mode of the CPU|
 |**`error_code`**|`uint16_t`|The active error code with the highest priority|
 |**`error_message`**|`char[17]`|The current active error message in ASCII text|
@@ -43,4 +43,5 @@ The structure `fins_cpustatus_tp` is used to store the actual status of the CPU 
 
 ### See Also
 
+* [`FINS_CPU_MODE_...`](doc/fins_cpu_mode.md) &ndash; PLC CPU modes
 * [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)
