@@ -22,7 +22,7 @@ The function `finslib_int_to_bcd()` can be used to convert a binary value to its
 If the input parameter is out of range, the function returns `INT16_MAX` when a 16 bit conversion was requested and `INT32_MAX` otherwise. The following conversion types are supported by the function.
 
 |Type|Low|High|On error|
-|:---|---:|---:|
+|:---|---:|---:|:---:|
 |`FINS_DATA_TYPE_BCD16`|0|9999|`INT16_MAX`|
 |`FINS_DATA_TYPE_SBCD16_0`|-999|999|`INT16_MAX`|
 |`FINS_DATA_TYPE_SBCD16_1`|-7999|7999|`INT16_MAX`|
