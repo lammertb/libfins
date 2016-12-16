@@ -17,7 +17,7 @@
 
 ### Description
 
-The function `finslib_int_to_bcd()` can be used to convert a binary value to its BCD BCD equivalent.  The function can be used to convert 16 and 32 bit input values which may be either signed or unsigned.  Signed BCD values can be encoded in four different ways. To guide the function in selecting the proper conversion protocol, a second parameter is provided which tells according to which conversion algorithm the conversion to a BCD value should take place.
+The function `finslib_int_to_bcd()` can be used to convert a binary value to its BCD equivalent.  The function can be used to convert 16 and 32 bit input values which may be either signed or unsigned.  Signed BCD values can be encoded in four different ways. To guide the function in selecting the proper conversion protocol, a second parameter is provided which tells according to which conversion algorithm the conversion to a BCD value should take place.
 
 If the input parameter is out of range, the function returns `INT16_MAX` when a 16 bit conversion was requested and `INT32_MAX` otherwise. The following conversion types are supported by the function.
 
