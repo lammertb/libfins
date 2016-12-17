@@ -43,7 +43,7 @@ The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded
 
 * [`FINS_RETVAL...`](fins_retval.md) &ndash; Libfins function return code list
 * [`FINS_DATA_TYPE...`](fins_data_type.md) &ndash; Libfins data types
-* [`finslib_bcd_to_int();`](finslib_bcd_to_ind.md)
+* [`finslib_bcd_to_int();`](finslib_bcd_to_int.md)
 * [`finslib_int_to_bcd();`](finslib_int_to_bcd.md)
 * [`finslib_memory_area_read_bcd16();`](finslib_memory_area_read_bcd16.md)
 * [`finslib_memory_area_read_bcd32();`](finslib_memory_area_read_bcd32.md)
