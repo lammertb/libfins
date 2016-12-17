@@ -26,6 +26,10 @@
 
 ### Description
 
+The basic data types in a PLC are 16 bit words and bits but several functions also support other data types which are then mapped in one or more adjacent 16 bit words. The LibFINS data read and write functions support all the data types the PLC recognizes and translates them directly to and from equivalent computer data types making the exchange of data of several types between the PLC and a computer an easy task.
+
+The constants `FINS_DATA_TYPE_...` are used in the call to [`finslib_multiple_memory_area_read()`](finslib_multiple_memory_area_read.md) and in calls which support signed binary BCD values to distinguish between the several different signed BCD implementations.
+
 ### See Also
 
 * [`finslib_bcd_to_int();`](finslib_bcd_to_int.md)

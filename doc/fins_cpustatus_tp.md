@@ -39,9 +39,9 @@
 
 ### Description
 
-The structure `fins_cpustatus_tp` is used to store the actual status of the CPU of a PLC when the function [`finslib_cpu_unit_status_read()`](finslib_cpu_unit_status.md) is called.
+The structure `fins_cpustatus_tp` is used to store the actual status of the CPU of a PLC when the function [`finslib_cpu_unit_status_read()`](finslib_cpu_unit_status.md) is called. The `run_mode` field can have one of the [`FINS_CPU_MODE...`](fins_cpu_mode.md) values.
 
 ### See Also
 
-* [`FINS_CPU_MODE_...`](doc/fins_cpu_mode.md) &ndash; PLC CPU modes
+* [`FINS_CPU_MODE_...`](fins_cpu_mode.md) &ndash; PLC CPU modes
 * [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)
