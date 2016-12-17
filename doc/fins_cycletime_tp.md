@@ -18,6 +18,6 @@ The structure `fins_cycletime_tp` is used by the function `finslib_cycle_time_re
 
 * [`finslib_cpu_unit_status_read();`](finslib_cpu_unit_status_read.md)
 * [`finslib_cycle_time_init();`](finslib_cycle_time_init.md)
-* [`finslib_cycle_time_read();`](finslib_ctcle_time_read.md)
+* [`finslib_cycle_time_read();`](finslib_cycle_time_read.md)
 * [`finslib_set_cpu_run();`](finslib_set_cpu_run.md)
 * [`finslib_set_cpu_stop();`](finslib_set_cpu_stop.md)
