@@ -17,6 +17,7 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 
 * [`struct fins_cpustatus_tp;`](doc/fins_cpustatus_tp.md)
 * [`struct fins_cycletime_tp;`](doc/fins_cycletime_tp.md)
+* [`struct fins_multidata_tp;`](doc/fins_multidata_tp.md)
 * [`struct fins_unitdata_tp;`](doc/fins_unitdata_tp.md)
 
 ## Functions
