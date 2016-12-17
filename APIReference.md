@@ -50,7 +50,7 @@ in C and can be compiled with any modern C compiler. The API to the library is d
 * [`finslib_file_name_read( sys, diskinfo, fileinfo, disk, path, start_file, num_files );`](doc/finslib_file_name_read.md)
 * [`finslib_file_read( sys, disk, path, filename, data, file_position, num_bytes );`](doc/finslib_file_read.md)
 * [`finslib_file_to_area_transfer( sys, start, disk, path, file, num_records);`](doc/finslib_file_to_area_transfer.md)
-* [`finslib_file_write.md( sys, disk, path, filename, data, file_position, num_bytes, open_mode );`](doc/finslib_file_write.md)
+* [`finslib_file_write( sys, disk, path, filename, data, file_position, num_bytes, open_mode );`](doc/finslib_file_write.md)
 * [`finslib_forced_set_reset_cancel( sys );`](doc/finslib_forced_set_reset_cancel.md)
 * [`finslib_int_to_bcd( value, type );`](doc/finslib_int_to_bcd.md)
 * [`finslib_memory_area_fill( sys, start, fill_data, num_word );`](doc/finslib_memory_area_fill.md)
