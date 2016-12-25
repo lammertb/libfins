@@ -48,7 +48,7 @@ static int	process_data( struct fins_sys_tp *sys, const char *start, const uint3
 
 int finslib_memory_area_write_sbcd32( struct fins_sys_tp *sys, const char *start, const int32_t *data, size_t num_sbcd32, int type ) {
 
-	return process_data( sys, start, (uint32_t *)data, num_sbcd32, type );
+	return process_data( sys, start, (const uint32_t *)data, num_sbcd32, type );
 
 }  /* finslib_memory_area_write_sbcd32 */
 
