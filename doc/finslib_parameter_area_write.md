@@ -26,7 +26,7 @@ Note that all areas except for the routing table must be written in their entire
 
 The I/O registration table can only be written if the CPU is in program mode. When that area is written while the CPU is running or in monitor mode, `finslib_parameter_area_write()` will still return **`FINS_RETVAL_SUCCESS`** but nothing will be written to the area. It is the responsibility of the calling party to first ensure that the CPU is stopped before the I/O registration table is written.
 
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an eror occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has been written to the PLC and additional processing and communication with the PLC may be necessary to know or set the correct state of the parameter area memory contents of the PLC.
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an error occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has been written to the PLC and additional processing and communication with the PLC may be necessary to know or set the correct state of the parameter area memory contents of the PLC.
 
 ### See Also
 

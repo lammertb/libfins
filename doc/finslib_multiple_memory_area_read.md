@@ -30,7 +30,7 @@ The `type` of each element is one of the [`FINS_DATA_TYPE...`](fins_data_type.md
 
 The requested number of elements is not limited by the amount of data a PLC can send in one FINS packet because `finslib_multiple_memory_area_read()` will automatically use multiple requests at the FINS layer if the dataset will be too large.
 
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and should not be used.
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an error occurs. In the latter case the data in the return buffer is unreliable and should not be used.
 
 ### See Also
 
