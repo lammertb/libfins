@@ -27,7 +27,7 @@ The start of the memory area is provided as an ASCII string which represents the
 
 The number of unsigned integer values to be written in one function call is not limited by the amount of data a PLC can send in one FINS packet because `finslib_memory_area_write_uint16()` will automatically use multiple request at the FINS layer if the dataset is too large.
 
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an eror occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has been written to the PLC and additional processing and communication with the PLC may be necessary to know or set the correct state of the memory contents of the PLC.
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an error occurs. In the latter case depending on the error message it is not sure if none, some or all of the data has been written to the PLC and additional processing and communication with the PLC may be necessary to know or set the correct state of the memory contents of the PLC.
 
 ### See Also
 
