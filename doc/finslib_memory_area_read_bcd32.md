@@ -27,7 +27,7 @@ The start of the memory area is provided as an ASCII string which represents the
 
 The requested number of BCD values is not limited by the amount of data a PLC can send in one FINS packet because `finslib_memory_area_read_bcd32()` will automatically use multiple request at the FINS layer if the dataset will be too large.
 
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and should not be used.
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an error occurs. In the latter case the data in the return buffer is unreliable and should not be used.
 
 ### See Also
 
