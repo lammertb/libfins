@@ -37,7 +37,7 @@ The function supports the following four types of signed BCD formats. Please con
 |`FINS_DATA_TYPE_SBCD16_2`|-999|9999|
 |`FINS_DATA_TYPE_SBCD16_3`|-1999|9999|
 
-The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an eror occurs. In the latter case the data in the return buffer is unreliable and should not be used.
+The return value is either **`FINS_RETVAL_SUCCESS`** when the function succeeded, or one of the other **`FINS_RETVAL_`** values if an error occurs. In the latter case the data in the return buffer is unreliable and should not be used.
 
 ### See Also
 
