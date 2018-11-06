@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2018 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -84,7 +84,7 @@ int finslib_memory_area_write_bit( struct fins_sys_tp *sys, const char *start, c
 		fins_cmnd.body[bodylen++] = area_ptr->area;
 		fins_cmnd.body[bodylen++] = (chunk_start  >> 8) & 0xff;
 		fins_cmnd.body[bodylen++] = (chunk_start      ) & 0xff;
-		fins_cmnd.body[bodylen++] = 0x00;
+		fins_cmnd.body[bodylen++] =  chunk_bit;
 		fins_cmnd.body[bodylen++] = (chunk_length >> 8) & 0xff;
 		fins_cmnd.body[bodylen++] = (chunk_length     ) & 0xff;
 
