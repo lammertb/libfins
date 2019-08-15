@@ -678,6 +678,7 @@ int				finslib_set_cpu_run( struct fins_sys_tp *sys, bool do_monitor );
 int				finslib_set_cpu_stop( struct fins_sys_tp *sys );
 int				finslib_set_plc_name( struct fins_sys_tp *sys, const char *name );
 struct fins_sys_tp *		finslib_tcp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max );
+struct fins_sys_tp *		finslib_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max );
 bool				finslib_valid_directory( const char *path );
 bool				finslib_valid_filename( const char *filename );
 int				finslib_write_access_log_clear( struct fins_sys_tp *sys );

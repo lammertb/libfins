@@ -57,6 +57,7 @@
 #include <signal.h>
 #include "fins.h"
 
+#define MAX_MSG		2010		/* Maximum UDP message slze */
 #define BUFLEN		1024
 #define SEND_TIMEOUT	10
 #define RECV_TIMEOUT	10
@@ -79,6 +80,7 @@ static int			fins_recv_tcp_command( struct fins_sys_tp *sys, int total_len, stru
 static int			fins_recv_tcp_header( struct fins_sys_tp *sys, int *error_val );
 static int			fins_send_tcp_command( struct fins_sys_tp *sys, size_t bodylen, struct fins_command_tp *command );
 static int			fins_send_tcp_header( struct fins_sys_tp *sys, size_t bodylen );
+static int			fins_send_udp_command( struct fins_sys_tp *sys, size_t bodylen, struct fins_command_tp *command, struct sockaddr_in *cs_addr );
 static int			fins_tcp_recv( struct fins_sys_tp *sys, unsigned char *buf, int len );
 static int			tcp_errorcode_to_fins_retval( uint32_t errorcode );
 
@@ -119,7 +121,7 @@ static void init_system( struct fins_sys_tp *sys, int error_max ) {
 }  /* init_system */
 
 /*
- * int finsliv_tcp_connect( const char *address, int port );
+ * int finslib_tcp_connect( const char *address, int port );
  *
  * The function finslib_tcp_connect() tries to connect over FINS with the
  * remote FINS TCP server. If the connection succeeds, a pointer to a system
@@ -334,6 +336,69 @@ struct fins_sys_tp *finslib_tcp_connect( struct fins_sys_tp *sys, const char *ad
 }  /* finslib_tcp_connect */
 
 /*
+ * struct fins_sys_tp *finslib_udp_connect( const char *address, uint16_t port );
+ */
+
+struct fins_sys_tp *finslib_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
+
+	struct sockaddr_in ws_addr;
+
+	if ( sys != NULL  &&  finslib_monotonic_sec_timer() < sys->timeout + FINS_TIMEOUT  &&  sys->timeout > 0 ) {
+
+		if ( error_val != NULL ) *error_val = FINS_RETVAL_TRY_LATER;
+
+		return sys;
+	}
+
+	if ( sys == NULL ) {
+
+		if ( port < FINS_PORT_RESERVED  ||  port >= FINS_PORT_MAX ) port = FINS_DEFAULT_PORT;
+
+		if ( address == NULL  ||  address[0] == 0 ) {
+
+			if ( error_val != NULL ) *error_val = FINS_RETVAL_NO_READ_ADDRESS;
+			return NULL;
+		}
+
+		sys = malloc( sizeof(struct fins_sys_tp) );
+
+		if ( sys == NULL ) {
+
+			if ( error_val != NULL ) *error_val = FINS_RETVAL_OUT_OF_MEMORY;
+			return NULL;
+		}
+
+		init_system( sys, error_max );
+
+		sys->comm_type   = FINS_COMM_TYPE_UDP;
+		sys->port        = port;
+		sys->local_net   = local_net;
+		sys->local_node  = local_node;
+		sys->local_unit  = local_unit;
+		sys->remote_net  = remote_net;
+		sys->remote_node = remote_node;
+		sys->remote_unit = remote_unit;
+
+		snprintf( sys->address, 128, "%s", address );
+	}
+
+	sys->sockfd = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
+
+	if ( sys->sockfd == INVALID_SOCKET ) return fins_close_socket_with_error( sys, error_val );
+
+	memset( & ws_addr, 0, sizeof(ws_addr) );
+
+	ws_addr.sin_family      = AF_INET;
+	ws_addr.sin_addr.s_addr = htonl( INADDR_ANY );
+	ws_addr.sin_port        = htons( 0 );
+
+	if ( bind( sys->sockfd, (struct sockaddr *) &ws_addr, sizeof(ws_addr) ) < 0 ) return fins_close_socket_with_error( sys, error_val );
+
+	return sys;
+
+}  /* finslib_udp_connect */
+
+/*
  * void finslib_disconnect( fins_sys_tp *sys );
  *
  * The function finslib_disconnect() disconnects a FINS client connection
@@ -418,6 +483,7 @@ static struct fins_sys_tp *fins_close_socket( struct fins_sys_tp *sys ) {
 	}
 
 	sys->error_count = 0;
+	sys->comm_type   = FINS_COMM_TYPE_UNKNOWN;
 	sys->sockfd      = INVALID_SOCKET;
 	sys->timeout     = finslib_monotonic_sec_timer();
 
@@ -618,6 +684,33 @@ static int fins_send_tcp_command( struct fins_sys_tp *sys, size_t bodylen, struc
 }  /* fins_send_tcp_command */
 
 /*
+ * static int fins_send_udp_command( fins_sys_tp *sys, size_t bodylen, fins_command_tp *command, struct sockaddr_in *cs_addr );
+ *
+ * The fins_send_udp_command() function sends the command header and body
+ * to the remote PLC over an UDP connection.
+ */
+
+static int fins_send_udp_command( struct fins_sys_tp *sys, size_t bodylen, struct fins_command_tp *command, struct sockaddr_in *cs_addr ) {
+
+	int sendlen;
+	int retval;
+
+	if ( sys         == NULL           ) return FINS_RETVAL_NOT_INITIALIZED;
+	if ( command     == NULL           ) return FINS_RETVAL_NO_COMMAND;
+	if ( sys->sockfd != INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
+	if ( bodylen     >  FINS_BODY_LEN  ) return FINS_RETVAL_BODY_TOO_LONG;
+
+	sendlen = FINS_HEADER_LEN + (int) bodylen;
+	retval  = sendto( sys->sockfd, (send_tp *) command, sendlen, 0, (struct sockaddr *) cs_addr, sizeof(*cs_addr) );
+
+	if ( retval <  0       ) return FINS_RETVAL_ERRNO_BASE + errno;
+	if ( retval != sendlen ) return FINS_RETVAL_COMMAND_SEND_ERROR;
+
+	return FINS_RETVAL_SUCCESS;
+
+}  /* fins_send_udp_command */
+
+/*
  * static int tcp_errorcode_to_fins_retval( uint32_t errorcode );
  *
  * The function tcp_errorcode_to_fins_retval() converts a FINS/TCP header
@@ -745,20 +838,24 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 	int recvlen;
 	int retval;
 	int error_val;
+	socklen_t addrlen;
 	uint16_t endcode;
 	unsigned char sent_header[FINS_HEADER_LEN];
 	unsigned char waste_buffer[BUFLEN];
+	struct sockaddr_in cs_addr;
 
 	if ( sys         == NULL           ) return check_error_count( sys, FINS_RETVAL_NOT_INITIALIZED   );
 	if ( command     == NULL           ) return check_error_count( sys, FINS_RETVAL_NO_COMMAND        );
 	if ( bodylen     == NULL           ) return check_error_count( sys, FINS_RETVAL_NO_COMMAND_LENGTH );
 	if ( sys->sockfd == INVALID_SOCKET ) return check_error_count( sys, FINS_RETVAL_NOT_CONNECTED     );
 
+	error_val = FINS_RETVAL_SUCCESS;
+
+	for (a=0; a<FINS_HEADER_LEN; a++) sent_header[a] = command->header[a];
+
+
+
 	if ( sys->comm_type == FINS_COMM_TYPE_TCP ) {
-
-		error_val = FINS_RETVAL_SUCCESS;
-
-		for (a=0; a<FINS_HEADER_LEN; a++) sent_header[a] = command->header[a];
 
 		if ( ( retval = fins_send_tcp_header(  sys, *bodylen          ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
 		if ( ( retval = fins_send_tcp_command( sys, *bodylen, command ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
@@ -771,37 +868,78 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 		if ( recvlen == 0 ) return check_error_count( sys, FINS_RETVAL_BODY_TOO_SHORT );
 
 		if ( ( retval = fins_recv_tcp_command( sys, recvlen, command ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
-
-		if ( command->header[FINS_ICF]  !=  (sent_header[FINS_ICF] | 0x40)  ||
-		     command->header[FINS_RSV]  !=                           0x00   ||
-		     command->header[FINS_DNA]  !=   sent_header[FINS_SNA]          ||
-		     command->header[FINS_DA1]  !=   sent_header[FINS_SA1]          ||
-		     command->header[FINS_DA2]  !=   sent_header[FINS_SA2]          ||
-		     command->header[FINS_SNA]  !=   sent_header[FINS_DNA]          ||
-		     command->header[FINS_SA1]  !=   sent_header[FINS_DA1]          ||
-		     command->header[FINS_SA2]  !=   sent_header[FINS_DA2]          ||
-		     command->header[FINS_SID]  !=   sent_header[FINS_SID]          ||
-		     command->header[FINS_MRC]  !=   sent_header[FINS_MRC]          ||
-		     command->header[FINS_SRC]  !=   sent_header[FINS_SRC]              ) {
-
-			while ( fins_tcp_recv( sys, waste_buffer, BUFLEN ) > 0 ) {};
-
-			return check_error_count( sys, FINS_RETVAL_SYNC_ERROR );
-		}
-
-		recvlen -= FINS_HEADER_LEN;
-		*bodylen = recvlen;
-
-		if ( recvlen < 2 ) return check_error_count( sys, FINS_RETVAL_BODY_TOO_SHORT );
-
-		endcode   = command->body[0] & 0x7f;
-		endcode <<= 8;
-		endcode  += command->body[1] & 0x3f;
-
-		return check_error_count( sys, endcode );
 	}
 
-	return check_error_count( sys, FINS_RETVAL_NOT_INITIALIZED );
+	else if ( sys->comm_type == FINS_COMM_TYPE_UDP ) {
+
+		memset( & cs_addr, 0, sizeof(cs_addr) );
+
+		cs_addr.sin_family      = AF_INET;
+		cs_addr.sin_port        = htons( sys->port );
+
+		retval = inet_pton( AF_INET, sys->address, & cs_addr.sin_addr.s_addr );
+
+		if ( retval <  0 ) {
+
+			fins_close_socket_with_error( sys, & error_val );
+
+			return error_val;
+		}
+
+		else if ( retval == 0 ) {
+
+			sys->error_changed = ( FINS_RETVAL_INVALID_IP_ADDRESS != sys->last_error );
+			sys->last_error    =   FINS_RETVAL_INVALID_IP_ADDRESS;
+
+			error_val = sys->last_error;
+
+			fins_close_socket( sys );
+
+			return error_val;
+		}
+
+		if ( ( retval = fins_send_udp_command( sys, *bodylen, command, & cs_addr ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
+
+		if ( ! wait_response ) return FINS_RETVAL_SUCCESS;
+
+		addrlen = sizeof( cs_addr );
+		recvlen = recvfrom( sys->sockfd, command, MAX_MSG, 0, (struct sockaddr *) & cs_addr, &addrlen );
+
+		if ( recvlen < 0               ) return check_error_count( sys, FINS_RETVAL_ERRNO_BASE + errno );
+		if ( recvlen < FINS_HEADER_LEN ) return check_error_count( sys, FINS_RETVAL_BODY_TOO_SHORT     );
+	}
+
+	else return check_error_count( sys, FINS_RETVAL_NOT_INITIALIZED );
+
+
+
+	if ( command->header[FINS_ICF]  !=  (sent_header[FINS_ICF] | 0x40)  ||
+	     command->header[FINS_RSV]  !=                           0x00   ||
+	     command->header[FINS_DNA]  !=   sent_header[FINS_SNA]          ||
+	     command->header[FINS_DA1]  !=   sent_header[FINS_SA1]          ||
+	     command->header[FINS_DA2]  !=   sent_header[FINS_SA2]          ||
+	     command->header[FINS_SNA]  !=   sent_header[FINS_DNA]          ||
+	     command->header[FINS_SA1]  !=   sent_header[FINS_DA1]          ||
+	     command->header[FINS_SA2]  !=   sent_header[FINS_DA2]          ||
+	     command->header[FINS_SID]  !=   sent_header[FINS_SID]          ||
+	     command->header[FINS_MRC]  !=   sent_header[FINS_MRC]          ||
+	     command->header[FINS_SRC]  !=   sent_header[FINS_SRC]              ) {
+
+		if ( sys->comm_type == FINS_COMM_TYPE_TCP ) while ( fins_tcp_recv( sys, waste_buffer, BUFLEN ) > 0 ) {};
+
+		return check_error_count( sys, FINS_RETVAL_SYNC_ERROR );
+	}
+
+	recvlen -= FINS_HEADER_LEN;
+	*bodylen = recvlen;
+
+	if ( recvlen < 2 ) return check_error_count( sys, FINS_RETVAL_BODY_TOO_SHORT );
+
+	endcode   = command->body[0] & 0x7f;
+	endcode <<= 8;
+	endcode  += command->body[1] & 0x3f;
+
+	return check_error_count( sys, endcode );
 
 }  /* XX_finslib_communicate */
 
