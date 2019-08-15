@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -61,7 +61,7 @@ int finslib_access_right_acquire( struct fins_sys_tp *sys, struct fins_nodedata_
 	fins_cmnd.body[bodylen++] = 0xff;
 	fins_cmnd.body[bodylen++] = 0xff;
 
-	retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen );
+	retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen, true );
 
 	if ( retval == FINS_RETVAL_ACCESS_NO_RIGHTS ) {
 

@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -66,7 +66,7 @@ int finslib_connection_data_read( struct fins_sys_tp *sys, struct fins_unitdata_
 	fins_cmnd.body[bodylen++] = start_unit;
 	fins_cmnd.body[bodylen++] = *num_units & 0xff;
 
-	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen, true ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	bodylen    = 2;
 	last_data  = fins_cmnd.body[bodylen]   & 0x80;

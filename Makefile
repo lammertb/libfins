@@ -140,6 +140,7 @@ ${LIBDIR}libfins.${LIBEXT}:				\
 		${OBJDIR}fins_03_08.${OBJEXT}		\
 		${OBJDIR}fins_04_01.${OBJEXT}		\
 		${OBJDIR}fins_04_02.${OBJEXT}		\
+		${OBJDIR}fins_04_03.${OBJEXT}		\
 		${OBJDIR}fins_05_01.${OBJEXT}		\
 		${OBJDIR}fins_05_02.${OBJEXT}		\
 		${OBJDIR}fins_06_01.${OBJEXT}		\
@@ -206,6 +207,7 @@ ${LIBDIR}libfins.${LIBEXT}:				\
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_03_08.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_04_01.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_04_02.${OBJEXT}
+	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_04_03.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_05_01.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_05_02.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_06_01.${OBJEXT}
@@ -294,6 +296,8 @@ ${OBJDIR}fins_03_08.${OBJEXT} :		${SRCDIR}fins_03_08.c ${INCDIR}fins.h
 ${OBJDIR}fins_04_01.${OBJEXT} :		${SRCDIR}fins_04_01.c ${INCDIR}fins.h
 
 ${OBJDIR}fins_04_02.${OBJEXT} :		${SRCDIR}fins_04_02.c ${INCDIR}fins.h
+
+${OBJDIR}fins_04_03.${OBJEXT} :		${SRCDIR}fins_04_03.c ${INCDIR}fins.h
 
 ${OBJDIR}fins_05_01.${OBJEXT} :		${SRCDIR}fins_05_01.c ${INCDIR}fins.h
 

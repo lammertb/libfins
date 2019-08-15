@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -729,7 +729,7 @@ static int fins_recv_tcp_command( struct fins_sys_tp *sys, int total_len, struct
 }  /* fins_recv_tcp_command */
 
 /*
- * int XX_finslib_communicate( fins_sys_tp *sys, fins_command_tp *command, size_t *bodylen );
+ * int XX_finslib_communicate( fins_sys_tp *sys, fins_command_tp *command, size_t *bodylen, bool wait_response );
  *
  * The function XX_finslib_communicate() is the function used by outside
  * routines to perform the actual communication with a FINS server. The
@@ -739,7 +739,7 @@ static int fins_recv_tcp_command( struct fins_sys_tp *sys, int total_len, struct
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
 
-int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen ) {
+int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen, bool wait_response ) {
 
 	int a;
 	int recvlen;
@@ -762,6 +762,8 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 
 		if ( ( retval = fins_send_tcp_header(  sys, *bodylen          ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
 		if ( ( retval = fins_send_tcp_command( sys, *bodylen, command ) ) != FINS_RETVAL_SUCCESS ) return check_error_count( sys, retval );
+
+		if ( ! wait_response ) return FINS_RETVAL_SUCCESS;
 
 		recvlen = fins_recv_tcp_header( sys, & error_val );
 

@@ -58,7 +58,7 @@ int finslib_name_read( struct fins_sys_tp *sys, char *name_buffer, size_t name_b
 
 	bodylen = 0;
 
-	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen, true ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen < 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

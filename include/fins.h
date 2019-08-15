@@ -635,6 +635,7 @@ int				finslib_file_to_area_transfer( struct fins_sys_tp *sys, const char *start
 int				finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, const unsigned char *data, size_t file_position, size_t num_bytes, uint16_t open_mode );
 int				finslib_forced_set_reset_cancel( struct fins_sys_tp *sys );
 uint32_t			finslib_int_to_bcd( int32_t value, int type );
+int				finslib_link_unit_reset( struct fins_sys_tp *sys );
 int				finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16_t fill_data, size_t num_word );
 int				finslib_memory_area_read_bcd16( struct fins_sys_tp *sys, const char *start, uint16_t *data, size_t num_bcd16 );
 int				finslib_memory_area_read_bcd32( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32 );
@@ -680,7 +681,7 @@ struct fins_sys_tp *		finslib_tcp_connect( struct fins_sys_tp *sys, const char *
 bool				finslib_valid_directory( const char *path );
 bool				finslib_valid_filename( const char *filename );
 int				finslib_write_access_log_clear( struct fins_sys_tp *sys );
-int				XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen );
+int				XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *command, size_t *bodylen, bool wait_response );
 bool				XX_finslib_decode_address( const char *str, struct fins_address_tp *address );
 void				XX_finslib_init_command( struct fins_sys_tp *sys, struct fins_command_tp *command, uint8_t mrc, uint8_t src );
 const struct fins_area_tp *	XX_finslib_search_area( struct fins_sys_tp *sys, const struct fins_address_tp *address, int bits, uint32_t access, bool force );

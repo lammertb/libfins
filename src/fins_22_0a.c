@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -159,7 +159,7 @@ static int transfer_func( struct fins_sys_tp *sys, const char *start, uint16_t d
 
 	for (a=0; a<dirlen; a++) fins_cmnd.body[bodylen++] = path[a];
 
-	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen, true ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen != 4 ) return FINS_RETVAL_BODY_TOO_SHORT;
 

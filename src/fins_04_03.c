@@ -1,11 +1,11 @@
 /*
  * Library: libfins
- * File:    src/fins_0c_02.c
+ * File:    src/fins_04_03.c
  * Author:  Lammert Bies
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016-2019 Lammert Bies
+ * Copyright (c) 2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,41 +27,33 @@
  *
  * Description
  * -----------
- * The source file src/fins_0c_02.c contains routines to get forced access
- * rights to a remote PLC over the FINS protocol.
+ * The source file src/fins_04_03.c contains routines to reset a SYSMAC NET
+ * Link Unit over the FINS protocol.
  */
 
 #include "fins.h"
 
 /*
- * int finslib_access_right_forced_acquire( struct fins_sys_tp *sys );
+ * int finslib_link_unit_reset( struct fins_sys_tp *sys );
  *
- * The function fins_access_right_forced_acquire() tries to get forced access
- * to a remote PLC over the FINS protocol.
+ * The function finslib_link_unit_reset() resets a SYSMAC NET LLink Unit
+ * over the FINS protocol.
  *
  * The function returns a success or error code from the list FINS_RETVAL_...
  */
 
-int finslib_access_right_forced_acquire( struct fins_sys_tp *sys ) {
+int finslib_link_unit_reset( struct fins_sys_tp *sys ) {
 
 	struct fins_command_tp fins_cmnd;
 	size_t bodylen;
-	int retval;
 
 	if ( sys         == NULL           ) return FINS_RETVAL_NOT_INITIALIZED;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 
-	XX_finslib_init_command( sys, & fins_cmnd, 0x0c, 0x02 );
+	XX_finslib_init_command( sys, & fins_cmnd, 0x04, 0x03 );
 
 	bodylen = 0;
 
-	fins_cmnd.body[bodylen++] = 0xff;
-	fins_cmnd.body[bodylen++] = 0xff;
+	return XX_finslib_communicate( sys, & fins_cmnd, & bodylen, false );
 
-	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen, true ) ) != FINS_RETVAL_SUCCESS ) return retval;
-
-	if ( bodylen != 2 ) return FINS_RETVAL_BODY_TOO_SHORT;
-
-	return FINS_RETVAL_SUCCESS;
-
-}  /* finslib_access_right_forced_acquire */
+}  /* finslib_link_unit_reset */

@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -83,7 +83,7 @@ int finslib_file_name_read( struct fins_sys_tp *sys, struct fins_diskinfo_tp *di
 
 	for (b=0; b<dirlen; b++) fins_cmnd.body[bodylen++] = path[b];
 
-	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen ) ) != FINS_RETVAL_SUCCESS ) return retval;
+	if ( ( retval = XX_finslib_communicate( sys, & fins_cmnd, & bodylen, true ) ) != FINS_RETVAL_SUCCESS ) return retval;
 
 	if ( bodylen < 30 ) return FINS_RETVAL_BODY_TOO_SHORT;
 
