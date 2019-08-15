@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -202,91 +202,6 @@ typedef int					SOCKET;
 #define FINS_RETVAL_ERRNO_BASE			0xC000			/* All higher error numbers are errno.h values		*/
 									/*							*/
 #define FINS_RETVAL_SUCCESS			0x0000			/* Execution was successful				*/
-#define FINS_RETVAL_NOT_INITIALIZED		0x8001			/* The connection with the PLC was not initialized	*/
-#define FINS_RETVAL_NOT_CONNECTED		0x8002			/* There is no connection with the remote PLC		*/
-#define FINS_RETVAL_OUT_OF_MEMORY		0x8003			/* There was not enough free memory for the action	*/
-#define FINS_RETVAL_SUCCESS_LAST_DATA		0x8004			/* Execution successful and last data delivered		*/
-#define FINS_RETVAL_INVALID_IP_ADDRESS		0x8005			/* The IP address passed to inet_pton is invalid	*/
-#define FINS_RETVAL_MAX_ERROR_COUNT		0x8006			/* The connection was closed after reaching max errors	*/
-#define FINS_RETVAL_SYNC_ERROR			0x8007			/* Synchronization error. Some packets probably lost	*/
-									/*							*/
-#define FINS_RETVAL_NO_READ_ADDRESS		0x8101			/* No read address in the remote PLC was specified	*/
-#define FINS_RETVAL_NO_WRITE_ADDRESS		0x8102			/* No write address in the remote PLC was specified	*/
-#define FINS_RETVAL_NO_DATA_BLOCK		0x8103			/* No local data memory block was provided		*/
-									/*							*/
-#define FINS_RETVAL_INVALID_READ_ADDRESS	0x8201			/* An invalid read address string was specified		*/
-#define FINS_RETVAL_INVALID_WRITE_ADDRESS	0x8202			/* An invalid write address string was specified	*/
-									/*							*/
-#define FINS_RETVAL_INVALID_READ_AREA		0x8301			/* No read area associated with the address		*/
-#define FINS_RETVAL_INVALID_WRITE_AREA		0x8302			/* No write area associated with the address		*/
-#define FINS_RETVAL_INVALID_FILL_AREA		0x8303			/* No fill area associated with the address		*/
-									/*							*/
-#define FINS_RETVAL_INVALID_PARAMETER_AREA	0x8401			/* The parameter area is invalid			*/
-									/*							*/
-#define FINS_RETVAL_INVALID_DATE		0x8501			/* The provided date is not valid			*/
-									/*							*/
-#define FINS_RETVAL_INVALID_DISK		0x8601			/* An invalid disk was specified			*/
-#define FINS_RETVAL_INVALID_PATH		0x8602			/* An invalid path on a disk was specified		*/
-#define FINS_RETVAL_INVALID_FILENAME		0x8603			/* An invalid filename was specified			*/
-									/*							*/
-#define FINS_RETVAL_NO_COMMAND			0x8701			/* No command specified when executing a function	*/
-#define FINS_RETVAL_NO_COMMAND_LENGTH           0x8702			/* No command length specified when executing a function*/
-#define FINS_RETVAL_BODY_TOO_SHORT		0x8703			/* Command body length too short			*/
-#define FINS_RETVAL_BODY_TOO_LONG		0x8704			/* The FINS body is longer than allowed			*/
-#define FINS_RETVAL_HEADER_SEND_ERROR		0x8705			/* Error sending complete header			*/
-#define FINS_RETVAL_COMMAND_SEND_ERROR		0x8706			/* Error sending complete command			*/
-#define FINS_RETVAL_RESPONSE_INCOMPLETE		0x8707			/* Response frame is shorter than expected		*/
-#define FINS_RETVAL_ILLEGAL_FINS_COMMAND	0x870B			/* Illegal FINS command					*/
-#define FINS_RETVAL_RESPONSE_HEADER_INCOMPLETE	0x870C			/* The received response header is incomplete		*/
-#define FINS_RETVAL_INVALID_FORCE_COMMAND	0x870D			/* An invalid FORCE mode was specified			*/
-									/*							*/
-#define FINS_RETVAL_TRY_LATER			0x8801			/* Please try again later				*/
-									/*							*/
-#define FINS_RETVAL_CLOSED_BY_REMOTE		0x8900			/* TCP connection closed by remote node without error	*/
-#define FINS_RETVAL_NO_FINS_HEADER		0x8901			/* First 4 characters of TCP header are not "FINS"	*/
-#define FINS_RETVAL_DATA_LENGTH_TOO_LONG	0x8902			/* TCP connection data length too long			*/
-#define FINS_RETVAL_COMMAND_NOT_SUPPORTED	0x8903			/* TCP connection command not supported			*/
-#define FINS_RETVAL_ALL_CONNECTIONS_IN_USE	0x8904			/* All TCP connections are in use			*/
-#define FINS_RETVAL_NODE_ALREADY_CONNECTED	0x8905			/* Node is already connected				*/
-#define FINS_RETVAL_NODE_IP_PROTECTED		0x8906			/* IP address of client not in allowed IP adres list	*/
-#define FINS_RETVAL_CLIENT_NODE_OUT_OF_RANGE	0x8907			/* TCP the client node address is out of range		*/
-#define FINS_RETVAL_SAME_NODE_ADDRESS		0x8908			/* TCP client and server have the same node address	*/
-#define FINS_RETVAL_NO_NODE_ADDRESS_AVAILABLE	0x8909			/* TCP connection no node address available		*/
-									/*							*/
-#define FINS_RETVAL_WSA_UNRECOGNIZED_ERROR	0x8A00			/* Windows WSA returned an unrecognized error code	*/
-#define FINS_RETVAL_WSA_NOT_INITIALIZED		0x8A01			/* Windows WSA was not properly initialized		*/
-#define FINS_RETVAL_WSA_E_NET_DOWN		0x8A02			/* Windows WSA the network subsystem or provided failed	*/
-#define FINS_RETVAL_WSA_E_AF_NO_SUPPORT		0x8A03			/* Windows WSA the address familiy is not supported	*/
-#define FINS_RETVAL_WSA_E_IN_PROGRESS		0x8A04			/* Windows WSA a blocking socket 1.1 call is in progres	*/
-#define FINS_RETVAL_WSA_E_MFILE			0x8A05			/* Windows WSA no more socket descriptors available	*/
-#define FINS_RETVAL_WSA_E_INVAL			0x8A06			/* Windows WSA Invalid argument supplied		*/
-#define FINS_RETVAL_WSA_E_INVALID_PROVIDER	0x8A07			/* Windows WSA Server provider function invalid		*/
-#define FINS_RETVAL_WSA_E_INVALID_PROCTABLE	0x8A08			/* Windows WSA Invalid procedure table			*/
-#define FINS_RETVAL_WSA_E_NOBUFS		0x8A09			/* Windows WSA No buffer space available		*/
-#define FINS_RETVAL_WSA_E_PROTO_NO_SUPPORT	0x8A0A			/* Windows WSA the protocol is not supported		*/
-#define FINS_RETVAL_WSA_E_PROTO_TYPE		0x8A0B			/* Windows WSA Wrong protocol type for this socket	*/
-#define FINS_RETVAL_WSA_E_PROVIDER_FAILED_INIT	0x8A0C			/* Windows WSA Provider failed initialization		*/
-#define FINS_RETVAL_WSA_E_SOCKT_NO_SUPPORT	0x8A0D			/* Windows WSA The specified socket type not supported	*/
-#define FINS_RETVAL_WSA_SYS_NOT_READY		0x8A0E			/* Windows WSA The network subsystem is not ready	*/
-#define FINS_RETVAL_WSA_VER_NOT_SUPPORTED	0x8A0F			/* Windows WSA The socket version is not supported	*/
-#define FINS_RETVAL_WSA_E_PROC_LIM		0x8A10			/* Windows WSA Process number limit reached		*/
-#define FINS_RETVAL_WSA_E_FAULT			0x8A11			/* Windows WSA The parameter is not valid		*/
-#define FINS_RETVAL_WSA_E_NET_RESET		0x8A12			/* Windows WSA Connection timeout during Keep Alive	*/
-#define FINS_RETVAL_WSA_E_NO_PROTO_OPT		0x8A13			/* Windows WSA Unsupported option for socket		*/
-#define FINS_RETVAL_WSA_E_NOT_CONN		0x8A14			/* Windows WSA Connection reset during Keep Alive	*/
-#define FINS_RETVAL_WSA_E_NOT_SOCK		0x8A15			/* Windows WSA The descriptor is not a socket		*/
-#define FINS_RETVAL_WSA_E_ACCES			0x8A16			/* Windows WSA Socket access violation			*/
-#define FINS_RETVAL_WSA_E_ADDR_IN_USE		0x8A17			/* Windows WSA The address is already in use		*/
-#define FINS_RETVAL_WSA_E_ADDR_NOT_AVAIL	0x8A18			/* Windows WSA The address is not available		*/
-#define FINS_RETVAL_WSA_E_INTR			0x8A19			/* Windows WSA The blocking 1.1 call was cancelled	*/
-#define FINS_RETVAL_WSA_E_ALREADY		0x8A1A			/* Windows WSA Non blocking call already in progress	*/
-#define FINS_RETVAL_WSA_E_CONN_REFUSED		0x8A1B			/* Windows WSA The connection was refused		*/
-#define FINS_RETVAL_WSA_E_IS_CONN		0x8A1C			/* Windows WSA Socket is already connected		*/
-#define FINS_RETVAL_WSA_E_NET_UNREACH		0x8A1D			/* Windows WSA Network is unreacheable			*/
-#define FINS_RETVAL_WSA_E_HOST_UNREACH		0x8A1E			/* Windows WSA Host is unreacheable			*/
-#define FINS_RETVAL_WSA_E_TIMED_OUT		0x8A1F			/* Windows WSA The connection timed out			*/
-#define FINS_RETVAL_WSA_E_WOULD_BLOCK		0x8A20			/* Windows WSA Non-blocking connection would block	*/
-									/*							*/
 #define FINS_RETVAL_CANCELED			0x0001			/* End code 0x0001 The service was canceled		*/
 									/*							*/
 #define FINS_RETVAL_LOCAL_NODE_NOT_IN_NETWORK	0x0101			/* End code 0x0101 Local node is not in network		*/
@@ -386,7 +301,92 @@ typedef int					SOCKET;
 									/*							*/
 #define FINS_RETVAL_ACCESS_NO_RIGHTS		0x3001			/* End code 0x3001 No access right			*/
 									/*							*/
-#define FINS_RETVAL_ABORTED			0x4001			/* End code 0x3001 Service aborted			*/
+#define FINS_RETVAL_ABORTED			0x4001			/* End code 0x4001 Service aborted			*/
+									/*							*/
+#define FINS_RETVAL_NOT_INITIALIZED		0x8001			/* The connection with the PLC was not initialized	*/
+#define FINS_RETVAL_NOT_CONNECTED		0x8002			/* There is no connection with the remote PLC		*/
+#define FINS_RETVAL_OUT_OF_MEMORY		0x8003			/* There was not enough free memory for the action	*/
+#define FINS_RETVAL_SUCCESS_LAST_DATA		0x8004			/* Execution successful and last data delivered		*/
+#define FINS_RETVAL_INVALID_IP_ADDRESS		0x8005			/* The IP address passed to inet_pton is invalid	*/
+#define FINS_RETVAL_MAX_ERROR_COUNT		0x8006			/* The connection was closed after reaching max errors	*/
+#define FINS_RETVAL_SYNC_ERROR			0x8007			/* Synchronization error. Some packets probably lost	*/
+									/*							*/
+#define FINS_RETVAL_NO_READ_ADDRESS		0x8101			/* No read address in the remote PLC was specified	*/
+#define FINS_RETVAL_NO_WRITE_ADDRESS		0x8102			/* No write address in the remote PLC was specified	*/
+#define FINS_RETVAL_NO_DATA_BLOCK		0x8103			/* No local data memory block was provided		*/
+									/*							*/
+#define FINS_RETVAL_INVALID_READ_ADDRESS	0x8201			/* An invalid read address string was specified		*/
+#define FINS_RETVAL_INVALID_WRITE_ADDRESS	0x8202			/* An invalid write address string was specified	*/
+									/*							*/
+#define FINS_RETVAL_INVALID_READ_AREA		0x8301			/* No read area associated with the address		*/
+#define FINS_RETVAL_INVALID_WRITE_AREA		0x8302			/* No write area associated with the address		*/
+#define FINS_RETVAL_INVALID_FILL_AREA		0x8303			/* No fill area associated with the address		*/
+									/*							*/
+#define FINS_RETVAL_INVALID_PARAMETER_AREA	0x8401			/* The parameter area is invalid			*/
+									/*							*/
+#define FINS_RETVAL_INVALID_DATE		0x8501			/* The provided date is not valid			*/
+									/*							*/
+#define FINS_RETVAL_INVALID_DISK		0x8601			/* An invalid disk was specified			*/
+#define FINS_RETVAL_INVALID_PATH		0x8602			/* An invalid path on a disk was specified		*/
+#define FINS_RETVAL_INVALID_FILENAME		0x8603			/* An invalid filename was specified			*/
+									/*							*/
+#define FINS_RETVAL_NO_COMMAND			0x8701			/* No command specified when executing a function	*/
+#define FINS_RETVAL_NO_COMMAND_LENGTH           0x8702			/* No command length specified when executing a function*/
+#define FINS_RETVAL_BODY_TOO_SHORT		0x8703			/* Command body length too short			*/
+#define FINS_RETVAL_BODY_TOO_LONG		0x8704			/* The FINS body is longer than allowed			*/
+#define FINS_RETVAL_HEADER_SEND_ERROR		0x8705			/* Error sending complete header			*/
+#define FINS_RETVAL_COMMAND_SEND_ERROR		0x8706			/* Error sending complete command			*/
+#define FINS_RETVAL_RESPONSE_INCOMPLETE		0x8707			/* Response frame is shorter than expected		*/
+#define FINS_RETVAL_ILLEGAL_FINS_COMMAND	0x870B			/* Illegal FINS command					*/
+#define FINS_RETVAL_RESPONSE_HEADER_INCOMPLETE	0x870C			/* The received response header is incomplete		*/
+#define FINS_RETVAL_INVALID_FORCE_COMMAND	0x870D			/* An invalid FORCE mode was specified			*/
+									/*							*/
+#define FINS_RETVAL_TRY_LATER			0x8801			/* Please try again later				*/
+									/*							*/
+#define FINS_RETVAL_CLOSED_BY_REMOTE		0x8900			/* TCP connection closed by remote node without error	*/
+#define FINS_RETVAL_NO_FINS_HEADER		0x8901			/* First 4 characters of TCP header are not "FINS"	*/
+#define FINS_RETVAL_DATA_LENGTH_TOO_LONG	0x8902			/* TCP connection data length too long			*/
+#define FINS_RETVAL_COMMAND_NOT_SUPPORTED	0x8903			/* TCP connection command not supported			*/
+#define FINS_RETVAL_ALL_CONNECTIONS_IN_USE	0x8904			/* All TCP connections are in use			*/
+#define FINS_RETVAL_NODE_ALREADY_CONNECTED	0x8905			/* Node is already connected				*/
+#define FINS_RETVAL_NODE_IP_PROTECTED		0x8906			/* IP address of client not in allowed IP adres list	*/
+#define FINS_RETVAL_CLIENT_NODE_OUT_OF_RANGE	0x8907			/* TCP the client node address is out of range		*/
+#define FINS_RETVAL_SAME_NODE_ADDRESS		0x8908			/* TCP client and server have the same node address	*/
+#define FINS_RETVAL_NO_NODE_ADDRESS_AVAILABLE	0x8909			/* TCP connection no node address available		*/
+									/*							*/
+#define FINS_RETVAL_WSA_UNRECOGNIZED_ERROR	0x8A00			/* Windows WSA returned an unrecognized error code	*/
+#define FINS_RETVAL_WSA_NOT_INITIALIZED		0x8A01			/* Windows WSA was not properly initialized		*/
+#define FINS_RETVAL_WSA_E_NET_DOWN		0x8A02			/* Windows WSA the network subsystem or provided failed	*/
+#define FINS_RETVAL_WSA_E_AF_NO_SUPPORT		0x8A03			/* Windows WSA the address familiy is not supported	*/
+#define FINS_RETVAL_WSA_E_IN_PROGRESS		0x8A04			/* Windows WSA a blocking socket 1.1 call is in progres	*/
+#define FINS_RETVAL_WSA_E_MFILE			0x8A05			/* Windows WSA no more socket descriptors available	*/
+#define FINS_RETVAL_WSA_E_INVAL			0x8A06			/* Windows WSA Invalid argument supplied		*/
+#define FINS_RETVAL_WSA_E_INVALID_PROVIDER	0x8A07			/* Windows WSA Server provider function invalid		*/
+#define FINS_RETVAL_WSA_E_INVALID_PROCTABLE	0x8A08			/* Windows WSA Invalid procedure table			*/
+#define FINS_RETVAL_WSA_E_NOBUFS		0x8A09			/* Windows WSA No buffer space available		*/
+#define FINS_RETVAL_WSA_E_PROTO_NO_SUPPORT	0x8A0A			/* Windows WSA the protocol is not supported		*/
+#define FINS_RETVAL_WSA_E_PROTO_TYPE		0x8A0B			/* Windows WSA Wrong protocol type for this socket	*/
+#define FINS_RETVAL_WSA_E_PROVIDER_FAILED_INIT	0x8A0C			/* Windows WSA Provider failed initialization		*/
+#define FINS_RETVAL_WSA_E_SOCKT_NO_SUPPORT	0x8A0D			/* Windows WSA The specified socket type not supported	*/
+#define FINS_RETVAL_WSA_SYS_NOT_READY		0x8A0E			/* Windows WSA The network subsystem is not ready	*/
+#define FINS_RETVAL_WSA_VER_NOT_SUPPORTED	0x8A0F			/* Windows WSA The socket version is not supported	*/
+#define FINS_RETVAL_WSA_E_PROC_LIM		0x8A10			/* Windows WSA Process number limit reached		*/
+#define FINS_RETVAL_WSA_E_FAULT			0x8A11			/* Windows WSA The parameter is not valid		*/
+#define FINS_RETVAL_WSA_E_NET_RESET		0x8A12			/* Windows WSA Connection timeout during Keep Alive	*/
+#define FINS_RETVAL_WSA_E_NO_PROTO_OPT		0x8A13			/* Windows WSA Unsupported option for socket		*/
+#define FINS_RETVAL_WSA_E_NOT_CONN		0x8A14			/* Windows WSA Connection reset during Keep Alive	*/
+#define FINS_RETVAL_WSA_E_NOT_SOCK		0x8A15			/* Windows WSA The descriptor is not a socket		*/
+#define FINS_RETVAL_WSA_E_ACCES			0x8A16			/* Windows WSA Socket access violation			*/
+#define FINS_RETVAL_WSA_E_ADDR_IN_USE		0x8A17			/* Windows WSA The address is already in use		*/
+#define FINS_RETVAL_WSA_E_ADDR_NOT_AVAIL	0x8A18			/* Windows WSA The address is not available		*/
+#define FINS_RETVAL_WSA_E_INTR			0x8A19			/* Windows WSA The blocking 1.1 call was cancelled	*/
+#define FINS_RETVAL_WSA_E_ALREADY		0x8A1A			/* Windows WSA Non blocking call already in progress	*/
+#define FINS_RETVAL_WSA_E_CONN_REFUSED		0x8A1B			/* Windows WSA The connection was refused		*/
+#define FINS_RETVAL_WSA_E_IS_CONN		0x8A1C			/* Windows WSA Socket is already connected		*/
+#define FINS_RETVAL_WSA_E_NET_UNREACH		0x8A1D			/* Windows WSA Network is unreacheable			*/
+#define FINS_RETVAL_WSA_E_HOST_UNREACH		0x8A1E			/* Windows WSA Host is unreacheable			*/
+#define FINS_RETVAL_WSA_E_TIMED_OUT		0x8A1F			/* Windows WSA The connection timed out			*/
+#define FINS_RETVAL_WSA_E_WOULD_BLOCK		0x8A20			/* Windows WSA Non-blocking connection would block	*/
 									/*							*/
 									/********************************************************/
 #pragma pack(push,1)
@@ -663,6 +663,9 @@ int				finslib_message_fal_fals_read( struct fins_sys_tp *sys, char *faldata, ui
 void				finslib_milli_second_sleep( int msec );
 time_t				finslib_monotonic_sec_timer( void );
 int				finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_multidata_tp *item, size_t num_item );
+int				finslib_name_delete( struct fins_sys_tp *sys );
+int				finslib_name_read( struct fins_sys_tp *sys, char *name_buffer, size_t name_buffer_len );
+int				finslib_name_set( struct fins_sys_tp *sys, const char *name );
 int				finslib_parameter_area_clear( struct fins_sys_tp *sys, uint16_t area_code, size_t num_words );
 int				finslib_parameter_area_read( struct fins_sys_tp *sys, uint16_t area_code, uint16_t *data, uint16_t start_word, size_t num_words );
 int				finslib_parameter_area_write( struct fins_sys_tp *sys, uint16_t area_code, const uint16_t *data, uint16_t start_word, size_t num_words );

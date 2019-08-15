@@ -5,7 +5,7 @@
 #
 # This file is licensed under the MIT License as stated below
 #
-# Copyright (c) 2016 Lammert Bies
+# Copyright (c) 2016-2019 Lammert Bies
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -171,6 +171,9 @@ ${LIBDIR}libfins.${LIBEXT}:				\
 		${OBJDIR}fins_22_15.${OBJEXT}		\
 		${OBJDIR}fins_23_01.${OBJEXT}		\
 		${OBJDIR}fins_23_02.${OBJEXT}		\
+		${OBJDIR}fins_26_01.${OBJEXT}		\
+		${OBJDIR}fins_26_02.${OBJEXT}		\
+		${OBJDIR}fins_26_03.${OBJEXT}		\
 		${OBJDIR}fins_decode.${OBJEXT}		\
 		${OBJDIR}fins_error.${OBJEXT}		\
 		${OBJDIR}fins_init.${OBJEXT}		\
@@ -234,6 +237,9 @@ ${LIBDIR}libfins.${LIBEXT}:				\
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_22_15.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_23_01.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_23_02.${OBJEXT}
+	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_26_01.${OBJEXT}
+	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_26_02.${OBJEXT}
+	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_26_03.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_decode.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_error.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_init.${OBJEXT}
@@ -350,6 +356,12 @@ ${OBJDIR}fins_22_15.${OBJEXT} :		${SRCDIR}fins_22_15.c ${INCDIR}fins.h
 ${OBJDIR}fins_23_01.${OBJEXT} :		${SRCDIR}fins_23_01.c ${INCDIR}fins.h
 
 ${OBJDIR}fins_23_02.${OBJEXT} :		${SRCDIR}fins_23_02.c ${INCDIR}fins.h
+
+${OBJDIR}fins_26_01.${OBJEXT} :		${SRCDIR}fins_26_01.c ${INCDIR}fins.h
+
+${OBJDIR}fins_26_02.${OBJEXT} :		${SRCDIR}fins_26_02.c ${INCDIR}fins.h
+
+${OBJDIR}fins_26_03.${OBJEXT} :		${SRCDIR}fins_26_03.c ${INCDIR}fins.h
 
 ${OBJDIR}fins_decode.${OBJEXT} :	${SRCDIR}fins_decode.c ${INCDIR}fins.h
 
