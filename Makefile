@@ -179,6 +179,7 @@ ${LIBDIR}libfins.${LIBEXT}:				\
 		${OBJDIR}fins_error.${OBJEXT}		\
 		${OBJDIR}fins_init.${OBJEXT}		\
 		${OBJDIR}fins_io.${OBJEXT}		\
+		${OBJDIR}fins_model_list.${OBJEXT}	\
 		${OBJDIR}fins_raw.${OBJEXT}		\
 		${OBJDIR}fins_search.${OBJEXT}		\
 		${OBJDIR}fins_utils.${OBJEXT}		\
@@ -246,6 +247,7 @@ ${LIBDIR}libfins.${LIBEXT}:				\
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_error.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_init.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_io.${OBJEXT}
+	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_model_list.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_raw.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_search.${OBJEXT}
 	${AR}	${ARQ}	${LIBDIR}libfins.${LIBEXT}	${OBJDIR}fins_utils.${OBJEXT}
@@ -374,6 +376,8 @@ ${OBJDIR}fins_error.${OBJEXT} :		${SRCDIR}fins_error.c ${INCDIR}fins.h
 ${OBJDIR}fins_init.${OBJEXT} :		${SRCDIR}fins_init.c ${INCDIR}fins.h
 
 ${OBJDIR}fins_io.${OBJEXT} :		${SRCDIR}fins_io.c ${INCDIR}fins.h
+
+${OBJDIR}fins_model_list.${OBJEXT} :	${SRCDIR}fins_model_list.c ${INCDIR}fins.h
 
 ${OBJDIR}fins_raw.${OBJEXT} :		${SRCDIR}fins_raw.c ${INCDIR}fins.h
 

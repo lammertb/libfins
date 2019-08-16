@@ -76,13 +76,17 @@ typedef int					SOCKET;
 									/*							*/
 									/********************************************************/
 
-#define FINS_PORT_MIN				0
-#define FINS_PORT_RESERVED			1024
-#define FINS_PORT_MAX				65535
+									/********************************************************/
+									/*							*/
+#define FINS_PORT_MIN				0			/* Lowest port number for TCP/UDP communications	*/
+#define FINS_PORT_RESERVED			1024			/* End of reserved TCP/UDP port number block		*/
+#define FINS_PORT_MAX				65535			/* Highest port number for TCP/UDP communications	*/
+#define FINS_DEFAULT_PORT			9600			/* Default port for FINS TCP and UDP communications	*/
+									/*							*/
+									/********************************************************/
 
 #define FINS_TIMEOUT				60
 
-#define FINS_DEFAULT_PORT			9600			/* Default port for FINS TCP and UDP communications	*/
 
 									/********************************************************/
 									/*							*/
@@ -108,17 +112,21 @@ typedef int					SOCKET;
 #define FI_TRD					0x20
 #define FI_FRC					0x40
 
-#define FINS_MAX_READ_WORDS_SYSWAY		269
-#define FINS_MAX_READ_WORDS_ETHERNET		999
-#define FINS_MAX_READ_WORDS_CLINK		999
-#define FINS_MAX_READ_WORDS_SYSMAC_LINK		269
-#define FINS_MAX_READ_WORDS_DEVICENET		269
-
-#define FINS_MAX_WRITE_WORDS_SYSWAY		267
-#define FINS_MAX_WRITE_WORDS_ETHERNET		996
-#define FINS_MAX_WRITE_WORDS_CLINK		996
-#define FINS_MAX_WRITE_WORDS_SYSMAC_LINK	267
-#define FINS_MAX_WRITE_WORDS_DEVICENET		267
+									/********************************************************/
+									/*							*/
+#define FINS_MAX_READ_WORDS_SYSWAY		269			/* Max number of read words reading over SYSWAY		*/
+#define FINS_MAX_READ_WORDS_ETHERNET		999			/* Max number of read words reading over Ethernet	*/
+#define FINS_MAX_READ_WORDS_CLINK		999			/* Max number of read words reading over C-Link		*/
+#define FINS_MAX_READ_WORDS_SYSMAC_LINK		269			/* Max number of read words reading over Sysmac Link	*/
+#define FINS_MAX_READ_WORDS_DEVICENET		269			/* Max number of read words reading over DeviceNet	*/
+									/*							*/
+#define FINS_MAX_WRITE_WORDS_SYSWAY		267			/* Max number of write words writing over SYSWAY	*/
+#define FINS_MAX_WRITE_WORDS_ETHERNET		996			/* Max number of write words writing over Ethernet	*/
+#define FINS_MAX_WRITE_WORDS_CLINK		996			/* Max numver of write words writing over C-Link	*/
+#define FINS_MAX_WRITE_WORDS_SYSMAC_LINK	267			/* Max number of write words writing over Sysmac Link	*/
+#define FINS_MAX_WRITE_WORDS_DEVICENET		267			/* Max number of write words writing over DeviceNet	*/
+									/*							*/
+									/********************************************************/
 
 									/********************************************************/
 									/*							*/
@@ -390,10 +398,12 @@ typedef int					SOCKET;
 									/*							*/
 									/********************************************************/
 #pragma pack(push,1)
-struct fins_command_tp {
-	unsigned char		header[FINS_HEADER_LEN];
-	unsigned char		body[FINS_BODY_LEN];
-};
+									/********************************************************/
+struct fins_command_tp {						/*							*/
+	unsigned char		header[FINS_HEADER_LEN];		/* FINS header with address information			*/
+	unsigned char		body[FINS_BODY_LEN];			/* FINS body with command information			*/
+};									/*							*/
+									/********************************************************/
 #pragma pack(pop)
 									/********************************************************/
 struct fins_area_tp {							/*							*/
@@ -410,6 +420,16 @@ struct fins_area_tp {							/*							*/
 	bool		force;						/* Force status used 					*/
 };									/*							*/
 									/********************************************************/
+
+									/********************************************************/
+struct fins_mcap_tp {							/*							*/
+	const char *	model;						/* CPU model						*/
+	int		fins_mode;					/* FINS mode used to communicate			*/
+	size_t		pa_size;					/* Program Area size in words				*/
+	size_t		ex_banks;					/* Number of extended memory banks			*/
+};									/*							*/
+									/********************************************************/
+
 struct fins_sys_tp {
 	char		address[128];
 	uint16_t	port;
@@ -431,16 +451,17 @@ struct fins_sys_tp {
 	char		version[21];
 	int		plc_mode;
 };
-
-struct fins_datetime_tp {
-	int		year;
-	int		month;
-	int		day;
-	int		hour;
-	int		min;
-	int		sec;
-	int		dow;
-};
+									/********************************************************/
+struct fins_datetime_tp {						/* 							*/
+	int		year;						/* Year							*/
+	int		month;						/* Month						*/
+	int		day;						/* Day							*/
+	int		hour;						/* Hour							*/
+	int		min;						/* Minute						*/
+	int		sec;						/* Second						*/
+	int		dow;						/* Day of Week						*/
+};									/*							*/
+									/********************************************************/
 
 struct fins_cycletime_tp {
 	uint32_t	min;
@@ -500,10 +521,12 @@ struct fins_cpudata_tp {
 	uint8_t		memory_card_type;
 };
 
-struct fins_unitdata_tp {
-	char		model[21];
-	uint8_t		unit;
-};
+									/********************************************************/
+struct fins_unitdata_tp {						/*							*/
+	char		model[21];					/* Name of the I/O unit					*/
+	uint8_t		unit;						/* Unit number						*/
+};									/*							*/
+									/********************************************************/
 
 struct fins_msgdata_tp {
 	char		text[33];
@@ -552,22 +575,24 @@ struct fins_diskinfo_tp {
 	int		sec;
 };
 
-struct fins_fileinfo_tp {
-	char		filename[13];
-	uint32_t	size;
-	int		year;
-	int		month;
-	int		day;
-	int		hour;
-	int		min;
-	int		sec;
-	bool		read_only;
-	bool		hidden;
-	bool		system;
-	bool		volume_label;
-	bool		directory;
-	bool		archive;
-};
+									/********************************************************/
+struct fins_fileinfo_tp {						/*							*/
+	char		filename[13];					/* File name in MS-DOS format				*/
+	uint32_t	size;						/* File size in bytes					*/
+	int		year;						/* Year							*/
+	int		month;						/* Month						*/
+	int		day;						/* Day							*/
+	int		hour;						/* Hour							*/
+	int		min;						/* Minute						*/
+	int		sec;						/* Second						*/
+	bool		read_only;					/* Read/only attribute					*/
+	bool		hidden;						/* Hidden attribute					*/
+	bool		system;						/* System attribute					*/
+	bool		volume_label;					/* Attribute to indicate that entry is a volume label	*/
+	bool		directory;					/* Attribute to indicate that entry is a directory	*/
+	bool		archive;					/* File has been modified since last backup		*/
+};									/*							*/
+									/********************************************************/
 
 struct fins_address_tp {
 	char		name[4];
@@ -688,28 +713,8 @@ void				XX_finslib_init_command( struct fins_sys_tp *sys, struct fins_command_tp
 const struct fins_area_tp *	XX_finslib_search_area( struct fins_sys_tp *sys, const struct fins_address_tp *address, int bits, uint32_t access, bool force );
 int				XX_finslib_wsa_errorcode_to_fins_retval( int errorcode );
 
+
+
+extern struct fins_mcap_tp	fins_model[];
+
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
