@@ -227,7 +227,7 @@ struct fins_sys_tp *finslib_tcp_connect( struct fins_sys_tp *sys, const char *ad
 	cs_addr.sin_family      = AF_INET;
 	cs_addr.sin_port        = htons( port );
 
-	retval = inet_pton( AF_INET, address, & cs_addr.sin_addr.s_addr );
+	retval = finslib_inet_pton( AF_INET, address, & cs_addr.sin_addr.s_addr );
 
 	if      ( retval <  0 ) return fins_close_socket_with_error( sys, error_val );
 	else if ( retval == 0 ) {
@@ -877,7 +877,7 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 		cs_addr.sin_family      = AF_INET;
 		cs_addr.sin_port        = htons( sys->port );
 
-		retval = inet_pton( AF_INET, sys->address, & cs_addr.sin_addr.s_addr );
+		retval = finslib_inet_pton( AF_INET, sys->address, & cs_addr.sin_addr.s_addr );
 
 		if ( retval <  0 ) {
 
@@ -903,7 +903,7 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 		if ( ! wait_response ) return FINS_RETVAL_SUCCESS;
 
 		addrlen = sizeof( cs_addr );
-		recvlen = recvfrom( sys->sockfd, command, MAX_MSG, 0, (struct sockaddr *) & cs_addr, &addrlen );
+		recvlen = recvfrom( sys->sockfd, command->header, MAX_MSG, 0, (struct sockaddr *) & cs_addr, &addrlen );
 
 		if ( recvlen < 0               ) return check_error_count( sys, FINS_RETVAL_ERRNO_BASE + errno );
 		if ( recvlen < FINS_HEADER_LEN ) return check_error_count( sys, FINS_RETVAL_BODY_TOO_SHORT     );
