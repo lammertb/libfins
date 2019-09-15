@@ -37,7 +37,10 @@
 #if defined(_WIN32)
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#endif
+#else  /* defined(_WIN32) */
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#endif  /* defined(_WIN32) */
 
 #include <stdbool.h>
 #include <stdint.h>

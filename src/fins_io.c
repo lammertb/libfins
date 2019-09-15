@@ -40,15 +40,11 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#if defined(_WIN32)
-#include <ws2tcpip.h>
-#else
+#if ! defined(_WIN32)
 #include <unistd.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
 #include <netdb.h>
-#endif
+#endif  /* ! defined(_WIN32) */
 
 #if defined(__FreeBSD__)
 #include <sys/timespec.h>
