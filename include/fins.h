@@ -41,16 +41,14 @@
 #if defined(_WIN32)
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#endif  /* defined(_WIN32) */
 
-#if defined(_WIN32)
 #define inet_pton				InetPton
 #else  /* defined(_WIN32) */
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
 #define INVALID_SOCKET				(-1)
-typedef int					SOCKET
+typedef int					SOCKET;
 #define closesocket				close
 #endif  /* defined(_WIN32) */
 
