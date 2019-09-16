@@ -31,6 +31,8 @@
  * and specifications important for proper FINS communications.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include "fins.h"
 
 /*

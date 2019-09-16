@@ -31,6 +31,8 @@
  * memory area to a file in a remote PLC over the FINS protocol.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include <string.h>
 #include "fins.h"
 

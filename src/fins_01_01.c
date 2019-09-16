@@ -31,6 +31,8 @@
  * remote PLC over the FINS protocol with the function 01 01.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include "fins.h"
 
 /*

@@ -31,6 +31,8 @@
  * from a remote PLC over the FINS protocol with the function 01 01.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include "fins.h"
 
 static int process_data( struct fins_sys_tp *sys, const char *start, uint32_t *data, size_t num_bcd32, int type );

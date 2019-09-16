@@ -31,6 +31,8 @@
  * 32 bit BCD words to memory areas of a remote PLC.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include "fins.h"
 
 static int	process_data( struct fins_sys_tp *sys, const char *start, const uint32_t *data, size_t num_bcd32, int type );

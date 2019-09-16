@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,8 @@
  * The source file src/fins_search.c contains routines to convert a text format
  * PLC address to the data associated with that memory area.
  */
+
+#define FINS_SOCKET_INCLUDE	1
 
 #include <stdio.h>
 #include <string.h>

@@ -31,6 +31,8 @@
  * write access log file in a remote PLC over the FINS protocol.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include "fins.h"
 
 int finslib_access_log_read( struct fins_sys_tp *sys, struct fins_accessdata_tp *accessdata, uint16_t start_record, size_t *num_records, size_t *stored_records ) {

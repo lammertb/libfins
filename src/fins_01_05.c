@@ -31,6 +31,8 @@
  * remote PLC from one memory are to another through the FINS protocol.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include "fins.h"
 
 /*

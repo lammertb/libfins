@@ -32,6 +32,8 @@
  * function 05 01 for this task.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include <ctype.h>
 #include <string.h>
 #include "fins.h"

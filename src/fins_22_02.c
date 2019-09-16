@@ -31,6 +31,8 @@
  * file on a remote PLC with the FINS protocol.
  */
 
+#define FINS_SOCKET_INCLUDE	1
+
 #include <string.h>
 #include "fins.h"
 
