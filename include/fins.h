@@ -34,25 +34,27 @@
 #ifndef INCLUDED_FINSLIB_FINS_H
 #define INCLUDED_FINSLIB_FINS_H
 
-#if defined(_WIN32)
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#else  /* defined(_WIN32) */
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#endif  /* defined(_WIN32) */
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <time.h>
 
+#if defined(FINS_SOCKET_INCLUDE)
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#endif  /* defined(_WIN32) */
+#endif  /* defined(FINS_SOCKET_INCLUDE) */
+
 #if defined(_WIN32)
 #define inet_pton				InetPton
-#else
+#else  /* defined(_WIN32) */
+#include <sys/socket.h>
+#include <arpa/inet.h>
+
 #define INVALID_SOCKET				(-1)
 typedef int					SOCKET;
 #define closesocket				close
-#endif
+#endif  /* defined(_WIN32) */
 
 									/********************************************************/
 									/*							*/
