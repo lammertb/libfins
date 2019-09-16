@@ -32,6 +32,7 @@
  */
 
 #if defined(_WIN32)
+#include <sdkddkver.h>
 #if (WINVER < _WIN32_WINNT_VISTA)
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #endif  /* (WINVER < _WIN32_WINNT_VISTA) */
