@@ -31,8 +31,6 @@
  * functions and store the result in a buffer for further processing.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include "fins.h"
 
 /*

@@ -31,8 +31,6 @@
  * 32 bit signed and unsigned integers to memory areas of a remote PLC.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include "fins.h"
 
 /*

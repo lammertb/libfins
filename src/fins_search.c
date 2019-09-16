@@ -31,8 +31,6 @@
  * PLC address to the data associated with that memory area.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include <stdio.h>
 #include <string.h>
 #include "fins.h"

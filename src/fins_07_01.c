@@ -31,8 +31,6 @@
  * command. This is the command to read the clock from a remote PLC.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include "fins.h"
 
 /*

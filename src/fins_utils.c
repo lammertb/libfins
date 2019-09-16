@@ -31,8 +31,6 @@
  * the finslib library.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #if defined(_WIN32)
 #if (WINVER < 0x0600)
 #define _WINSOCK_DEPRECATED_NO_WARNINGS

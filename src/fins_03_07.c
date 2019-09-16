@@ -31,8 +31,6 @@
  * program area of a remote PLC over the FINS protocol.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include "fins.h"
 
 /*

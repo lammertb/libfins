@@ -32,8 +32,6 @@
  * for use with devices over the Omron FINS protocol.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include <ctype.h>
 #include "fins.h"
 

@@ -31,8 +31,6 @@
  * bits in a remote PLC over the FINS protocol.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include "fins.h"
 
 int finslib_force_bit( struct fins_sys_tp *sys, const struct fins_forcebit_tp *data, size_t num_bits ) {

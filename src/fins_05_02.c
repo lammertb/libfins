@@ -31,8 +31,6 @@
  * about modules on a remote PLC over the FINS protocol.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include <ctype.h>
 #include "fins.h"
 

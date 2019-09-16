@@ -31,8 +31,6 @@
  * directories in remote PLCs over a FINS connection.
  */
 
-#define FINS_SOCKET_INCLUDE	1
-
 #include <string.h>
 #include "fins.h"
 
