@@ -722,13 +722,13 @@ int finslib_inet_pton( int af, const char *src, void *dst ) {
 
 
 /*
- * const char *finslib_inet_ntop( int af, const void *src, char *dst, socklen_t size );
+ * const char *finslib_inet_ntop( int af, const void *src, char *dst, int size );
  *
  * The function finslib_inet_ntop() provides an own implementation of the
  * inet_ntop function if that function is not provided by the OS.
  */
 
-const char *finslib_inet_ntop( int af, const void *src, char *dst, socklen_t size ) {
+const char *finslib_inet_ntop( int af, const void *src, char *dst, int size ) {
 
 #if defined(_WIN32)  &&  (WINVER < 0x0600)
 
