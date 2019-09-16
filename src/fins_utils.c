@@ -32,9 +32,9 @@
  */
 
 #if defined(_WIN32)
-#if (WINVER < 0x0600)
+#if (WINVER < _WIN32_WINNT_VISTA)
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
-#endif  /* (WINVER < 0x0600) */
+#endif  /* (WINVER < _WIN32_WINNT_VISTA) */
 #endif  /* defined(_WIN32) */
 
 #if defined(__FreeBSD__)
@@ -472,7 +472,7 @@ time_t finslib_monotonic_sec_timer( void ) {
 
 #if defined(_WIN32)
 
-#if (WINVER < 0x0600)
+#if (WINVER < _WIN32_WINNT_VISTA)
 
 	LARGE_INTEGER performance_counter;
 	LARGE_INTEGER performance_frequency;
@@ -489,11 +489,11 @@ time_t finslib_monotonic_sec_timer( void ) {
 
 	return (counter_value/frequency_value);
 
-#else  /* (WINVER < 0x0600) */
+#else  /* (WINVER < _WIN32_WINNT_VISTA) */
 
 	return GetTickCount64() / 1000;
 
-#endif  /* (WINVER < 0x0600) */
+#endif  /* (WINVER < _WIN32_WINNT_VISTA) */
 
 #else  /* defined(_WIN32) */
 
@@ -689,7 +689,7 @@ int finslib_filename_to_83( const char *infile, char *outfile ) {
 
 int finslib_inet_pton( int af, const char *src, void *dst ) {
 
-#if defined(_WIN32)  &&  (WINVER < 0x0600)
+#if defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA)
 
 	struct sockaddr_storage ss;
 	int size = sizeof(ss);
@@ -711,11 +711,11 @@ int finslib_inet_pton( int af, const char *src, void *dst ) {
 
 	return 0;
 
-#else  /* defined(_WIN32)  &&  (WINVER < 0x0600) */
+#else  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
 
 	return inet_pton( af, src, dst );
 
-#endif  /* defined(_WIN32)  &&  (WINVER < 0x0600) */
+#endif  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
 
 }  /* fins_lib_inet_pton */
 
@@ -730,7 +730,7 @@ int finslib_inet_pton( int af, const char *src, void *dst ) {
 
 const char *finslib_inet_ntop( int af, const void *src, char *dst, socklen_t size ) {
 
-#if defined(_WIN32)  &&  (WINVER < 0x0600)
+#if defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA)
 
 	struct sockaddr_storage ss;
 	unsigned long s = size;
@@ -747,10 +747,10 @@ const char *finslib_inet_ntop( int af, const void *src, char *dst, socklen_t siz
 
 	return ( WSAAddressToString( (struct sockaddr *) &ss, sizeof(ss), NULL, dst, &s ) == 0 ) ? dst : NULL;
 
-#else  /* defined(_WIN32)  &&  (WINVER < 0x0600) */
+#else  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
 
 	return inet_ntop( af, src, dst, size );
 
-#endif  /* defined(_WIN32)  &&  (WINVER < 0x0600) */
+#endif  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
 
 }  /* finslib_inet_ntop */
