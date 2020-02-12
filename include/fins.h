@@ -34,21 +34,23 @@
 #ifndef INCLUDED_FINSLIB_FINS_H
 #define INCLUDED_FINSLIB_FINS_H
 
-#if defined(_WIN32)
-#include <winsock2.h>
-#endif
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <time.h>
 
 #if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
 #define inet_pton				InetPton
-#else
+#else  /* defined(_WIN32) */
+#include <sys/socket.h>
+#include <arpa/inet.h>
+
 #define INVALID_SOCKET				(-1)
 typedef int					SOCKET;
 #define closesocket				close
-#endif
+#endif  /* defined(_WIN32) */
 
 									/********************************************************/
 									/*							*/
@@ -661,6 +663,8 @@ int				finslib_file_read( struct fins_sys_tp *sys, uint16_t disk, const char *pa
 int				finslib_file_to_area_transfer( struct fins_sys_tp *sys, const char *start, uint16_t disk, const char *path, const char *file, size_t *num_records );
 int				finslib_file_write( struct fins_sys_tp *sys, uint16_t disk, const char *path, const char *filename, const unsigned char *data, size_t file_position, size_t num_bytes, uint16_t open_mode );
 int				finslib_forced_set_reset_cancel( struct fins_sys_tp *sys );
+const char *			finslib_inet_ntop( int af, const void *src, char *dst, socklen_t size );
+int				finslib_inet_pton( int af, const char *src, void *dst );
 uint32_t			finslib_int_to_bcd( int32_t value, int type );
 int				finslib_link_unit_reset( struct fins_sys_tp *sys );
 int				finslib_memory_area_fill( struct fins_sys_tp *sys, const char *start, uint16_t fill_data, size_t num_word );

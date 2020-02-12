@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,13 @@
  * The source file src/fins_utils.c contains handy routines used by routines in
  * the finslib library.
  */
+
+#if defined(_WIN32)
+#include <sdkddkver.h>
+#if (WINVER < _WIN32_WINNT_VISTA)
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#endif  /* (WINVER < _WIN32_WINNT_VISTA) */
+#endif  /* defined(_WIN32) */
 
 #if defined(__FreeBSD__)
 #include <unistd.h>
@@ -465,13 +472,38 @@ uint32_t finslib_int_to_bcd( int32_t value, int type ) {
 time_t finslib_monotonic_sec_timer( void ) {
 
 #if defined(_WIN32)
+
+#if (WINVER < _WIN32_WINNT_VISTA)
+
+	LARGE_INTEGER performance_counter;
+	LARGE_INTEGER performance_frequency;
+	int64_t counter_value;
+	int64_t frequency_value;
+
+	QueryPerformanceCounter(   & performance_counter   );
+	QueryPerformanceFrequency( & performance_frequency );
+
+	counter_value   = performance_counter.QuadPart;
+	frequency_value = performance_frequency.QuadPart;
+
+	if ( frequency_value <= 0 ) return counter_value;
+
+	return (counter_value/frequency_value);
+
+#else  /* (WINVER < _WIN32_WINNT_VISTA) */
+
 	return GetTickCount64() / 1000;
-#else
+
+#endif  /* (WINVER < _WIN32_WINNT_VISTA) */
+
+#else  /* defined(_WIN32) */
+
 	struct timespec ts;
 
 	clock_gettime( CLOCK_MONOTONIC, & ts );
 	return ts.tv_sec;
-#endif
+
+#endif  /* defined(_WIN32) */
 
 }  /* finslib_monotonic_sec_timer */
 
@@ -646,3 +678,80 @@ int finslib_filename_to_83( const char *infile, char *outfile ) {
 	return FINS_RETVAL_SUCCESS;
 
 }  /* finslib_filename_to_83 */
+
+
+
+/*
+ * int finslib_inet_pton( int af, const char *src, void *dst );
+ *
+ * The function finslib_inet_pton() provides an own implementation of the
+ * inet_pton() function if that function is not provided by the OS.
+ */
+
+int finslib_inet_pton( int af, const char *src, void *dst ) {
+
+#if defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA)
+
+	struct sockaddr_storage ss;
+	int size = sizeof(ss);
+	char src_copy[INET6_ADDRSTRLEN+1];
+
+	ZeroMemory( &ss, sizeof(ss) );
+
+	strncpy_s( src_copy, INET6_ADDRSTRLEN+1, src, INET6_ADDRSTRLEN );
+	src_copy[INET6_ADDRSTRLEN] = 0;
+
+	if ( WSAStringToAddress( src_copy, af, NULL, (struct sockaddr *) &ss, &size ) == 0 ) {
+
+		switch ( af ) {
+
+			case AF_INET  : *(struct in_addr  *) dst = ((struct sockaddr_in  *) &ss)->sin_addr;  return 1; 
+			case AF_INET6 : *(struct in6_addr *) dst = ((struct sockaddr_in6 *) &ss)->sin6_addr; return 1;
+		}
+	}
+
+	return 0;
+
+#else  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
+
+	return inet_pton( af, src, dst );
+
+#endif  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
+
+}  /* fins_lib_inet_pton */
+
+
+
+/*
+ * const char *finslib_inet_ntop( int af, const void *src, char *dst, socklen_t size );
+ *
+ * The function finslib_inet_ntop() provides an own implementation of the
+ * inet_ntop function if that function is not provided by the OS.
+ */
+
+const char *finslib_inet_ntop( int af, const void *src, char *dst, socklen_t size ) {
+
+#if defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA)
+
+	struct sockaddr_storage ss;
+	unsigned long s = size;
+
+	ZeroMemory( &ss, sizeof(ss) );
+	ss.ss_family = (ADDRESS_FAMILY) af;
+
+	switch ( af ) {
+
+		case AF_INET  : ((struct sockaddr_in  *) &ss)->sin_addr  = *(struct in_addr  *)src; break; 
+		case AF_INET6 : ((struct sockaddr_in6 *) &ss)->sin6_addr = *(struct in6_addr *)src; break; 
+		default       : return NULL;
+	}
+
+	return ( WSAAddressToString( (struct sockaddr *) &ss, sizeof(ss), NULL, dst, &s ) == 0 ) ? dst : NULL;
+
+#else  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
+
+	return inet_ntop( af, src, dst, size );
+
+#endif  /* defined(_WIN32)  &&  (WINVER < _WIN32_WINNT_VISTA) */
+
+}  /* finslib_inet_ntop */

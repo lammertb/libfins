@@ -84,7 +84,7 @@ int finslib_memory_area_write_bit( struct fins_sys_tp *sys, const char *start, c
 		fins_cmnd.body[bodylen++] = area_ptr->area;
 		fins_cmnd.body[bodylen++] = (chunk_start  >> 8) & 0xff;
 		fins_cmnd.body[bodylen++] = (chunk_start      ) & 0xff;
-		fins_cmnd.body[bodylen++] =  chunk_bit;
+		fins_cmnd.body[bodylen++] = (unsigned char) chunk_bit;
 		fins_cmnd.body[bodylen++] = (chunk_length >> 8) & 0xff;
 		fins_cmnd.body[bodylen++] = (chunk_length     ) & 0xff;
 

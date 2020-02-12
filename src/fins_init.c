@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016 Lammert Bies
+ * Copyright (c) 2016-2019 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

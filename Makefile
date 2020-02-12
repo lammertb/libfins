@@ -104,7 +104,9 @@ ARQC   = /NOLOGO /OUT:
 ARQ    = /NOLOGO
 RANLIB = dir
 
-CFLAGS = -Ox -Ot -MT -GT -volatile:iso -I${INCDIR} -nologo -J -sdl -Wall -WX -wd4464 -wd4710 -wd4711 -wd4201 -wd4820
+#
+
+CFLAGS = -Ox -Ot -MT -GT -DWINVER=0x0501 -D_WIN32_WINNT=0x0501 -volatile:iso -I${INCDIR} -nologo -J -sdl -Wall -WX -wd4464 -wd4668 -wd4710 -wd4711 -wd4201 -wd4820 -Wv:18
 endif
 
 ${OBJDIR}%.${OBJEXT} : ${SRCDIR}%.c
