@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016-2019 Lammert Bies
+ * Copyright (c) 2016-2020 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -138,6 +138,7 @@ typedef int					SOCKET;
 
 									/********************************************************/
 									/*							*/
+#define FINS_DATA_TYPE_NONE			0			/* No data type						*/
 #define FINS_DATA_TYPE_INT16			1			/* 16 bit signed integer				*/
 #define FINS_DATA_TYPE_INT32			2			/* 32 bit signed integer				*/
 #define FINS_DATA_TYPE_UINT16			3			/* 16 bit unsigned integer				*/
@@ -157,6 +158,7 @@ typedef int					SOCKET;
 #define FINS_DATA_TYPE_BIT			17			/* Single bit						*/
 #define FINS_DATA_TYPE_BIT_FORCED		18			/* Single bit with forced status			*/
 #define FINS_DATA_TYPE_WORD_FORCED		19			/* 16 bit word with for each bit the forced status	*/
+#define FINS_DATA_TYPE_LAST			19			/* Last defined data type				*/
 									/*							*/
 									/********************************************************/
 
