@@ -693,7 +693,7 @@ static int fins_send_udp_command( struct fins_sys_tp *sys, size_t bodylen, struc
 
 	if ( sys         == NULL           ) return FINS_RETVAL_NOT_INITIALIZED;
 	if ( command     == NULL           ) return FINS_RETVAL_NO_COMMAND;
-	if ( sys->sockfd != INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
+	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
 	if ( bodylen     >  FINS_BODY_LEN  ) return FINS_RETVAL_BODY_TOO_LONG;
 
 	sendlen = FINS_HEADER_LEN + (int) bodylen;
