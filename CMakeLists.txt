@@ -1,0 +1,93 @@
+cmake_minimum_required(VERSION 3.25)
+
+project(fins LANGUAGES C VERSION "2021.04.22")
+
+# compiler settings
+if(MSVC)
+    list(
+        APPEND COMPILER_C_FLAGS
+        -Ot
+        -GT
+        -DWINVER=0x0501
+        -D_WIN32_WINNT=0x0501
+        -volatile:iso
+        -nologo
+        -J
+        -sdl
+        -Wall
+        -WX
+        -wd4464
+        -wd4668
+        -wd4710
+        -wd4711
+        -wd4201
+        -wd4820
+        -Wv:18
+    )
+else()
+    set(
+        COMPILER_C_FLAGS
+        -Wall
+        -Wstrict-prototypes
+        -Wshadow
+        -Wpointer-arith
+        -Wcast-qual
+        -Wcast-align
+        -Wwrite-strings
+        -Wnested-externs
+        -Wredundant-decls
+        -Werror
+        -funsigned-char
+    )
+endif()
+
+# target
+file(GLOB_RECURSE LIB_SRCS src/*.c)
+file(GLOB_RECURSE LIB_HEADERS include/*.h)
+add_library(fins ${LIB_SRCS})
+target_compile_options(fins PRIVATE "${COMPILER_C_FLAGS}")
+target_include_directories(
+    fins PUBLIC  
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>  
+    $<INSTALL_INTERFACE:include>  
+)
+set_target_properties(
+    fins PROPERTIES
+    PUBLIC_HEADER "${LIB_HEADERS}"
+    LINKER_LANGUAGE C
+    PREFIX lib
+)
+
+# install logic
+install(
+    TARGETS ${PROJECT_NAME}
+    EXPORT "${PROJECT_NAME}Targets"
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    PUBLIC_HEADER DESTINATION include/fins
+)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
+    "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION "share/${PROJECT_NAME}"
+)
+
+write_basic_package_version_file(
+    "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+    VERSION "${PROJECT_VERSION}"
+    COMPATIBILITY SameMajorVersion
+)
+
+install(
+    FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+    DESTINATION share/${PROJECT_NAME}
+)
+
+install(
+    EXPORT "${PROJECT_NAME}Targets"
+    DESTINATION share/${PROJECT_NAME}
+)
