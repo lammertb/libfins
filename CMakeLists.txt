@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(fins LANGUAGES C VERSION "2021.04.22")
+project(fins LANGUAGES C VERSION 1.0)
 
 # compiler settings
 if(MSVC)
