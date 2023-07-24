@@ -4,8 +4,8 @@ project(fins LANGUAGES C VERSION "2021.04.22")
 
 # compiler settings
 if(MSVC)
-    list(
-        APPEND COMPILER_C_FLAGS
+    set(
+        COMPILER_C_FLAGS
         -Ot
         -GT
         -DWINVER=0x0501
