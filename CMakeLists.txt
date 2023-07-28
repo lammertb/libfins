@@ -36,7 +36,6 @@ else()
         -Wwrite-strings
         -Wnested-externs
         -Wredundant-decls
-        -Werror
         -funsigned-char
     )
 endif()
@@ -90,4 +89,5 @@ install(
 install(
     EXPORT "${PROJECT_NAME}Targets"
     DESTINATION share/${PROJECT_NAME}
+    NAMESPACE fins::
 )
