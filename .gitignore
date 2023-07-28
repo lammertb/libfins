@@ -5,3 +5,6 @@ obj/*.obj
 obj/*.o
 lib/*.lib
 lib/*.a
+
+build
+.vscode
