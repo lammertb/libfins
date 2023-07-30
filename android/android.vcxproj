@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\fins.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\fins_01_01.c" />
+    <ClCompile Include="..\src\fins_01_01_bcd16.c" />
+    <ClCompile Include="..\src\fins_01_01_bcd32.c" />
+    <ClCompile Include="..\src\fins_01_01_bit.c" />
+    <ClCompile Include="..\src\fins_01_01_int16.c" />
+    <ClCompile Include="..\src\fins_01_01_int32.c" />
+    <ClCompile Include="..\src\fins_01_02.c" />
+    <ClCompile Include="..\src\fins_01_02_bcd16.c" />
+    <ClCompile Include="..\src\fins_01_02_bcd32.c" />
+    <ClCompile Include="..\src\fins_01_02_bit.c" />
+    <ClCompile Include="..\src\fins_01_02_int16.c" />
+    <ClCompile Include="..\src\fins_01_02_int32.c" />
+    <ClCompile Include="..\src\fins_01_03.c" />
+    <ClCompile Include="..\src\fins_01_04.c" />
+    <ClCompile Include="..\src\fins_01_05.c" />
+    <ClCompile Include="..\src\fins_02_01.c" />
+    <ClCompile Include="..\src\fins_02_02.c" />
+    <ClCompile Include="..\src\fins_02_03.c" />
+    <ClCompile Include="..\src\fins_03_06.c" />
+    <ClCompile Include="..\src\fins_03_07.c" />
+    <ClCompile Include="..\src\fins_03_08.c" />
+    <ClCompile Include="..\src\fins_04_01.c" />
+    <ClCompile Include="..\src\fins_04_02.c" />
+    <ClCompile Include="..\src\fins_04_03.c" />
+    <ClCompile Include="..\src\fins_05_01.c" />
+    <ClCompile Include="..\src\fins_05_02.c" />
+    <ClCompile Include="..\src\fins_06_01.c" />
+    <ClCompile Include="..\src\fins_06_20_init.c" />
+    <ClCompile Include="..\src\fins_06_20_read.c" />
+    <ClCompile Include="..\src\fins_07_01.c" />
+    <ClCompile Include="..\src\fins_07_02.c" />
+    <ClCompile Include="..\src\fins_09_20_clear.c" />
+    <ClCompile Include="..\src\fins_09_20_fal.c" />
+    <ClCompile Include="..\src\fins_09_20_read.c" />
+    <ClCompile Include="..\src\fins_0c_01.c" />
+    <ClCompile Include="..\src\fins_0c_02.c" />
+    <ClCompile Include="..\src\fins_0c_03.c" />
+    <ClCompile Include="..\src\fins_21_01.c" />
+    <ClCompile Include="..\src\fins_21_02.c" />
+    <ClCompile Include="..\src\fins_21_03.c" />
+    <ClCompile Include="..\src\fins_21_40.c" />
+    <ClCompile Include="..\src\fins_21_41.c" />
+    <ClCompile Include="..\src\fins_22_01.c" />
+    <ClCompile Include="..\src\fins_22_02.c" />
+    <ClCompile Include="..\src\fins_22_03.c" />
+    <ClCompile Include="..\src\fins_22_04.c" />
+    <ClCompile Include="..\src\fins_22_05.c" />
+    <ClCompile Include="..\src\fins_22_07.c" />
+    <ClCompile Include="..\src\fins_22_08.c" />
+    <ClCompile Include="..\src\fins_22_0a.c" />
+    <ClCompile Include="..\src\fins_22_0b.c" />
+    <ClCompile Include="..\src\fins_22_0c.c" />
+    <ClCompile Include="..\src\fins_22_15.c" />
+    <ClCompile Include="..\src\fins_23_01.c" />
+    <ClCompile Include="..\src\fins_23_02.c" />
+    <ClCompile Include="..\src\fins_26_01.c" />
+    <ClCompile Include="..\src\fins_26_02.c" />
+    <ClCompile Include="..\src\fins_26_03.c" />
+    <ClCompile Include="..\src\fins_decode.c" />
+    <ClCompile Include="..\src\fins_error.c" />
+    <ClCompile Include="..\src\fins_init.c" />
+    <ClCompile Include="..\src\fins_io.c" />
+    <ClCompile Include="..\src\fins_model_list.c" />
+    <ClCompile Include="..\src\fins_raw.c" />
+    <ClCompile Include="..\src\fins_search.c" />
+    <ClCompile Include="..\src\fins_utils.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5fa0fbb2-8e09-4ecb-a4d2-4b47e574428e}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <RootNamespace>android</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <IncludePath>$(LLVMToolchainPrebuiltRoot)\lib64\clang\$(LLVMVersion)\include;..\include</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+      <CLanguageStandard>c99</CLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+      <CLanguageStandard>c99</CLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <CLanguageStandard>c99</CLanguageStandard>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <CLanguageStandard>c99</CLanguageStandard>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <CLanguageStandard>c99</CLanguageStandard>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <CLanguageStandard>c99</CLanguageStandard>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <CLanguageStandard>c99</CLanguageStandard>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFileDirectory />
+      <PrecompiledHeaderCompileAs />
+      <CLanguageStandard>c99</CLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
