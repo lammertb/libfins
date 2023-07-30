@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/lammertb/libfins.svg?branch=master)](https://travis-ci.com/lammertb/libfins)
-
 # Libfins - Multi platform MIT licensed FINS library in C
 Libfins is a multi platform library with routines to communicate with Omron PLCs
 over the FINS protocol. FINS is an inter-PLC protocol which allows hardware layer independent exchange of
