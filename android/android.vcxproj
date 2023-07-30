@@ -192,6 +192,7 @@
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
       <CLanguageStandard>c99</CLanguageStandard>
+      <PreprocessorDefinitions />
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -202,6 +203,7 @@
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
       <CLanguageStandard>c99</CLanguageStandard>
+      <PreprocessorDefinitions />
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -212,6 +214,7 @@
       <CLanguageStandard>c99</CLanguageStandard>
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
+      <PreprocessorDefinitions />
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -222,6 +225,7 @@
       <CLanguageStandard>c99</CLanguageStandard>
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
+      <PreprocessorDefinitions />
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
