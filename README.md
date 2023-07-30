@@ -1,4 +1,4 @@
-[![MSBuild](https://github.com/lammertb/libfins/actions/workflows/msbuild.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/msbuild.yml) 
+[![Windows](https://github.com/lammertb/libfins/actions/workflows/msbuild.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/msbuild.yml)
 [![Linux](https://github.com/lammertb/libfins/actions/workflows/cmake.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake.yml)
 [![MacOS](https://github.com/lammertb/libfins/actions/workflows/cmake-macos.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake-macos.yml)
 
