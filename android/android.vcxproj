@@ -232,7 +232,8 @@
       <CLanguageStandard>c99</CLanguageStandard>
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -243,7 +244,8 @@
       <CLanguageStandard>c99</CLanguageStandard>
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -254,7 +256,8 @@
       <CLanguageStandard>c99</CLanguageStandard>
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -265,7 +268,10 @@
       <PrecompiledHeaderOutputFileDirectory />
       <PrecompiledHeaderCompileAs />
       <CLanguageStandard>c99</CLanguageStandard>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
