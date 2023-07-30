@@ -1,4 +1,4 @@
-name: CMake
+name: Linux
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-20.04, ubuntu-latest, macos-latest]
+        os: [ubuntu-20.04, ubuntu-22.04]
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
