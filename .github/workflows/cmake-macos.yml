@@ -1,4 +1,4 @@
-name: MacOS latest
+name: MacOS
 
 on:
   push:
