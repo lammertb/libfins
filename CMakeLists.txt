@@ -8,8 +8,6 @@ if(MSVC)
         COMPILER_C_FLAGS
         -Ot
         -GT
-        -DWINVER=0x0501
-        -D_WIN32_WINNT=0x0501
         -volatile:iso
         -nologo
         -J
