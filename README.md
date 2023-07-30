@@ -1,4 +1,5 @@
 [![MSBuild](https://github.com/lammertb/libfins/actions/workflows/msbuild.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/msbuild.yml)
+[![Windows](https://github.com/lammertb/libfins/actions/workflows/cmake-windows.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake-windows.yml)
 [![Linux](https://github.com/lammertb/libfins/actions/workflows/cmake.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake.yml)
 [![MacOS](https://github.com/lammertb/libfins/actions/workflows/cmake-macos.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake-macos.yml)
 
@@ -39,21 +40,27 @@ The Libfins library is developed to be used on multiple platforms. It currently 
 and FreeBSD in 32 and 64 bit and on x86 and AMD architectures. New versions of the code are
 regularly compiled and checked on the systems mentioned in the following lists.
 
-### 32 bit development environments
-|Operating System|Compiler|
-| :--- | :--- |
-|Centos 6.8|gcc 4.4.7|
-|Debian 8.6|gcc 4.9.2|
-|FreeBSD 10.3|clang 3.4.1|
-|Raspbian|gcc 4.8|
-|Windows 11|Visual Studio 2022|
+### 32 bit target environments
+|Operating System|Compiler|Build System|
+| :--- | :--- | :--- |
+|Centos 6.8|gcc 4.4.7|GNU make|
+|Debian 8.6|gcc 4.9.2|GNU make|
+|FreeBSD 10.3|clang 3.4.1|GNU make|
+|Raspbian|gcc 4.8|GNU make|
+|Windows 11 10.0.22621|MSVC 19.33.31630|MSBuild|
 
-### 64 bit development environments
-|Operating system|Compiler|
-| :--- | :--- |
-|Centos 6.8|gcc 4.4.7|
-|Centos 7.2.1511|gcc 4.8.5|
-|Debian 8.6|gcc 4.9.2|
-|FreeBSD 10.3|clang 3.4.1|
-|OS X El Capitan 10.11.6|Apple LLVM 8.0.0|
-|Windows 11|Visual Studio 2022|
+### 64 bit target environments
+|Operating system|Compiler|Build System|
+| :--- | :--- | :--- |
+|Centos 6.8|gcc 4.4.7|GNU make|
+|Centos 7.2.1511|gcc 4.8.5|GNU make|
+|Debian 8.6|gcc 4.9.2|GNU make|
+|FreeBSD 10.3|clang 3.4.1|GNU make|
+|Ubuntu 20.04.6 LTS|gcc 9.4.0|CMake|
+|Ubuntu 22.04.2 LTS|gcc 11.3.0|CMake|
+|MacOS 11.7.8|AppleClang 13.0.0.13000029|CMake|
+|MacOS 12.6.7|AppleClang 14.0.0.14000029|CMake|
+|MacOS 13.4|AppleClang 14.0.0.14000029|CMake|
+|Windows Server 2019 10.0.17763|MSVC 19.29.30151.0|CMake|
+|Windows Server 2022 10.0.20348|MSVC 19.35.32217.1|CMake|
+|Windows 11 10.0.22621|MSVC 19.33.31630|MSBuild|
