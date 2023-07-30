@@ -27,7 +27,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [ARM, ARM64]
+        platform: [ARM, ARM64, x86, x64]
     runs-on: windows-latest
 
     steps:
