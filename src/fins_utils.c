@@ -47,7 +47,7 @@
 #include <unistd.h>
 #endif
 
-#if defined(__OSX__)
+#if defined(__APPLE__)
 #include <unistd.h>
 #endif
 
