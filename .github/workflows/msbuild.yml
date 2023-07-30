@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Windows MSBuild
+name: MSBuild
 
 on:
   push:
