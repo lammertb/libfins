@@ -609,7 +609,7 @@ bool finslib_valid_directory( const char *path ) {
 	size_t a;
 	size_t len;
 	const char *ptr;
-	char subdir[13];
+	char subdir[13] ={ 0 };
 
 	if ( path == NULL ) return true;
 

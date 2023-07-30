@@ -12,14 +12,8 @@ if(MSVC)
         -nologo
         -J
         -sdl
-        -Wall
-        -WX
-        -wd4464
-        -wd4668
-        -wd4710
-        -wd4711
-        -wd4201
-        -wd4820
+        -W3
+        -WX-
         -Wv:18
     )
 else()

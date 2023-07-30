@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016-2020 Lammert Bies
+ * Copyright (c) 2016-2023 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,10 @@
 #ifndef INCLUDED_FINSLIB_FINS_H
 #define INCLUDED_FINSLIB_FINS_H
 
+#if defined(_MSC_VER)
+#pragma warning(disable:4201 4668 4710 4711 4820 5045)
+#endif
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <time.h>
@@ -42,7 +46,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
-#define inet_pton				InetPton
+#define inet_pton				InetPtonA
 #else  /* defined(_WIN32) */
 #include <sys/socket.h>
 #include <arpa/inet.h>

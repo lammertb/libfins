@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016-2019 Lammert Bies
+ * Copyright (c) 2016-2023 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@
 #include <signal.h>
 #include "fins.h"
 
-#define MAX_MSG		2010		/* Maximum UDP message slze */
+#define MAX_MSG		(FINS_HEADER_LEN+FINS_BODY_LEN-2)		/* Maximum UDP message size */
 #define BUFLEN		1024
 #define SEND_TIMEOUT	10
 #define RECV_TIMEOUT	10
@@ -141,8 +141,8 @@ struct fins_sys_tp *finslib_tcp_connect( struct fins_sys_tp *sys, const char *ad
 	uint32_t errorcode;
 	struct sockaddr_in ws_addr;
 	struct sockaddr_in cs_addr;
-	struct timeval tv;
-	unsigned char fins_tcp_header[FINS_MAX_TCP_HEADER];
+	struct timeval tv ={ 0 };
+	unsigned char fins_tcp_header[FINS_MAX_TCP_HEADER] ={ 0 };
 
 	if ( sys != NULL  &&  finslib_monotonic_sec_timer() < sys->timeout + FINS_TIMEOUT  &&  sys->timeout > 0 ) {
 
@@ -338,7 +338,7 @@ struct fins_sys_tp *finslib_tcp_connect( struct fins_sys_tp *sys, const char *ad
 struct fins_sys_tp *finslib_udp_connect( struct fins_sys_tp *sys, const char *address, uint16_t port, uint8_t local_net, uint8_t local_node, uint8_t local_unit, uint8_t remote_net, uint8_t remote_node, uint8_t remote_unit, int *error_val, int error_max ) {
 
 	struct sockaddr_in ws_addr;
-	struct timeval tv;
+	struct timeval tv ={ 0 };
 
 	if ( sys != NULL  &&  finslib_monotonic_sec_timer() < sys->timeout + FINS_TIMEOUT  &&  sys->timeout > 0 ) {
 
@@ -461,8 +461,8 @@ static struct fins_sys_tp *fins_close_socket_with_error( struct fins_sys_tp *sys
 
 static struct fins_sys_tp *fins_close_socket( struct fins_sys_tp *sys ) {
 
-	struct timeval tv;
-	struct linger li;
+	struct timeval tv ={ 0 };
+	struct linger li ={ 0 };
 
 	if ( sys == NULL ) return NULL;
 
@@ -555,7 +555,7 @@ static int fins_tcp_recv( struct fins_sys_tp *sys, unsigned char *buf, int len )
 static int fins_send_tcp_header( struct fins_sys_tp *sys, size_t bodylen ) {
 
 	int sendlen;
-	unsigned char fins_tcp_header[FINS_MAX_TCP_HEADER];
+	unsigned char fins_tcp_header[FINS_MAX_TCP_HEADER] ={ 0 };
 
 	if ( sys         == NULL           ) return FINS_RETVAL_NOT_INITIALIZED;
 	if ( sys->sockfd == INVALID_SOCKET ) return FINS_RETVAL_NOT_CONNECTED;
@@ -847,7 +847,7 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 	int error_val;
 	socklen_t addrlen;
 	uint16_t endcode;
-	unsigned char sent_header[FINS_HEADER_LEN];
+	unsigned char sent_header[FINS_HEADER_LEN] ={ 0 };
 	unsigned char waste_buffer[BUFLEN];
 	struct sockaddr_in cs_addr;
 
@@ -909,8 +909,24 @@ int XX_finslib_communicate( struct fins_sys_tp *sys, struct fins_command_tp *com
 
 		if ( ! wait_response ) return FINS_RETVAL_SUCCESS;
 
+		/* Receive the data in the FINS command structure
+		 * Header and body have a total length of FINS_HEADER_LEN + FINS_BODY_LEN
+		 * MAX_MSG is defined a little bit smaller, so everything is well. Visual Studio
+		 * still throws a buffer overrun warning C6386 though because the receive buffer which is why that warning
+		 * is silenced here.
+		 */
+
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable:6386)
+#endif
+
 		addrlen = sizeof( cs_addr );
-		recvlen = recvfrom( sys->sockfd, command->header, MAX_MSG, 0, (struct sockaddr *) & cs_addr, &addrlen );
+		recvlen = recvfrom( sys->sockfd, command->header, MAX_MSG, 0, (struct sockaddr*)&cs_addr, &addrlen);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 		if ( recvlen < 0               ) return check_error_count( sys, FINS_RETVAL_ERRNO_BASE + errno );
 		if ( recvlen < FINS_HEADER_LEN ) return check_error_count( sys, FINS_RETVAL_BODY_TOO_SHORT     );
