@@ -92,7 +92,7 @@ A second point is that this library runs on many versions of *nix flavors and
 autoconf versions on older but still supported OS versions (Centos 6.x as an
 example) are not fully compatible with newer bleeding edge operating systems.
 
-For that reason the toolchain only uses the make utility. The Makefile has been
+For that reason the toolchain uses the make utility. The Makefile has been
 specifically designed for GNU make, although other make implementations may
 work. If you encounter make problems with your make implementation, the best
 bet is to download a source or precompiled binary version of GNU make for your
@@ -102,6 +102,14 @@ Dependencies in the Makefile were created and are maintained manually where all
 depencencies including those for header files are properly mentioned. Because
 of this it is safe to speed op compilation with parallel jobs using the -j
 parameter of GNU make.
+
+Besides the Makefile, a CMake configuration and a Visual Studio project
+for the current Visual Studio release. These build options can be used where
+the use of the Makefile is not giving the desired results.
+
+Both the CMake and MSVC project files are used in the CI workflow on Github,
+so for the operating systems Windows, Ubuntu and MacOS, they should be
+fairly uptodate.
 
 
 Tested compilers
