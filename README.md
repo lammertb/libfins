@@ -2,6 +2,7 @@
 [![Windows](https://github.com/lammertb/libfins/actions/workflows/cmake-windows.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake-windows.yml)
 [![Linux](https://github.com/lammertb/libfins/actions/workflows/cmake.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake.yml)
 [![MacOS](https://github.com/lammertb/libfins/actions/workflows/cmake-macos.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/cmake-macos.yml)
+[![Android](https://github.com/lammertb/libfins/actions/workflows/msbuild-android.yml/badge.svg)](https://github.com/lammertb/libfins/actions/workflows/msbuild-android.yml)
 
 # Libfins - Multi platform MIT licensed FINS library in C
 Libfins is a multi platform library with routines to communicate with Omron PLCs
