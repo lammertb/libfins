@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016-2019 Lammert Bies
+ * Copyright (c) 2016-2023 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +44,10 @@
 #endif
 
 #if defined(__linux__)
+#include <unistd.h>
+#endif
+
+#if defined(__OSX__)
 #include <unistd.h>
 #endif
 
