@@ -5,7 +5,7 @@
  *
  * This file is licensed under the MIT License as stated below
  *
- * Copyright (c) 2016-2019 Lammert Bies
+ * Copyright (c) 2016-2024 Lammert Bies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -161,7 +161,7 @@ const struct fins_area_tp *XX_finslib_search_area( struct fins_sys_tp *sys, cons
 
 		if (   fins_area[a].plc_mode           != sys->plc_mode         ) { a++; continue; }
 		if (   fins_area[a].bits               != bits                  ) { a++; continue; }
-		if ( ( fins_area[a].access | accs )    == 0x00000000            ) { a++; continue; }
+		if ( ( fins_area[a].access & accs )    == 0x00000000            ) { a++; continue; }
 		if (   fins_area[a].force              != force                 ) { a++; continue; }
 		if (   fins_area[a].low_id             >  address->main_address ) { a++; continue; }
 		if (   fins_area[a].high_id            <  address->main_address ) { a++; continue; }
