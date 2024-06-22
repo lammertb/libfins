@@ -5,6 +5,8 @@ obj/*.obj
 obj/*.o
 lib/*.lib
 lib/*.a
-
+x64
+Release
 build
 .vscode
+.vs
