@@ -334,7 +334,7 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 					sfloat.val_raw[0] = fins_cmnd.body[bodylen+1];
 					sfloat.val_raw[1] = fins_cmnd.body[bodylen+0];
-					sfloat.val_raw[2] = fins_cmnd.body[bodylen+7];
+					sfloat.val_raw[2] = fins_cmnd.body[bodylen+4];
 					sfloat.val_raw[3] = fins_cmnd.body[bodylen+3];
 
 					item[offset+a].sfloat = sfloat.val_float;
@@ -347,14 +347,14 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 				case FINS_DATA_TYPE_DOUBLE :
 
-					dfloat.val_raw[0] = fins_cmnd.body[0];
-					dfloat.val_raw[1] = fins_cmnd.body[1];
-					dfloat.val_raw[2] = fins_cmnd.body[3];
-					dfloat.val_raw[3] = fins_cmnd.body[4];
-					dfloat.val_raw[4] = fins_cmnd.body[6];
-					dfloat.val_raw[5] = fins_cmnd.body[7];
-					dfloat.val_raw[6] = fins_cmnd.body[9];
-					dfloat.val_raw[7] = fins_cmnd.body[10];
+					dfloat.val_raw[0] = fins_cmnd.body[bodylen+1];
+					dfloat.val_raw[1] = fins_cmnd.body[bodylen+0];
+					dfloat.val_raw[2] = fins_cmnd.body[bodylen+4];
+					dfloat.val_raw[3] = fins_cmnd.body[bodylen+3];
+					dfloat.val_raw[4] = fins_cmnd.body[bodylen+7];
+					dfloat.val_raw[5] = fins_cmnd.body[bodylen+6];
+					dfloat.val_raw[6] = fins_cmnd.body[bodylen+10];
+					dfloat.val_raw[7] = fins_cmnd.body[bodylen+9];
 
 					item[offset+a].dfloat = dfloat.val_double;
 
