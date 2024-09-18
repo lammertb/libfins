@@ -332,10 +332,10 @@ int finslib_multiple_memory_area_read( struct fins_sys_tp *sys, struct fins_mult
 
 				case FINS_DATA_TYPE_FLOAT :
 
-					sfloat.val_raw[0] = fins_cmnd.body[0];
-					sfloat.val_raw[1] = fins_cmnd.body[1];
-					sfloat.val_raw[2] = fins_cmnd.body[3];
-					sfloat.val_raw[3] = fins_cmnd.body[4];
+					sfloat.val_raw[0] = fins_cmnd.body[bodylen+1];
+					sfloat.val_raw[1] = fins_cmnd.body[bodylen+0];
+					sfloat.val_raw[2] = fins_cmnd.body[bodylen+7];
+					sfloat.val_raw[3] = fins_cmnd.body[bodylen+3];
 
 					item[offset+a].sfloat = sfloat.val_float;
 
