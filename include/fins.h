@@ -33,6 +33,9 @@
 
 #ifndef INCLUDED_FINSLIB_FINS_H
 #define INCLUDED_FINSLIB_FINS_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #if defined(_MSC_VER)
 #pragma warning(disable:4201 4668 4710 4711 4820 5045)
@@ -726,5 +729,7 @@ int				XX_finslib_wsa_errorcode_to_fins_retval( int errorcode );
 
 
 extern struct fins_mcap_tp	fins_model[];
-
+#ifdef __cplusplus
+}
+#endif
 #endif
