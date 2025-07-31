@@ -13,7 +13,5 @@ steps:
 - checkout: self
 
 - script: |
-    sudo apt-get update
-    sudo apt-get install -y build-essential
     make
   displayName: 'Build project with make'
